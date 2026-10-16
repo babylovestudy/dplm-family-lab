@@ -168,6 +168,24 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _console_result(command: str, result: dict) -> dict:
+    if command == "report":
+        return {
+            "status": result["status"],
+            "formal_status": result["formal_status"],
+            "recorded_rows": result.get("recorded_rows", 0),
+            "missing_stage_count": len(result.get("missing_expected_stages", [])),
+            "artifacts": result["artifacts"],
+        }
+    if command == "run-experiment":
+        return {
+            "mode": result["mode"], "status": result["status"],
+            "completed_stages": len(result["completed"]),
+            "journal": f"outputs/{result['mode']}/experiment_status.json",
+        }
+    return result
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
@@ -228,7 +246,7 @@ def main(argv: list[str] | None = None) -> int:
                 from .reporting import build_report
 
                 result = build_report(config, output_dir=args.output_dir)
-        print(json.dumps(result, indent=2, ensure_ascii=False, default=str))
+        print(json.dumps(_console_result(args.command, result), indent=2, ensure_ascii=False, default=str))
         return 0
     except (ValueError, RuntimeError, FileNotFoundError, FileExistsError, ImportError) as error:
         if args.debug:

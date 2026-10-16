@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "kind": "licensed_frozen_raw_dataset_snapshot",
+  "license_verified_date": "2026-10-16",
+  "files": [
+    {
+      "path": "raw/uniprot.fasta",
+      "restore_to": "data/raw/uniprot.fasta",
+      "bytes": 1251932,
+      "sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695",
+      "data_license": "CC-BY-4.0"
+    },
+    {
+      "path": "raw/provenance.json",
+      "restore_to": "data/raw/provenance.json",
+      "bytes": 8451,
+      "sha256": "b9aa6e960b8f02514c10b7508f3dd17c18a95da2dc960f781fa8648d1d460bbd",
+      "data_license": "CC-BY-4.0"
+    },
+    {
+      "path": "raw/PF00194.hmm",
+      "restore_to": "data/raw/PF00194.hmm",
+      "bytes": 119783,
+      "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+      "data_license": "CC0-1.0"
+    },
+    {
+      "path": "raw/PF00194.hmm.provenance.json",
+      "restore_to": "data/raw/PF00194.hmm.provenance.json",
+      "bytes": 649,
+      "sha256": "4df5ee778f3160de96944b364045abdf0ae03b9bf5130e2010f063aa237eb742",
+      "data_license": "CC0-1.0"
+    }
+  ],
+  "source": {
+    "uniprot": {
+      "attribution": "The UniProt Consortium",
+      "release": "2026_03",
+      "release_date": "02-September-2026",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "retrieved_at": "2026-10-16T03:33:36.105346+00:00",
+      "records": 4464,
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search",
+      "database_license": "CC-BY-4.0",
+      "official_license_statement": "https://rest.uniprot.org/help/license",
+      "official_license_statement_last_modified": "2024-12-18",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "citation_doi": "10.1093/nar/gkae1010",
+      "changes": "Query-selected REST TSV records converted to accession-sorted FASTA with taxid/reviewed headers and 80-column wrapping; no residue edits in this raw export. The query selection and subsequent cleaning are documented separately.",
+      "retained_source_notice": "UniProt disclaims data-accuracy warranties and notes that some data may be subject to patents or other rights. Copyright licensing does not provide unrestricted permission regarding other rights."
+    },
+    "pfam": {
+      "attribution": "Pfam / InterPro, EMBL-EBI and contributing curators",
+      "accession": "PF00194.27",
+      "download_url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+      "retrieved_at": "2026-10-16T03:33:37.872521+00:00",
+      "model_created_date": "2025-05-29",
+      "database_license": "CC0-1.0",
+      "official_license_statement": "https://interpro-documentation.readthedocs.io/en/latest/license.html",
+      "additional_official_statement": "https://pfam-docs.readthedocs.io/en/latest/",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "citation_doi": "10.1093/nar/gkae997",
+      "changes": "The downloaded gzip response was decompressed; the HMM model text was not edited.",
+      "full_pfam_release": "not captured; the exact model version and model bytes are pinned"
+    }
+  },
+  "reference": {
+    "original_working_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+    "canonical_split_sha256": "b6e07bd3c5809492f1ecbf73ccf8f39d168a2dffb70c0329e02b0d217ec3f330",
+    "canonical_serialization": "SHA-256 of ASCII JSON {signature,sequences}, sorted keys, separators comma/colon, sequence records sorted by id, plus one LF; report/time fields excluded.",
+    "signature": {
+      "raw_sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695",
+      "hmm_sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+      "family": "PF00194",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "min_length": 180,
+      "max_length": 256,
+      "min_hmm_coverage": 0.8,
+      "identity": 0.8,
+      "coverage": 0.8,
+      "split": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "seed": 42,
+      "metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length"
+    },
+    "split_fasta_sha256": {
+      "train.fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+      "val.fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb",
+      "test.fasta": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6"
+    },
+    "retained_sequences": 2942,
+    "components": 1719,
+    "split_sizes": {
+      "train": 2354,
+      "val": 294,
+      "test": 294
+    },
+    "reference_software": {
+      "python": "3.10.12",
+      "numpy": "1.26.4",
+      "biopython": "1.85",
+      "pyhmmer": "0.12.3"
+    }
+  },
+  "licensing_note": "The raw third-party data retain the listed resource licenses; they are not relicensed under the repository software license. Copyright permission is separate from patent and other noncopyright rights. No provider endorsement is implied."
+}

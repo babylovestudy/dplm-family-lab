@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "weights_file": "pytorch_model.bin",
+  "weights_file_sha256": "31e1f238b776a02183fbadb902140e68eda8b3bdc9c08c1962d5554fcaddff44",
+  "tensor_sha256": "f872fd255c05276e0786d8ebc171071ced235fa6f868e3aba33f9f2adba7e110",
+  "roundtrip_json_sha256": "f9699eb1e7b52ea3913d36e20ebc693adcca41fcfb5f6d20ca18b64acf2f938a",
+  "provenance_json_sha256": "9bcbe4cf3b17ff55db1c9b87c1b2602d518ef8cbcd438e5a21a596d8f8ecc151",
+  "training_report_sha256": "646ae552aa524b300d849786f2b8e4690bbc0c2113cd4105eaa50b7857653d12"
+}

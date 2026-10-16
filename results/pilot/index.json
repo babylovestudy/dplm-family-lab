@@ -1,0 +1,129 @@
+{
+  "mode": "pilot",
+  "collected_at": "2026-10-16T04:44:20.194699+00:00",
+  "experiment_status": "complete",
+  "files": [
+    {
+      "path": "outputs/length_schedules/seed_101_n32.json",
+      "sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+      "bytes": 530
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "74daa5d3b9d684685769d3f5a4ffba205a8cbb65dbff44bafa24e8e27fa354ec",
+      "bytes": 13038
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/evaluation/pairwise_diversity.csv",
+      "sha256": "c2e7e056f30e6c6f37ff0399a51931939ead675e4e54137c20aa2f60d3faa71a",
+      "bytes": 45681
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/evaluation/per_sequence.csv",
+      "sha256": "5e498961aef70711b09915453819e357a84f21c32f647a42b4c96cf055123b3b",
+      "bytes": 10637
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/length_schedule.json",
+      "sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+      "bytes": 530
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/manifest.json",
+      "sha256": "e5aa3dd116db9d02c3e8a7ab3814f01acf7f0d90ca8f8e3d53d6e3d4b258b1ec",
+      "bytes": 5770
+    },
+    {
+      "path": "outputs/pilot/baseline/seed_101/sequences.fasta",
+      "sha256": "f63212b85d440ca980dda5438a5e7d459281fb07e45d794481985568bd8400d4",
+      "bytes": 9109
+    },
+    {
+      "path": "outputs/pilot/baseline/test_denoising/denoising_baseline.json",
+      "sha256": "98aa45c5df933605c8b6d96a3c62aa089e1052495a7e71c8934ed3f03e849b79",
+      "bytes": 1069
+    },
+    {
+      "path": "outputs/pilot/experiment_status.json",
+      "sha256": "11154a23aed50e508f555273c7e102da55790254a9f9100b1f44a26f94af41d2",
+      "bytes": 49664
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "69493fd743a1b770467465de54ca705837cd3918c6d9e36599d48636cf901612",
+      "bytes": 13123
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/evaluation/pairwise_diversity.csv",
+      "sha256": "b155a63276da2ec334f81044c8f51cafa0903bd81d9a324f722b3ff38c21ef4d",
+      "bytes": 45577
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/evaluation/per_sequence.csv",
+      "sha256": "32f7d082983b8f404cfda95b82215009a3d1728e58a2c700c7e368daa2055f91",
+      "bytes": 11081
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/length_schedule.json",
+      "sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+      "bytes": 530
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/manifest.json",
+      "sha256": "2362778384f1e6368b8965d36308b4e0f618114d437af46fd8ae3f64a1b8d2c5",
+      "bytes": 5831
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/seed_101/sequences.fasta",
+      "sha256": "3658ab5a84f5dd2bbfd15a9e2d438400e9cf16536f9c9d4a88b9b6972ed28967",
+      "bytes": 9109
+    },
+    {
+      "path": "outputs/pilot/train_seed_42/test_denoising/denoising_adapted.json",
+      "sha256": "f149dc015e9d5f8a63aa8dcebde2633cb18dfcfd5b99e6f8b8efa07237274ee7",
+      "bytes": 1125
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/baseline_validation.json",
+      "sha256": "8264346446dba463ab79be23613cb73bb299c28878526ad2a9cd8cda2e6941c3",
+      "bytes": 226
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/config.json",
+      "sha256": "314fa2c7f124831dd324701ac2bc6c185650ffa3098cf1608afaeb19ab5668d3",
+      "bytes": 1837
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/environment.json",
+      "sha256": "a374dd9ba7a157a576f451c88ede26ab95288b6530d0482f6190fdf1c217e96d",
+      "bytes": 319
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/export_best/export_identity.json",
+      "sha256": "133a9507eb275b8b46101d79203c569df2ba4df03e884ed34edf5d8d12b7d79d",
+      "bytes": 532
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/export_best/family_lab_provenance.json",
+      "sha256": "9bcbe4cf3b17ff55db1c9b87c1b2602d518ef8cbcd438e5a21a596d8f8ecc151",
+      "bytes": 483
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/export_best/roundtrip.json",
+      "sha256": "f9699eb1e7b52ea3913d36e20ebc693adcca41fcfb5f6d20ca18b64acf2f938a",
+      "bytes": 144
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/training.jsonl",
+      "sha256": "17260f1aca98d0fc1e2846c203bfab965cd388a441835cad7b093364d3f7ffe7",
+      "bytes": 24576
+    },
+    {
+      "path": "runs/pf00194/pilot_seed_42/training_report.json",
+      "sha256": "646ae552aa524b300d849786f2b8e4690bbc0c2113cd4105eaa50b7857653d12",
+      "bytes": 2147
+    }
+  ],
+  "scope": "Original small outputs and provenance; no checkpoints, SQLite caches or raw training FASTA.",
+  "biological_validation": "not performed; family compatibility is a computational metric"
+}

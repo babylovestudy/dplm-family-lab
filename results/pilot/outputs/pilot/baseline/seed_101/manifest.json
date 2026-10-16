@@ -1,0 +1,224 @@
+{
+  "status": "complete",
+  "model": "model_cache/dplm_150m",
+  "provenance": {
+    "source": "airkingbd/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+    "download_endpoint": "https://hf-mirror.com",
+    "verified_against_official_metadata": true,
+    "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+    "tiny_fixture": false,
+    "parameter_count": 148796794,
+    "device": "cuda",
+    "precision": "bf16"
+  },
+  "seed": 101,
+  "batch_size": 1,
+  "max_iter": 100,
+  "sampling_strategy": "gumbel_argmax",
+  "output_alphabet": "ACDEFGHIKLMNPQRSTVWY",
+  "length_schedule_path": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/length_schedules/seed_101_n32.json",
+  "length_schedule_sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+  "environment": {
+    "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+    "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+    "packages": {
+      "dplm-family-lab": null,
+      "numpy": "1.26.4",
+      "biopython": "1.85",
+      "torch": "2.2.0+cu121",
+      "transformers": "4.39.2",
+      "pyhmmer": "0.12.3"
+    },
+    "project_source_sha256": {
+      "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+      "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+      "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+      "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+      "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+      "backend.py": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+      "cli.py": "49bd22bab74d4940dfcd050f772828f6be9993a540454e13898dce58faa46d71",
+      "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+      "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+      "evaluation.py": "04037f5ab606c5f5a4b90016731e65828cc921240b534a287ec548e61a3facb6",
+      "experiment.py": "788e7708025d0d81dc563b17e98f24ea174861f673293bbc4694d5f80ee20bd4",
+      "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+      "reporting.py": "b53f6e044156708c5a8fd197273a74be551f72ad5b71fc67b565f755cb915a86",
+      "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+      "similarity.py": "a82f5820bb2cd624b1d03a1e79dfd3c6f89782999add8d09958afab10067344b",
+      "training.py": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82"
+    }
+  },
+  "batches": [
+    {
+      "offset": 0,
+      "count": 1,
+      "seed": 4215616147
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "seed": 2912948527
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "seed": 3766082871
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "seed": 1893884482
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "seed": 1580666041
+    },
+    {
+      "offset": 5,
+      "count": 1,
+      "seed": 1069706710
+    },
+    {
+      "offset": 6,
+      "count": 1,
+      "seed": 799544686
+    },
+    {
+      "offset": 7,
+      "count": 1,
+      "seed": 3797431372
+    },
+    {
+      "offset": 8,
+      "count": 1,
+      "seed": 3456222482
+    },
+    {
+      "offset": 9,
+      "count": 1,
+      "seed": 2344275228
+    },
+    {
+      "offset": 10,
+      "count": 1,
+      "seed": 3331866021
+    },
+    {
+      "offset": 11,
+      "count": 1,
+      "seed": 2277705158
+    },
+    {
+      "offset": 12,
+      "count": 1,
+      "seed": 4030720971
+    },
+    {
+      "offset": 13,
+      "count": 1,
+      "seed": 2120661887
+    },
+    {
+      "offset": 14,
+      "count": 1,
+      "seed": 693193313
+    },
+    {
+      "offset": 15,
+      "count": 1,
+      "seed": 3778180873
+    },
+    {
+      "offset": 16,
+      "count": 1,
+      "seed": 1883525418
+    },
+    {
+      "offset": 17,
+      "count": 1,
+      "seed": 807354488
+    },
+    {
+      "offset": 18,
+      "count": 1,
+      "seed": 3467480325
+    },
+    {
+      "offset": 19,
+      "count": 1,
+      "seed": 3185348342
+    },
+    {
+      "offset": 20,
+      "count": 1,
+      "seed": 1326252945
+    },
+    {
+      "offset": 21,
+      "count": 1,
+      "seed": 778288622
+    },
+    {
+      "offset": 22,
+      "count": 1,
+      "seed": 2134890736
+    },
+    {
+      "offset": 23,
+      "count": 1,
+      "seed": 196179050
+    },
+    {
+      "offset": 24,
+      "count": 1,
+      "seed": 2755288599
+    },
+    {
+      "offset": 25,
+      "count": 1,
+      "seed": 3481255766
+    },
+    {
+      "offset": 26,
+      "count": 1,
+      "seed": 4069277312
+    },
+    {
+      "offset": 27,
+      "count": 1,
+      "seed": 1007031216
+    },
+    {
+      "offset": 28,
+      "count": 1,
+      "seed": 2557008529
+    },
+    {
+      "offset": 29,
+      "count": 1,
+      "seed": 623179042
+    },
+    {
+      "offset": 30,
+      "count": 1,
+      "seed": 3308235880
+    },
+    {
+      "offset": 31,
+      "count": 1,
+      "seed": 1082477522
+    }
+  ],
+  "sequences": 32,
+  "invalid_amino_acid_sequences": 0,
+  "fasta": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/pilot/baseline/seed_101/sequences.fasta",
+  "fasta_sha256": "f63212b85d440ca980dda5438a5e7d459281fb07e45d794481985568bd8400d4",
+  "elapsed_seconds": 72.20735381171107,
+  "peak_gpu_allocated_bytes": 1215000064
+}

@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 import copy
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import json
+import multiprocessing
+import os
 from pathlib import Path
+import sys
+import time
 
 from .common import sha256_file, utc_now, write_json
 
@@ -57,8 +62,104 @@ def _generation_run(config, output, model_path=None):
             or sha256_file(output / "sequences.fasta") != manifest["fasta_sha256"]
         ):
             raise ValueError(f"Existing generation differs from this protocol: {output}")
+        source = Path(expected_model)
+        provenance = manifest.get("provenance", {})
+        if source.is_dir():
+            weights = source / "pytorch_model.bin"
+            if not weights.is_file():
+                weights = source / "model.safetensors"
+            if (not weights.is_file()
+                    or provenance.get("loaded_weights_sha256") != sha256_file(weights)):
+                raise ValueError(f"Generation model weights changed at the same path: {source}")
+        elif source.is_file():
+            if provenance.get("training_checkpoint_sha256") != sha256_file(source):
+                raise ValueError(f"Generation training checkpoint changed: {source}")
+        elif provenance.get("artifact_role") == "adapted_export":
+            raise FileNotFoundError(f"Adapted generation model is missing: {source}")
         return manifest
     return generate(config, model_path=model_path, output_dir=str(output))
+
+
+def _initialize_cpu_evaluation():
+    """Isolate the spawned evaluation process and its nearest-search children."""
+    os.environ["CUDA_VISIBLE_DEVICES"] = ""
+    if "torch" in sys.modules:
+        raise RuntimeError("CPU evaluation worker unexpectedly imported torch")
+
+
+def _cpu_evaluation_job(config, fasta_path, output_dir):
+    from .evaluation import evaluate
+
+    if "torch" in sys.modules:
+        raise RuntimeError("CPU evaluation worker must not import torch")
+    started = time.perf_counter()
+    metrics = evaluate(config, fasta_path=fasta_path, output_dir=output_dir)
+    if "torch" in sys.modules:
+        raise RuntimeError("CPU evaluation unexpectedly imported torch")
+    return {"metrics": metrics, "execution": {
+        "worker_pid": os.getpid(), "seconds": time.perf_counter() - started,
+        "torch_imported": False, "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+    }}
+
+
+def _new_evaluation_executor():
+    # A fresh interpreter prevents the parent's trained GPU models or CUDA
+    # state from being inherited. There is exactly one evaluation queue writer.
+    return ProcessPoolExecutor(max_workers=1, mp_context=multiprocessing.get_context("spawn"),
+                               initializer=_initialize_cpu_evaluation)
+
+
+class _EvaluationQueue:
+    """Only the caller thread records journal entries, including worker failures."""
+
+    def __init__(self, record, failed, persist, diagnostics):
+        self.executor = _new_evaluation_executor()
+        self.record, self.failed, self.persist = record, failed, persist
+        self.diagnostics = diagnostics
+        self.pending = {}
+        self.errors = []
+
+    def submit(self, stage, config, fasta_path, output_dir):
+        entry = {"stage": stage, "status": "queued", "queued_at": utc_now()}
+        self.diagnostics.append(entry)
+        try:
+            future = self.executor.submit(_cpu_evaluation_job, config, str(fasta_path), str(output_dir))
+        except Exception as error:
+            entry.update(status="failed", error=str(error), finished_at=utc_now())
+            self.errors.append((stage, error))
+            self.failed(stage, error)
+            raise
+        self.pending[future] = (stage, entry)
+        self.persist()
+
+    def _collect_one(self, future):
+        stage, entry = self.pending.pop(future)
+        try:
+            result = future.result()
+        except Exception as error:
+            entry.update(status="failed", error=str(error), finished_at=utc_now())
+            self.errors.append((stage, error))
+            self.failed(stage, error)
+        else:
+            entry.update(status="complete", finished_at=utc_now(), **result["execution"])
+            self.record(stage, result["metrics"])
+
+    def collect_ready(self):
+        for future in list(self.pending):
+            if future.done():
+                self._collect_one(future)
+
+    def raise_if_failed(self):
+        if self.errors:
+            stages = ", ".join(stage for stage, _ in self.errors)
+            raise RuntimeError(f"CPU evaluation failed at {stages}; completed generation and failure evidence were retained") from self.errors[0][1]
+
+    def finish(self):
+        try:
+            for future in as_completed(list(self.pending)):
+                self._collect_one(future)
+        finally:
+            self.executor.shutdown(wait=True)
 
 
 def run_experiment(config: dict, pilot: bool = False) -> dict:
@@ -77,11 +178,22 @@ def run_experiment(config: dict, pilot: bool = False) -> dict:
     output.mkdir(parents=True, exist_ok=True)
     status_path = output / "experiment_status.json"
     status = {"mode": mode, "status": "running", "started_at": utc_now(), "completed": []}
+    overlap = not pilot and config.get("evaluation", {}).get("workers", 1) > 1
+    status["execution"] = {"evaluation_strategy": "spawn_cpu_overlap" if overlap else "sequential",
+                           "generation_strategy": "serial", "evaluation_queue_workers": 1 if overlap else 0,
+                           "nearest_workers": config.get("evaluation", {}).get("workers", 1),
+                           "evaluation_tasks": []}
     write_json(status_path, status)
 
     def record(stage, result):
         status["completed"].append({"stage": stage, "result": result, "time": utc_now()})
         write_json(status_path, status)
+
+    def failed(stage, error):
+        status.setdefault("failed_stages", []).append({"stage": stage, "error": str(error), "time": utc_now()})
+        write_json(status_path, status)
+
+    queue = None
 
     try:
         record("data_audit", audit(config))
@@ -100,37 +212,62 @@ def run_experiment(config: dict, pilot: bool = False) -> dict:
             record(f"train_{seed}", result)
             models.append((f"train_seed_{seed}", str(parent / suffix / "export_best")))
 
-        for arm, model_path in models:
-            current = copy.deepcopy(config)
-            current["evaluation"]["output_dir"] = str(output / arm / "test_denoising")
-            denoise_file = Path(current["evaluation"]["output_dir"]) / (
-                "denoising_adapted.json" if model_path else "denoising_baseline.json"
-            )
-            if denoise_file.exists():
-                result = _read(denoise_file)
-                if (
-                    result["source_sha256"] != sha256_file(config["train"]["test_fasta"])
-                    or result["model"] != str(model_path or config["model"]["source"])
-                    or result["noise_seed"] != config["train"]["validation_seed"] + 1
-                ):
-                    raise ValueError(f"Existing test evaluation differs from protocol: {denoise_file}")
-            else:
-                result = evaluate_denoising(current, model_path=model_path)
-            record(f"test_denoising_{arm}", result)
-            for seed in generation_seeds:
+        if overlap:
+            queue = _EvaluationQueue(record, failed, lambda: write_json(status_path, status),
+                                     status["execution"]["evaluation_tasks"])
+        try:
+            for arm, model_path in models:
+                if queue:
+                    queue.collect_ready()
+                    queue.raise_if_failed()
                 current = copy.deepcopy(config)
-                current["generate"]["seed"] = seed
-                current["generate"]["total_sequences"] = 32 if pilot else 256
-                generation_dir = output / arm / f"seed_{seed}"
-                manifest = _generation_run(current, generation_dir, model_path=model_path)
-                record(f"generate_{arm}_{seed}", manifest)
-                evaluation_dir = generation_dir / "evaluation"
-                metrics = evaluate(
-                    current,
-                    fasta_path=generation_dir / "sequences.fasta",
-                    output_dir=evaluation_dir,
+                current["evaluation"]["output_dir"] = str(output / arm / "test_denoising")
+                denoise_file = Path(current["evaluation"]["output_dir"]) / (
+                    "denoising_adapted.json" if model_path else "denoising_baseline.json"
                 )
-                record(f"evaluate_{arm}_{seed}", metrics)
+                if denoise_file.exists():
+                    result = _read(denoise_file)
+                    if (
+                        result["source_sha256"] != sha256_file(config["train"]["test_fasta"])
+                        or result["model"] != str(model_path or config["model"]["source"])
+                        or result["noise_seed"] != config["train"]["validation_seed"] + 1
+                    ):
+                        raise ValueError(f"Existing test evaluation differs from protocol: {denoise_file}")
+                else:
+                    result = evaluate_denoising(current, model_path=model_path)
+                record(f"test_denoising_{arm}", result)
+                for seed in generation_seeds:
+                    if queue:
+                        queue.collect_ready()
+                        queue.raise_if_failed()
+                    current = copy.deepcopy(config)
+                    current["generate"]["seed"] = seed
+                    current["generate"]["total_sequences"] = 32 if pilot else 256
+                    generation_dir = output / arm / f"seed_{seed}"
+                    manifest = _generation_run(current, generation_dir, model_path=model_path)
+                    record(f"generate_{arm}_{seed}", manifest)
+                    evaluation_dir = generation_dir / "evaluation"
+                    stage = f"evaluate_{arm}_{seed}"
+                    if queue:
+                        queue.collect_ready()
+                        queue.raise_if_failed()
+                        queue.submit(stage, current, generation_dir / "sequences.fasta", evaluation_dir)
+                    else:
+                        metrics = evaluate(current, fasta_path=generation_dir / "sequences.fasta",
+                                           output_dir=evaluation_dir)
+                        record(stage, metrics)
+        finally:
+            if queue:
+                queue.finish()
+        if queue:
+            queue.raise_if_failed()
+        expected_evaluations = {f"evaluate_{arm}_{seed}" for arm, _ in models for seed in generation_seeds}
+        recorded_evaluations = [entry["stage"] for entry in status["completed"]
+                                if entry["stage"].startswith("evaluate_")]
+        if set(recorded_evaluations) != expected_evaluations or len(recorded_evaluations) != len(expected_evaluations):
+            raise RuntimeError("Evaluation stage coverage is incomplete or duplicated; refusing to mark the experiment complete")
+        status["execution"].update(evaluations_expected=len(expected_evaluations),
+                                   evaluations_recorded=len(recorded_evaluations))
         status["status"] = "complete"
         status["finished_at"] = utc_now()
         write_json(status_path, status)

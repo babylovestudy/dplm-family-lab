@@ -17,8 +17,9 @@
 
 - [data-preparation.json](data-preparation.json)：来源版本、模型校验和、实测数量、时长和审计结果。
 - [frozen-splits.json](frozen-splits.json)：全部 2,942 条公开 UniProt accession 对应的序列 SHA-256、长度、同源簇及分区；包含原始工作清单和处理文件的校验和。
+- [dataset-snapshot/](dataset-snapshot/)：按来源许可公开的冻结原始 FASTA、HMM 和 provenance，以及拒绝覆盖不同既有数据的离线恢复脚本。可在数据库更新后重跑同一数据准备与划分。
 
-这些公开文件采用字段筛选导出。`original_working_manifest_sha256` / `original_manifest_sha256` 指向原工作清单，不能当作本目录新导出文件的校验和。FASTA、模型权重和 SQLite 缓存由本地工作流生成。
+前两份公开报告采用字段筛选导出。`original_working_manifest_sha256` / `original_manifest_sha256` 指向原工作清单，不能当作本目录新导出文件的校验和。处理后的划分 FASTA 和 SQLite 缓存由离线工作流生成；模型权重未收录在本目录。
 
 ## 数据来源与 HMM 标准
 
@@ -28,7 +29,7 @@ UniProtKB 来源版本为 **2026_03**，响应头发布日为 **2026-09-02**。�
 (xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)
 ```
 
-[查询页面](https://www.uniprot.org/uniprotkb?query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29)的数据会随数据库更新。复现这一快照时，应检查 `frozen-splits.json` 中的 accession 和序列 SHA-256。
+[查询页面](https://www.uniprot.org/uniprotkb?query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29)的数据会随数据库更新。复现原实验可使用 [dataset-snapshot/](dataset-snapshot/) 中的冻结输入，并核对划分与序列 SHA-256。
 
 使用 [Pfam PF00194](https://www.ebi.ac.uk/interpro/entry/pfam/PF00194/) 的 [官方 HMM](https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm)：模型 **PF00194.27**，长度 **255**，模型内的 sequence / domain GA 阈值均为 **27 bits**。至少一个独立 domain 还需覆盖 ≥80% 的模型位置，即至少 204 个位置；多个短 domain 的覆盖率不会相加。4,360 条清洗序列均通过 GA，其中 1,418 条未满足覆盖要求。
 

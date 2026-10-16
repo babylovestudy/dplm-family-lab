@@ -1,0 +1,12 @@
+{
+  "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+  "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+  "packages": {
+    "dplm-family-lab": null,
+    "numpy": "1.26.4",
+    "biopython": "1.85",
+    "torch": "2.2.0+cu121",
+    "transformers": "4.39.2",
+    "pyhmmer": "0.12.3"
+  }
+}

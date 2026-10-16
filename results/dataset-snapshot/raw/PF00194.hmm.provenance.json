@@ -1,0 +1,17 @@
+{
+  "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+  "retrieved_at": "2026-10-16T03:33:37.872521+00:00",
+  "http_date": "Fri, 16 Oct 2026 03:33:37 GMT",
+  "last_modified": null,
+  "download_sha256": "cb64f4d93a8f55d5ff7000f8306d2f92f454e905ca32967882f3479ea88cb3d2",
+  "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+  "model": {
+    "accession": "PF00194.27",
+    "family": "PF00194",
+    "name": "Carb_anhydrase",
+    "length": 255,
+    "ga_sequence": 27.0,
+    "ga_domain": 27.0,
+    "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+  }
+}

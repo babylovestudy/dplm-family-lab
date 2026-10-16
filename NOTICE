@@ -11,5 +11,8 @@ Commit: 8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d
 
 UniProt and InterPro/Pfam data are third-party scientific resources.
 Download provenance and attribution are recorded by the data pipeline.
+The frozen dataset in results/dataset-snapshot retains UniProt CC BY 4.0
+and Pfam/InterPro CC0 1.0 terms. Attribution, changes, source notices and
+license links are recorded in results/dataset-snapshot/LICENSES.md.
 The source-code license does not establish a separate license for downloaded
 pretrained model weights or for every external scientific resource.

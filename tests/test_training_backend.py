@@ -2,6 +2,7 @@
 # ruff: noqa: E402
 
 from copy import deepcopy
+import json
 from pathlib import Path
 
 import pytest
@@ -14,8 +15,15 @@ from dplm_family_lab.backend import (
     create_tiny_fixture,
     load_backend,
     safe_denoising_loss,
+    seal_export_identity,
 )
-from dplm_family_lab.common import SequenceRecord, seed_everything, write_fasta, write_json
+from dplm_family_lab.common import (
+    SequenceRecord,
+    seed_everything,
+    sha256_file,
+    write_fasta,
+    write_json,
+)
 from dplm_family_lab.training import evaluate_denoising, train
 
 
@@ -80,6 +88,12 @@ def test_training_updates_backbone_exports_and_evaluates(tiny_config):
     assert report["provenance"]["tiny_fixture"]
     for path in ("best.pt", "last.pt", "validation_noise.pt", "export_best/roundtrip.json"):
         assert (Path(report["output_dir"]) / path).exists()
+    run = Path(report["output_dir"])
+    identity = json.loads((run / "export_best/export_identity.json").read_text())
+    assert identity["training_report_sha256"] == sha256_file(run / "training_report.json")
+    assert identity["roundtrip_json_sha256"] == sha256_file(run / "export_best/roundtrip.json")
+    assert identity["tensor_sha256"] == report["export_roundtrip"]["weights_sha256"]
+    assert identity["weights_file_sha256"] == sha256_file(run / "export_best/pytorch_model.bin")
     base = evaluate_denoising(tiny_config)
     adapted = evaluate_denoising(tiny_config, report["best_checkpoint"])
     assert base["source_sha256"] == adapted["source_sha256"]
@@ -88,13 +102,41 @@ def test_training_updates_backbone_exports_and_evaluates(tiny_config):
         train(tiny_config)
 
 
-def test_optimizer_boundary_resume_matches_uninterrupted(tiny_config):
+def test_seal_existing_export_preserves_original_bytes_and_binds_final_report(tiny_config):
+    report = train(tiny_config)
+    run = Path(report["output_dir"])
+    exported = run / "export_best"
+    (exported / "export_identity.json").unlink()
+    originals = [
+        run / "training_report.json",
+        exported / "roundtrip.json",
+        exported / "family_lab_provenance.json",
+        exported / "pytorch_model.bin",
+    ]
+    before = {str(path): sha256_file(path) for path in originals}
+    identity = seal_export_identity(exported, run / "training_report.json")
+    assert identity["training_report_sha256"] == before[str(run / "training_report.json")]
+    assert {str(path): sha256_file(path) for path in originals} == before
+    weights = exported / "pytorch_model.bin"
+    state = torch.load(weights, weights_only=False)
+    next(value for value in state.values() if value.is_floating_point()).add_(1)
+    torch.save(state, weights)
+    with pytest.raises(ValueError, match="tensors do not match"):
+        seal_export_identity(exported, run / "training_report.json")
+
+
+@pytest.mark.parametrize("legacy_signature", [False, True])
+def test_optimizer_boundary_resume_matches_uninterrupted(tiny_config, legacy_signature):
     full = train(tiny_config)
     interrupted = deepcopy(tiny_config)
     interrupted["train"]["output_dir"] += "_resumed"
     interrupted["train"]["stop_after_steps"] = 1
     first = train(interrupted)
     assert first["step"] == 1
+    if legacy_signature:
+        checkpoint = torch.load(first["last_checkpoint"], weights_only=False)
+        checkpoint["signature"]["train"].pop("eval_every")
+        torch.save(checkpoint, first["last_checkpoint"])
     interrupted["train"].pop("stop_after_steps")
     resumed = train(interrupted, resume=first["last_checkpoint"])
     assert full["proof"]["current_model_sha256"] == resumed["proof"]["current_model_sha256"]
@@ -104,7 +146,40 @@ def test_optimizer_boundary_resume_matches_uninterrupted(tiny_config):
     assert torch.equal(state_a["rng"]["torch"], state_b["rng"]["torch"])
 
 
+@pytest.mark.parametrize("legacy_signature", [False, True])
+def test_resume_rejects_changed_validation_cadence(tiny_config, legacy_signature):
+    tiny_config["train"]["stop_after_steps"] = 1
+    partial = train(tiny_config)
+    if legacy_signature:
+        checkpoint = torch.load(partial["last_checkpoint"], weights_only=False)
+        checkpoint["signature"]["train"].pop("eval_every")
+        torch.save(checkpoint, partial["last_checkpoint"])
+    tiny_config["train"].pop("stop_after_steps")
+    tiny_config["train"]["eval_every"] = 2
+    with pytest.raises(ValueError, match="signature differs"):
+        train(tiny_config, resume=partial["last_checkpoint"])
+
+
+def test_unplanned_stop_does_not_change_best_selection_schedule(tiny_config):
+    tiny_config["train"]["eval_every"] = 2
+    reference = train(tiny_config)
+    interrupted = deepcopy(tiny_config)
+    interrupted["train"]["output_dir"] += "_early_stop"
+    interrupted["train"]["stop_after_steps"] = 1
+    partial = train(interrupted)
+    assert partial["best_checkpoint"] is None
+    assert partial["best_validation_loss"] is None
+    interrupted["train"].pop("stop_after_steps")
+    resumed = train(interrupted, resume=partial["last_checkpoint"])
+    assert reference["proof"]["current_model_sha256"] == resumed["proof"]["current_model_sha256"]
+    assert reference["best_validation_loss"] == resumed["best_validation_loss"]
+
+
 def test_tiny_fixture_cannot_masquerade_as_real_model(tiny_config):
+    fixture = load_backend(tiny_config)
+    assert fixture.provenance["tiny_fixture"] is True
+    assert "checkpoint_sha256" not in fixture.provenance
+    assert fixture.provenance["source"] != "airkingbd/dplm_150m"
     tiny_config["model"]["allow_tiny_fixture"] = False
     with pytest.raises(ValueError, match="not DPLM-150M"):
         load_backend(tiny_config)

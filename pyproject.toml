@@ -15,6 +15,7 @@ dependencies = ["numpy>=1.26,<2", "PyYAML>=6,<7", "requests>=2.31,<3", "biopytho
 train = ["torch==2.2.0", "transformers==4.39.2", "omegaconf==2.3.0", "einops==0.8.0", "tqdm>=4.66,<5", "huggingface-hub>=0.23,<1"]
 dev = ["pytest>=8,<9", "ruff>=0.9,<1"]
 hmm = ["pyhmmer>=0.11,<0.13"]
+analysis = ["matplotlib>=3.9,<3.11"]
 
 [project.scripts]
 dplm-lab = "dplm_family_lab.cli:main"

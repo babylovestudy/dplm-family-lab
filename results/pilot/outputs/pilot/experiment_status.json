@@ -1,0 +1,1078 @@
+{
+  "mode": "pilot",
+  "status": "complete",
+  "started_at": "2026-10-16T03:54:12.168203+00:00",
+  "completed": [
+    {
+      "stage": "data_audit",
+      "result": {
+        "passed": true,
+        "cross_split_pairs": 1470588,
+        "aligned": 43304,
+        "violations": [],
+        "metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+        "identity": 0.8,
+        "coverage": 0.8
+      },
+      "time": "2026-10-16T03:54:21.034836+00:00"
+    },
+    {
+      "stage": "train_42",
+      "result": {
+        "status": "complete",
+        "step": 100,
+        "best_validation_loss": 0.666570130678554,
+        "output_dir": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/pilot_seed_42",
+        "best_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/pilot_seed_42/best.pt",
+        "last_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/pilot_seed_42/last.pt",
+        "validation_noise_sha256": "12c3776f07f8c86aed39bc6dadbc958a8290f25637a69213c80fd7e17c5cbd90",
+        "data_sha256": {
+          "train_fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+          "val_fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb"
+        },
+        "elapsed_seconds_this_session": 193.68956661596894,
+        "peak_gpu_allocated_bytes": 2986811392,
+        "provenance": {
+          "source": "airkingbd/dplm_150m",
+          "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+          "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+          "download_endpoint": "https://hf-mirror.com",
+          "verified_against_official_metadata": true,
+          "tiny_fixture": false,
+          "parameter_count": 148796794,
+          "device": "cuda",
+          "precision": "bf16"
+        },
+        "proof": {
+          "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+          "current_model_sha256": "f872fd255c05276e0786d8ebc171071ced235fa6f868e3aba33f9f2adba7e110",
+          "probe_max_weight_changes": {
+            "net.esm.encoder.layer.0.attention.self.query.weight": 0.00031093228608369827,
+            "net.esm.encoder.layer.29.attention.self.query.weight": 0.0003786664456129074
+          },
+          "probe_max_gradient_norms": {
+            "net.esm.encoder.layer.0.attention.self.query.weight": 0.09722776710987091,
+            "net.esm.encoder.layer.29.attention.self.query.weight": 0.21866191923618317
+          },
+          "backbone_updated": true,
+          "trainable_parameters": 148796794,
+          "gradient_checkpointing_enabled": true
+        },
+        "export_roundtrip": {
+          "weights_sha256": "f872fd255c05276e0786d8ebc171071ced235fa6f868e3aba33f9f2adba7e110",
+          "max_logit_error_cpu_fp32": 0.0,
+          "passed": true
+        }
+      },
+      "time": "2026-10-16T03:54:21.036547+00:00"
+    },
+    {
+      "stage": "test_denoising_baseline",
+      "result": {
+        "weighted_masked_denoising_loss": 0.7217068610636814,
+        "masked_residues": 35602,
+        "sequences": 294,
+        "zero_mask_sequences": 1,
+        "metric_note": "Weighted masked denoising CE, not exact sequence likelihood/perplexity.",
+        "split": "test",
+        "source_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+        "noise_seed": 9174,
+        "model": "model_cache/dplm_150m",
+        "provenance": {
+          "source": "airkingbd/dplm_150m",
+          "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+          "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+          "download_endpoint": "https://hf-mirror.com",
+          "verified_against_official_metadata": true,
+          "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+          "tiny_fixture": false,
+          "parameter_count": 148796794,
+          "device": "cuda",
+          "precision": "bf16"
+        }
+      },
+      "time": "2026-10-16T03:54:33.986445+00:00"
+    },
+    {
+      "stage": "generate_baseline_101",
+      "result": {
+        "status": "complete",
+        "model": "model_cache/dplm_150m",
+        "provenance": {
+          "source": "airkingbd/dplm_150m",
+          "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+          "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+          "download_endpoint": "https://hf-mirror.com",
+          "verified_against_official_metadata": true,
+          "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+          "tiny_fixture": false,
+          "parameter_count": 148796794,
+          "device": "cuda",
+          "precision": "bf16"
+        },
+        "seed": 101,
+        "batch_size": 1,
+        "max_iter": 100,
+        "sampling_strategy": "gumbel_argmax",
+        "output_alphabet": "ACDEFGHIKLMNPQRSTVWY",
+        "length_schedule_path": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/length_schedules/seed_101_n32.json",
+        "length_schedule_sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+        "environment": {
+          "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+          "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+          "packages": {
+            "dplm-family-lab": null,
+            "numpy": "1.26.4",
+            "biopython": "1.85",
+            "torch": "2.2.0+cu121",
+            "transformers": "4.39.2",
+            "pyhmmer": "0.12.3"
+          },
+          "project_source_sha256": {
+            "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+            "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+            "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+            "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+            "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+            "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+            "backend.py": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+            "cli.py": "49bd22bab74d4940dfcd050f772828f6be9993a540454e13898dce58faa46d71",
+            "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+            "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+            "evaluation.py": "04037f5ab606c5f5a4b90016731e65828cc921240b534a287ec548e61a3facb6",
+            "experiment.py": "788e7708025d0d81dc563b17e98f24ea174861f673293bbc4694d5f80ee20bd4",
+            "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+            "reporting.py": "b53f6e044156708c5a8fd197273a74be551f72ad5b71fc67b565f755cb915a86",
+            "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+            "similarity.py": "a82f5820bb2cd624b1d03a1e79dfd3c6f89782999add8d09958afab10067344b",
+            "training.py": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82"
+          }
+        },
+        "batches": [
+          {
+            "offset": 0,
+            "count": 1,
+            "seed": 4215616147
+          },
+          {
+            "offset": 1,
+            "count": 1,
+            "seed": 2912948527
+          },
+          {
+            "offset": 2,
+            "count": 1,
+            "seed": 3766082871
+          },
+          {
+            "offset": 3,
+            "count": 1,
+            "seed": 1893884482
+          },
+          {
+            "offset": 4,
+            "count": 1,
+            "seed": 1580666041
+          },
+          {
+            "offset": 5,
+            "count": 1,
+            "seed": 1069706710
+          },
+          {
+            "offset": 6,
+            "count": 1,
+            "seed": 799544686
+          },
+          {
+            "offset": 7,
+            "count": 1,
+            "seed": 3797431372
+          },
+          {
+            "offset": 8,
+            "count": 1,
+            "seed": 3456222482
+          },
+          {
+            "offset": 9,
+            "count": 1,
+            "seed": 2344275228
+          },
+          {
+            "offset": 10,
+            "count": 1,
+            "seed": 3331866021
+          },
+          {
+            "offset": 11,
+            "count": 1,
+            "seed": 2277705158
+          },
+          {
+            "offset": 12,
+            "count": 1,
+            "seed": 4030720971
+          },
+          {
+            "offset": 13,
+            "count": 1,
+            "seed": 2120661887
+          },
+          {
+            "offset": 14,
+            "count": 1,
+            "seed": 693193313
+          },
+          {
+            "offset": 15,
+            "count": 1,
+            "seed": 3778180873
+          },
+          {
+            "offset": 16,
+            "count": 1,
+            "seed": 1883525418
+          },
+          {
+            "offset": 17,
+            "count": 1,
+            "seed": 807354488
+          },
+          {
+            "offset": 18,
+            "count": 1,
+            "seed": 3467480325
+          },
+          {
+            "offset": 19,
+            "count": 1,
+            "seed": 3185348342
+          },
+          {
+            "offset": 20,
+            "count": 1,
+            "seed": 1326252945
+          },
+          {
+            "offset": 21,
+            "count": 1,
+            "seed": 778288622
+          },
+          {
+            "offset": 22,
+            "count": 1,
+            "seed": 2134890736
+          },
+          {
+            "offset": 23,
+            "count": 1,
+            "seed": 196179050
+          },
+          {
+            "offset": 24,
+            "count": 1,
+            "seed": 2755288599
+          },
+          {
+            "offset": 25,
+            "count": 1,
+            "seed": 3481255766
+          },
+          {
+            "offset": 26,
+            "count": 1,
+            "seed": 4069277312
+          },
+          {
+            "offset": 27,
+            "count": 1,
+            "seed": 1007031216
+          },
+          {
+            "offset": 28,
+            "count": 1,
+            "seed": 2557008529
+          },
+          {
+            "offset": 29,
+            "count": 1,
+            "seed": 623179042
+          },
+          {
+            "offset": 30,
+            "count": 1,
+            "seed": 3308235880
+          },
+          {
+            "offset": 31,
+            "count": 1,
+            "seed": 1082477522
+          }
+        ],
+        "sequences": 32,
+        "invalid_amino_acid_sequences": 0,
+        "fasta": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/pilot/baseline/seed_101/sequences.fasta",
+        "fasta_sha256": "f63212b85d440ca980dda5438a5e7d459281fb07e45d794481985568bd8400d4",
+        "elapsed_seconds": 72.20735381171107,
+        "peak_gpu_allocated_bytes": 1215000064
+      },
+      "time": "2026-10-16T03:55:49.600384+00:00"
+    },
+    {
+      "stage": "evaluate_baseline_101",
+      "result": {
+        "schema_version": 1,
+        "input_fasta": "outputs/pilot/baseline/seed_101/sequences.fasta",
+        "input_sha256": "f63212b85d440ca980dda5438a5e7d459281fb07e45d794481985568bd8400d4",
+        "counts": {
+          "emitted_fasta_records": 32,
+          "valid_amino_acid_sequences": 32,
+          "invalid_amino_acid_sequences": 0,
+          "unique_valid_sequences": 32,
+          "excess_duplicate_records": 0,
+          "ga_pass": 0,
+          "family_pass": 0
+        },
+        "metrics": {
+          "ga_pass_rate": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n": 32
+          },
+          "family_pass_rate": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n": 32
+          },
+          "mean_hmm_coverage": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n": 32
+          },
+          "exact_training_match_rate": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n": 32
+          },
+          "mean_nearest_training_identity": {
+            "value": 0.26507583628504683,
+            "ci95": [
+              0.2499545433835337,
+              0.27855897023549825
+            ],
+            "n": 32
+          },
+          "within_training_length_rate": {
+            "value": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "n": 32
+          },
+          "mean_pairwise_distance": {
+            "value": 0.8042965967961835,
+            "ci95": [
+              0.748423967449975,
+              0.8032912743105295
+            ],
+            "n": 32,
+            "pairs": 496
+          },
+          "excess_duplicate_rate": {
+            "value": 0.0,
+            "ci95": null,
+            "n": 32
+          }
+        },
+        "hmm": {
+          "accession": "PF00194.27",
+          "family": "PF00194",
+          "name": "Carb_anhydrase",
+          "length": 255,
+          "ga_sequence": 27.0,
+          "ga_domain": 27.0,
+          "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+        },
+        "denominator": "All emitted nonempty sequences containing only the 20 standard amino acids; duplicates and out-of-range lengths remain in denominator",
+        "bootstrap": {
+          "samples": 1000,
+          "seed": 42,
+          "unit": "generated sequence",
+          "interval": "percentile 95%; diversity resamples sequences, not independent pairs",
+          "note": "Descriptive sampling uncertainty; does not establish biochemical activity. Duplicate excess is reported without a bootstrap interval."
+        },
+        "similarity_metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+        "training_reference": {
+          "schema_version": 1,
+          "family": "PF00194",
+          "hmm_sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+          "hmm_metadata": {
+            "accession": "PF00194.27",
+            "family": "PF00194",
+            "name": "Carb_anhydrase",
+            "length": 255,
+            "ga_sequence": 27.0,
+            "ga_domain": 27.0,
+            "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+          },
+          "min_hmm_coverage": 0.8,
+          "train_fasta_sha256": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+          "split_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+          "source": {
+            "schema_version": 1,
+            "source": "UniProtKB REST",
+            "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+            "completed_at": "2026-10-16T03:33:36.105346+00:00",
+            "records": 4464,
+            "pages": [
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?query=%28xref%3Apfam-PF00194%29+AND+%28length%3A%5B180+TO+256%5D%29+AND+%28fragment%3Afalse%29&format=tsv&size=500&fields=accession%2Clength%2Corganism_id%2Creviewed%2Csequence",
+                "retrieved_at": "2026-10-16T03:30:48.768338+00:00",
+                "sha256": "0a55725ca06516354e31fee3949e7d96faca4262eb61febce93b6e4fe44ec5b9",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:30:47 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500",
+                "retrieved_at": "2026-10-16T03:33:20.538644+00:00",
+                "sha256": "ff73f397670e7f9ecf72cdf133a7798acf200cf630ecfa539e95358ea2825fd0",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:19 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500",
+                "retrieved_at": "2026-10-16T03:33:23.051841+00:00",
+                "sha256": "1bb5ec58fad440b97c0e12536d3bdf8cf20ef8b81decf1cc847f1094a8ddb7f1",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:22 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500",
+                "retrieved_at": "2026-10-16T03:33:25.378463+00:00",
+                "sha256": "972369831a8a09e3e139a920a432105db0ad4593a692b96102b13fb8626e1d7c",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:24 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500",
+                "retrieved_at": "2026-10-16T03:33:28.184380+00:00",
+                "sha256": "3da2a515fb59f1070b75790e098a194dde40250aa94814726cde29a225fcd7e1",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:27 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500",
+                "retrieved_at": "2026-10-16T03:33:30.532684+00:00",
+                "sha256": "9eb43c80f5ac4d8e1bb7632260071be5d86a486b9961d94b56d1ec56ce756606",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:29 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500",
+                "retrieved_at": "2026-10-16T03:33:32.864753+00:00",
+                "sha256": "47927642243a19b4c32aa89a6431255f1aac1bbd55f5bbfb812649470fa679c7",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:32 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500",
+                "retrieved_at": "2026-10-16T03:33:34.431426+00:00",
+                "sha256": "616acc37aebf0c46f2ca3c62fb73227176410988cca9ee09556f3ba9e4f9e2bb",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:33 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500",
+                "retrieved_at": "2026-10-16T03:33:35.980050+00:00",
+                "sha256": "bffbd3f3a12444a0df7fd112816693e3d2f0fc5c0635d4277f4932d3b13c4ad5",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:35 GMT",
+                "total_results": "4464",
+                "next_url": null
+              }
+            ],
+            "uniprot_release": "2026_03",
+            "uniprot_release_date": "02-September-2026",
+            "fasta_sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695"
+          },
+          "hmm_source": {
+            "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+            "retrieved_at": "2026-10-16T03:33:37.872521+00:00",
+            "http_date": "Fri, 16 Oct 2026 03:33:37 GMT",
+            "last_modified": null,
+            "download_sha256": "cb64f4d93a8f55d5ff7000f8306d2f92f454e905ca32967882f3479ea88cb3d2",
+            "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+            "model": {
+              "accession": "PF00194.27",
+              "family": "PF00194",
+              "name": "Carb_anhydrase",
+              "length": 255,
+              "ga_sequence": 27.0,
+              "ga_domain": 27.0,
+              "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+            }
+          }
+        },
+        "limitations": [
+          "Pfam GA and domain coverage measure family sequence compatibility, not catalytic activity or expression.",
+          "The split isolates fine-tuning data; absence from the foundation model pretraining set is not established."
+        ],
+        "artifacts": {
+          "metrics": "outputs/pilot/baseline/seed_101/evaluation/metrics.json",
+          "per_sequence": "outputs/pilot/baseline/seed_101/evaluation/per_sequence.csv",
+          "pairwise_diversity": "outputs/pilot/baseline/seed_101/evaluation/pairwise_diversity.csv"
+        }
+      },
+      "time": "2026-10-16T03:57:13.388369+00:00"
+    },
+    {
+      "stage": "test_denoising_train_seed_42",
+      "result": {
+        "weighted_masked_denoising_loss": 0.6899431185249291,
+        "masked_residues": 35602,
+        "sequences": 294,
+        "zero_mask_sequences": 1,
+        "metric_note": "Weighted masked denoising CE, not exact sequence likelihood/perplexity.",
+        "split": "test",
+        "source_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+        "noise_seed": 9174,
+        "model": "runs/pf00194/pilot_seed_42/export_best",
+        "provenance": {
+          "source": "airkingbd/dplm_150m",
+          "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+          "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+          "download_endpoint": "https://hf-mirror.com",
+          "verified_against_official_metadata": true,
+          "tiny_fixture": false,
+          "parameter_count": 148796794,
+          "device": "cuda",
+          "precision": "bf16",
+          "artifact_role": "adapted_export",
+          "loaded_weights_sha256": "31e1f238b776a02183fbadb902140e68eda8b3bdc9c08c1962d5554fcaddff44",
+          "loaded_config_sha256": "f7c7008f07096f120f421729788e01f6b9ae1fdeb1e0966e9dfd78947a473a57"
+        }
+      },
+      "time": "2026-10-16T03:57:23.746504+00:00"
+    },
+    {
+      "stage": "generate_train_seed_42_101",
+      "result": {
+        "status": "complete",
+        "model": "runs/pf00194/pilot_seed_42/export_best",
+        "provenance": {
+          "source": "airkingbd/dplm_150m",
+          "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+          "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+          "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+          "download_endpoint": "https://hf-mirror.com",
+          "verified_against_official_metadata": true,
+          "tiny_fixture": false,
+          "parameter_count": 148796794,
+          "device": "cuda",
+          "precision": "bf16",
+          "artifact_role": "adapted_export",
+          "loaded_weights_sha256": "31e1f238b776a02183fbadb902140e68eda8b3bdc9c08c1962d5554fcaddff44",
+          "loaded_config_sha256": "f7c7008f07096f120f421729788e01f6b9ae1fdeb1e0966e9dfd78947a473a57"
+        },
+        "seed": 101,
+        "batch_size": 1,
+        "max_iter": 100,
+        "sampling_strategy": "gumbel_argmax",
+        "output_alphabet": "ACDEFGHIKLMNPQRSTVWY",
+        "length_schedule_path": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/length_schedules/seed_101_n32.json",
+        "length_schedule_sha256": "80c226752707d6e5ebb5e8c4cce4f882d03fb4c4280e2caefec7798b5bfebce8",
+        "environment": {
+          "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+          "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+          "packages": {
+            "dplm-family-lab": null,
+            "numpy": "1.26.4",
+            "biopython": "1.85",
+            "torch": "2.2.0+cu121",
+            "transformers": "4.39.2",
+            "pyhmmer": "0.12.3"
+          },
+          "project_source_sha256": {
+            "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+            "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+            "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+            "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+            "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+            "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+            "backend.py": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+            "cli.py": "49bd22bab74d4940dfcd050f772828f6be9993a540454e13898dce58faa46d71",
+            "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+            "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+            "evaluation.py": "04037f5ab606c5f5a4b90016731e65828cc921240b534a287ec548e61a3facb6",
+            "experiment.py": "788e7708025d0d81dc563b17e98f24ea174861f673293bbc4694d5f80ee20bd4",
+            "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+            "reporting.py": "b53f6e044156708c5a8fd197273a74be551f72ad5b71fc67b565f755cb915a86",
+            "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+            "similarity.py": "a82f5820bb2cd624b1d03a1e79dfd3c6f89782999add8d09958afab10067344b",
+            "training.py": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82"
+          }
+        },
+        "batches": [
+          {
+            "offset": 0,
+            "count": 1,
+            "seed": 4215616147
+          },
+          {
+            "offset": 1,
+            "count": 1,
+            "seed": 2912948527
+          },
+          {
+            "offset": 2,
+            "count": 1,
+            "seed": 3766082871
+          },
+          {
+            "offset": 3,
+            "count": 1,
+            "seed": 1893884482
+          },
+          {
+            "offset": 4,
+            "count": 1,
+            "seed": 1580666041
+          },
+          {
+            "offset": 5,
+            "count": 1,
+            "seed": 1069706710
+          },
+          {
+            "offset": 6,
+            "count": 1,
+            "seed": 799544686
+          },
+          {
+            "offset": 7,
+            "count": 1,
+            "seed": 3797431372
+          },
+          {
+            "offset": 8,
+            "count": 1,
+            "seed": 3456222482
+          },
+          {
+            "offset": 9,
+            "count": 1,
+            "seed": 2344275228
+          },
+          {
+            "offset": 10,
+            "count": 1,
+            "seed": 3331866021
+          },
+          {
+            "offset": 11,
+            "count": 1,
+            "seed": 2277705158
+          },
+          {
+            "offset": 12,
+            "count": 1,
+            "seed": 4030720971
+          },
+          {
+            "offset": 13,
+            "count": 1,
+            "seed": 2120661887
+          },
+          {
+            "offset": 14,
+            "count": 1,
+            "seed": 693193313
+          },
+          {
+            "offset": 15,
+            "count": 1,
+            "seed": 3778180873
+          },
+          {
+            "offset": 16,
+            "count": 1,
+            "seed": 1883525418
+          },
+          {
+            "offset": 17,
+            "count": 1,
+            "seed": 807354488
+          },
+          {
+            "offset": 18,
+            "count": 1,
+            "seed": 3467480325
+          },
+          {
+            "offset": 19,
+            "count": 1,
+            "seed": 3185348342
+          },
+          {
+            "offset": 20,
+            "count": 1,
+            "seed": 1326252945
+          },
+          {
+            "offset": 21,
+            "count": 1,
+            "seed": 778288622
+          },
+          {
+            "offset": 22,
+            "count": 1,
+            "seed": 2134890736
+          },
+          {
+            "offset": 23,
+            "count": 1,
+            "seed": 196179050
+          },
+          {
+            "offset": 24,
+            "count": 1,
+            "seed": 2755288599
+          },
+          {
+            "offset": 25,
+            "count": 1,
+            "seed": 3481255766
+          },
+          {
+            "offset": 26,
+            "count": 1,
+            "seed": 4069277312
+          },
+          {
+            "offset": 27,
+            "count": 1,
+            "seed": 1007031216
+          },
+          {
+            "offset": 28,
+            "count": 1,
+            "seed": 2557008529
+          },
+          {
+            "offset": 29,
+            "count": 1,
+            "seed": 623179042
+          },
+          {
+            "offset": 30,
+            "count": 1,
+            "seed": 3308235880
+          },
+          {
+            "offset": 31,
+            "count": 1,
+            "seed": 1082477522
+          }
+        ],
+        "sequences": 32,
+        "invalid_amino_acid_sequences": 0,
+        "fasta": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/pilot/train_seed_42/seed_101/sequences.fasta",
+        "fasta_sha256": "3658ab5a84f5dd2bbfd15a9e2d438400e9cf16536f9c9d4a88b9b6972ed28967",
+        "elapsed_seconds": 95.84982290863991,
+        "peak_gpu_allocated_bytes": 1214999040
+      },
+      "time": "2026-10-16T03:59:02.716811+00:00"
+    },
+    {
+      "stage": "evaluate_train_seed_42_101",
+      "result": {
+        "schema_version": 1,
+        "input_fasta": "outputs/pilot/train_seed_42/seed_101/sequences.fasta",
+        "input_sha256": "3658ab5a84f5dd2bbfd15a9e2d438400e9cf16536f9c9d4a88b9b6972ed28967",
+        "counts": {
+          "emitted_fasta_records": 32,
+          "valid_amino_acid_sequences": 32,
+          "invalid_amino_acid_sequences": 0,
+          "unique_valid_sequences": 32,
+          "excess_duplicate_records": 0,
+          "ga_pass": 10,
+          "family_pass": 10
+        },
+        "metrics": {
+          "ga_pass_rate": {
+            "value": 0.3125,
+            "ci95": [
+              0.15625,
+              0.5
+            ],
+            "n": 32
+          },
+          "family_pass_rate": {
+            "value": 0.3125,
+            "ci95": [
+              0.15625,
+              0.46875
+            ],
+            "n": 32
+          },
+          "mean_hmm_coverage": {
+            "value": 0.29877450980392156,
+            "ci95": [
+              0.15010110294117646,
+              0.4527083333333334
+            ],
+            "n": 32
+          },
+          "exact_training_match_rate": {
+            "value": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n": 32
+          },
+          "mean_nearest_training_identity": {
+            "value": 0.3298684468402707,
+            "ci95": [
+              0.29979623242980113,
+              0.3623215344743943
+            ],
+            "n": 32
+          },
+          "within_training_length_rate": {
+            "value": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "n": 32
+          },
+          "mean_pairwise_distance": {
+            "value": 0.7569237782956478,
+            "ci95": [
+              0.68802740194149,
+              0.7655700742785162
+            ],
+            "n": 32,
+            "pairs": 496
+          },
+          "excess_duplicate_rate": {
+            "value": 0.0,
+            "ci95": null,
+            "n": 32
+          }
+        },
+        "hmm": {
+          "accession": "PF00194.27",
+          "family": "PF00194",
+          "name": "Carb_anhydrase",
+          "length": 255,
+          "ga_sequence": 27.0,
+          "ga_domain": 27.0,
+          "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+        },
+        "denominator": "All emitted nonempty sequences containing only the 20 standard amino acids; duplicates and out-of-range lengths remain in denominator",
+        "bootstrap": {
+          "samples": 1000,
+          "seed": 42,
+          "unit": "generated sequence",
+          "interval": "percentile 95%; diversity resamples sequences, not independent pairs",
+          "note": "Descriptive sampling uncertainty; does not establish biochemical activity. Duplicate excess is reported without a bootstrap interval."
+        },
+        "similarity_metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+        "training_reference": {
+          "schema_version": 1,
+          "family": "PF00194",
+          "hmm_sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+          "hmm_metadata": {
+            "accession": "PF00194.27",
+            "family": "PF00194",
+            "name": "Carb_anhydrase",
+            "length": 255,
+            "ga_sequence": 27.0,
+            "ga_domain": 27.0,
+            "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+          },
+          "min_hmm_coverage": 0.8,
+          "train_fasta_sha256": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+          "split_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+          "source": {
+            "schema_version": 1,
+            "source": "UniProtKB REST",
+            "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+            "completed_at": "2026-10-16T03:33:36.105346+00:00",
+            "records": 4464,
+            "pages": [
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?query=%28xref%3Apfam-PF00194%29+AND+%28length%3A%5B180+TO+256%5D%29+AND+%28fragment%3Afalse%29&format=tsv&size=500&fields=accession%2Clength%2Corganism_id%2Creviewed%2Csequence",
+                "retrieved_at": "2026-10-16T03:30:48.768338+00:00",
+                "sha256": "0a55725ca06516354e31fee3949e7d96faca4262eb61febce93b6e4fe44ec5b9",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:30:47 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500",
+                "retrieved_at": "2026-10-16T03:33:20.538644+00:00",
+                "sha256": "ff73f397670e7f9ecf72cdf133a7798acf200cf630ecfa539e95358ea2825fd0",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:19 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500",
+                "retrieved_at": "2026-10-16T03:33:23.051841+00:00",
+                "sha256": "1bb5ec58fad440b97c0e12536d3bdf8cf20ef8b81decf1cc847f1094a8ddb7f1",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:22 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500",
+                "retrieved_at": "2026-10-16T03:33:25.378463+00:00",
+                "sha256": "972369831a8a09e3e139a920a432105db0ad4593a692b96102b13fb8626e1d7c",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:24 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500",
+                "retrieved_at": "2026-10-16T03:33:28.184380+00:00",
+                "sha256": "3da2a515fb59f1070b75790e098a194dde40250aa94814726cde29a225fcd7e1",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:27 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500",
+                "retrieved_at": "2026-10-16T03:33:30.532684+00:00",
+                "sha256": "9eb43c80f5ac4d8e1bb7632260071be5d86a486b9961d94b56d1ec56ce756606",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:29 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500",
+                "retrieved_at": "2026-10-16T03:33:32.864753+00:00",
+                "sha256": "47927642243a19b4c32aa89a6431255f1aac1bbd55f5bbfb812649470fa679c7",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:32 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500",
+                "retrieved_at": "2026-10-16T03:33:34.431426+00:00",
+                "sha256": "616acc37aebf0c46f2ca3c62fb73227176410988cca9ee09556f3ba9e4f9e2bb",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:33 GMT",
+                "total_results": "4464",
+                "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500"
+              },
+              {
+                "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500",
+                "retrieved_at": "2026-10-16T03:33:35.980050+00:00",
+                "sha256": "bffbd3f3a12444a0df7fd112816693e3d2f0fc5c0635d4277f4932d3b13c4ad5",
+                "uniprot_release": "2026_03",
+                "uniprot_release_date": "02-September-2026",
+                "http_date": "Fri, 16 Oct 2026 03:33:35 GMT",
+                "total_results": "4464",
+                "next_url": null
+              }
+            ],
+            "uniprot_release": "2026_03",
+            "uniprot_release_date": "02-September-2026",
+            "fasta_sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695"
+          },
+          "hmm_source": {
+            "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+            "retrieved_at": "2026-10-16T03:33:37.872521+00:00",
+            "http_date": "Fri, 16 Oct 2026 03:33:37 GMT",
+            "last_modified": null,
+            "download_sha256": "cb64f4d93a8f55d5ff7000f8306d2f92f454e905ca32967882f3479ea88cb3d2",
+            "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+            "model": {
+              "accession": "PF00194.27",
+              "family": "PF00194",
+              "name": "Carb_anhydrase",
+              "length": 255,
+              "ga_sequence": 27.0,
+              "ga_domain": 27.0,
+              "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+            }
+          }
+        },
+        "limitations": [
+          "Pfam GA and domain coverage measure family sequence compatibility, not catalytic activity or expression.",
+          "The split isolates fine-tuning data; absence from the foundation model pretraining set is not established."
+        ],
+        "artifacts": {
+          "metrics": "outputs/pilot/train_seed_42/seed_101/evaluation/metrics.json",
+          "per_sequence": "outputs/pilot/train_seed_42/seed_101/evaluation/per_sequence.csv",
+          "pairwise_diversity": "outputs/pilot/train_seed_42/seed_101/evaluation/pairwise_diversity.csv"
+        }
+      },
+      "time": "2026-10-16T04:00:28.245500+00:00"
+    }
+  ],
+  "finished_at": "2026-10-16T04:00:28.248837+00:00"
+}

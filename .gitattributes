@@ -1,4 +1,8 @@
 * text=auto eol=lf
+# Scientific evidence is copied byte-for-byte; its published SHA-256 must
+# survive Git checkout on both Windows and Linux (CSV uses RFC-style CRLF).
+# Original HMM and generated SVG whitespace is part of those recorded bytes.
+results/** -text -whitespace
 *.png binary
 *.jpg binary
 *.pdf binary

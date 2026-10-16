@@ -1,0 +1,56 @@
+{
+  "kind": "measured_engineering_validation",
+  "files": [
+    {
+      "path": "export_identity_migration.json",
+      "sha256": "9d44ca811dda8d31d9349cc9b9352f04eac19a1c3a675eca7016dfa3f809bb84",
+      "bytes": 8055
+    },
+    {
+      "path": "formal_backend_source.py.txt",
+      "sha256": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+      "bytes": 12512
+    },
+    {
+      "path": "formal_training_source.py.txt",
+      "sha256": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82",
+      "bytes": 15856
+    },
+    {
+      "path": "formal_training_summary.json",
+      "sha256": "793eecdff0f471ee1a672bf701c8f744c36d7d837997e1260e41a22d3bdecc3d",
+      "bytes": 7611
+    },
+    {
+      "path": "generation_backend_source.py.txt",
+      "sha256": "d63abc25bfbab4cedb9f7124a687d81ac1831e10bc1d2e391ce815b3986f2a8b",
+      "bytes": 12864
+    },
+    {
+      "path": "generation_experiment_source.py.txt",
+      "sha256": "b5bbf398d4b4fda50e034646e49886e40d921070546c356d4825e409503dab83",
+      "bytes": 12020
+    },
+    {
+      "path": "README.md",
+      "sha256": "03a99902848b975f0c586cf915c366aef5c01322c7b63855a95ddd96a1d5a901",
+      "bytes": 3115
+    },
+    {
+      "path": "real_150m_resume.json",
+      "sha256": "0bba9ab0f532d65c5dcf8e28b72d8bbbb4a92d362082b4f22c0c8f92b418da16",
+      "bytes": 15337
+    },
+    {
+      "path": "seal_recorded_exports.py.txt",
+      "sha256": "229f24fa360f8dd1e549f3d191c925722793e7624da2841b2e2987d6f6df3774",
+      "bytes": 4307
+    },
+    {
+      "path": "verify_real_resume.py.txt",
+      "sha256": "9b29062e8d346120db77f16504cbf98b53765b2bc730240e377b7f610b65e9f5",
+      "bytes": 9355
+    }
+  ],
+  "scope": "Original small validation records and executed source snapshots; checkpoints remain remote."
+}

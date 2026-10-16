@@ -1,0 +1,5 @@
+{
+  "weights_sha256": "f872fd255c05276e0786d8ebc171071ced235fa6f868e3aba33f9f2adba7e110",
+  "max_logit_error_cpu_fp32": 0.0,
+  "passed": true
+}

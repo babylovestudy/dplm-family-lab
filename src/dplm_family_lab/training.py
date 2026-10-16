@@ -10,6 +10,7 @@ import time
 
 from .backend import (
     AMINO_ACIDS,
+    bind_training_report_identity,
     export_backend,
     load_backend,
     require_torch,
@@ -133,7 +134,10 @@ def _signature(config, hashes):
     ]
     return {
         "model": config["model"],
-        "train": {key: train_cfg.get(key) for key in selected},
+        "train": {
+            **{key: train_cfg.get(key) for key in selected},
+            "eval_every": int(train_cfg.get("eval_every", 100)),
+        },
         "data_sha256": hashes,
     }
 
@@ -212,12 +216,29 @@ def train(config: dict, resume=None) -> dict:
     noise_path = output / "validation_noise.pt"
     if resume_path:
         state = torch.load(resume_path, map_location="cpu", weights_only=False)
-        if state["signature"] != signature:
-            raise ValueError("Resume model/data/training signature differs from checkpoint")
         if state["output_dir"] != str(output):
             raise ValueError(
                 "Resume must use the original output_dir, preserving its noise bank and provenance"
             )
+        saved_signature = state["signature"]
+        if "eval_every" not in saved_signature["train"]:
+            # Original v1 checkpoints omitted the validation cadence. Recover it
+            # only from the original run configuration, after checking that its
+            # other settings agree with the checkpoint signature.
+            original_config_path = output / "config.json"
+            if not original_config_path.exists():
+                raise ValueError("Legacy resume requires the original run config.json")
+            original_config = json.loads(original_config_path.read_text(encoding="utf-8"))
+            original_signature = _signature(original_config, hashes)
+            original_eval_every = original_signature["train"].pop("eval_every")
+            if original_signature != saved_signature:
+                raise ValueError("Legacy checkpoint and original run config.json differ")
+            saved_signature = {
+                **saved_signature,
+                "train": {**saved_signature["train"], "eval_every": original_eval_every},
+            }
+        if saved_signature != signature:
+            raise ValueError("Resume model/data/training signature differs from checkpoint")
         optimizer.load_state_dict(state["optimizer"])
         scheduler.load_state_dict(state["scheduler"])
         scaler.load_state_dict(state["scaler"])
@@ -311,7 +332,7 @@ def train(config: dict, resume=None) -> dict:
             "sampler": dict(sampler),
             "elapsed_seconds": time.perf_counter() - start_time,
         }
-        if step % int(tc.get("eval_every", 100)) == 0 or step == stop:
+        if step % int(tc.get("eval_every", 100)) == 0 or step == maximum:
             evaluation = _evaluate_bank(backend, noise)
             record["validation"] = evaluation
             value = evaluation["weighted_masked_denoising_loss"]
@@ -347,9 +368,9 @@ def train(config: dict, resume=None) -> dict:
     result = {
         "status": "complete" if step == maximum else "interrupted_at_requested_step",
         "step": step,
-        "best_validation_loss": best_loss,
+        "best_validation_loss": best_loss if math.isfinite(best_loss) else None,
         "output_dir": str(output),
-        "best_checkpoint": str(output / "best.pt"),
+        "best_checkpoint": str(output / "best.pt") if (output / "best.pt").exists() else None,
         "last_checkpoint": str(output / "last.pt"),
         "validation_noise_sha256": noise_hash,
         "data_sha256": hashes,
@@ -370,6 +391,7 @@ def train(config: dict, resume=None) -> dict:
             best_backend, output / "export_best", [validation_records[0].sequence]
         )
         write_json(output / "training_report.json", result)
+        bind_training_report_identity(output / "export_best", output / "training_report.json")
     return result
 
 

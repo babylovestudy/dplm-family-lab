@@ -4,7 +4,11 @@
 
 ## 完整流程入口
 
-完成下述数据制备与审计后，`dplm-lab run-experiment --config configs/pf00194.yaml --pilot`编排100步训练、baseline/适配模型各32条配对生成与评估；去掉`--pilot`执行三训练种子各1000步和12组每组256条的正式协议。`dplm-lab report --config configs/pf00194.yaml --output-dir artifacts/report`只汇总已有结果，不启动实验。下面保留各阶段命令，便于理解、排查和独立复现。
+完成下述数据制备与审计后，`dplm-lab run-experiment --config configs/pf00194.yaml --pilot`编排100步训练、baseline/适配模型各32条配对生成与评估。在新工作目录用公开L4配置运行`dplm-lab run-experiment --config configs/pf00194-l4.yaml`，执行三训练种子各1000步和12组每组256条的正式协议；相应汇总命令为`dplm-lab report --config configs/pf00194-l4.yaml --output-dir artifacts/report`。
+
+本次原始远程运行使用只将`model.source`替换为已核验本地缓存的`configs/pf00194-l4-runtime.yaml`，恢复和汇总也必须保持原始配置。公开profile与原始runtime的区别及重建前提见[远程GPU说明](remote-gpu.md#本次原始运行与公开配置)。单个工作目录只承载一套正式协议；不要将两份配置依次写入同一`outputs/formal`。
+
+下面保留单阶段命令供理解和排查。手工生成例子的目录不属于编排器正式布局；即使手工凑齐数量，也不自动形成完整stage journal。初学者复现整套协议优先使用`run-experiment`，不要依次把所有教学例子写进已有正式目录。
 
 ## 1. 数据与拆分
 
@@ -49,6 +53,8 @@ dplm-lab train --config configs/pf00194.yaml --seed 44
 ## 3. 配对生成对照
 
 比较原始模型与各适配模型，生成种子101、102、103，每个种子256条。训练种子差异与生成种子差异分别保留；对每个适配模型，均与相同生成种子的baseline配对。两组必须使用相同长度列表、条数、采样策略`gumbel_argmax`和迭代预算100。
+
+采样的两个臂一致限制为20种标准氨基酸，额外屏蔽ESM null等非标准词表项；训练logits保持原有词表。该规则在pilot与正式实验前已固定，生成manifest保留alphabet policy。虽然复用官方迭代调度与gumbel策略，本项目采样输出并非完全未修改的官方实现；这项预先定义的输出约束不是事后按HMM分数选择性过滤。
 
 先让baseline从训练集长度分布取样，生成的`length_schedule.json`再交给适配模型；不从测试集选取生成长度。下面以一对seed演示，`MODEL_PATH`应替换为训练输出中报告的真实导出目录或受支持检查点。
 
@@ -104,3 +110,22 @@ HMM工具及命中阈值以实际实现、版本和manifest为准，并在报告
 ```
 
 仓库应保存可复查的表格、manifest、日志与代表性失败案例。学习者须能独立解释数据与每个指标；自动跑完命令不等于已掌握实验设计。
+
+## 6. 正式结束后读取结果
+
+在完成实验的机器上，使用与该次运行一致的配置汇总。公开L4 profile的新运行使用：
+
+```bash
+dplm-lab report --config configs/pf00194-l4.yaml --output-dir artifacts/report
+```
+
+本次原始远程运行把`--config`改为`configs/pf00194-l4-runtime.yaml`。这份机器专用配置未随Git发布；只阅读已公开的报告不需要拥有它。重做完整性检查则需同时保留原始配置、数据和被引用产物，不能把公网模型ID临时替换进旧run。
+
+1. 先看`outputs/formal/experiment_status.json`的阶段记录，再看`artifacts/report/summary.json`。只有`formal_status: complete`且`missing_expected_stages: []`，才表示三次1000步训练、12组256条配对生成评估和4组测试去噪的已有产物及hash检查完整；它不是生物学有效性结论。
+2. 在`summary.csv`筛选`source_type=training`，核对42/43/44各一份正式报告、1000步及资源成本。这些行的`denoising_loss`是最佳验证loss。
+3. 筛选`source_type=generation`，正式区域应有3组baseline和9组适配模型。对相同生成种子作差；保留各训练种子的结果，不把9组适配生成当成9次独立训练。
+4. 筛选`source_type=denoising`，核对baseline和3个适配模型共4组相同test数据、固定噪声种子的评估；这里的loss才是固定噪声测试去噪CE。
+5. 回到每行`source_json`读取完整区间与分母。生成明细在`outputs/formal/<arm>/seed_<seed>/evaluation/`：`metrics.json`是汇总，`per_sequence.csv`含HMM命中与最近训练邻居，`pairwise_diversity.csv`含生成集配对距离。模型与长度计划在上一级`manifest.json`、`length_schedule.json`中。
+6. 把最终结论、失败案例与局限填入README“正式结果”表和自己的实验报告，再决定哪些事实可以写进简历；最终指标未出齐时保持pending。
+
+如果显示partial，先读`missing_expected_stages`和`formal_validation_issues`，核对是否尚未运行、文件未同步、配置不一致或hash变化。只下载一张汇总表不能在另一台机器重做完整性核查；保留原机器完整产物，或连同被引用的数据与结果一起同步。

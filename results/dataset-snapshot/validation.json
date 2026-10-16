@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "licensed_snapshot_restore",
+  "snapshot_manifest_sha256": "78beaec1e4cb8a162c40b786a2bf7cf6cc04756d1160faf918573e3c39c59430",
+  "restored_files": [
+    "data/raw/uniprot.fasta",
+    "data/raw/provenance.json",
+    "data/raw/PF00194.hmm",
+    "data/raw/PF00194.hmm.provenance.json"
+  ],
+  "network_used_by_restore": false,
+  "full_prepare_executed": true,
+  "destination_existed_before": false,
+  "processed_directory_existed_before": false,
+  "original_working_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+  "expected_canonical_split_sha256": "b6e07bd3c5809492f1ecbf73ccf8f39d168a2dffb70c0329e02b0d217ec3f330",
+  "prepare_and_audit_seconds": 234.477634023875,
+  "canonical_split_sha256": "b6e07bd3c5809492f1ecbf73ccf8f39d168a2dffb70c0329e02b0d217ec3f330",
+  "canonical_split_matches": true,
+  "split_fasta_sha256": {
+    "train.fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+    "val.fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb",
+    "test.fasta": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6"
+  },
+  "split_sizes": {
+    "train": 2354,
+    "val": 294,
+    "test": 294
+  },
+  "retained_sequences": 2942,
+  "components": 1719,
+  "cross_split_audit": {
+    "passed": true,
+    "cross_split_pairs": 1470588,
+    "aligned": 43304,
+    "violations": [],
+    "metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+    "identity": 0.8,
+    "coverage": 0.8
+  },
+  "software_versions": {
+    "numpy": "1.26.4",
+    "biopython": "1.85",
+    "pyhmmer": "0.12.3"
+  },
+  "recomputed_working_manifest_sha256": "fa2c9e00f63f3c488d246f31e9147f3250e349b14fe0d5a323dda11200b92b62",
+  "byte_manifest_note": "Working manifests contain measured timing and creation timestamps. Scientific split equality is checked by canonical split SHA-256 and exact FASTA file SHA-256, not by claiming a new report has the old byte hash.",
+  "actual_validation": "fresh absent destination; genuine HMM and exact clustering recomputed with network sockets blocked",
+  "network_sockets_blocked_for_test": true,
+  "torch_imported": false,
+  "linux_symlink_escape_rejected": true,
+  "validation_total_seconds": 234.74948285520077,
+  "validation_completed_at_utc": "2026-10-16T04:35:51.781230+00:00",
+  "python_version": "3.10.12",
+  "source_files_sha256": {
+    "results/dataset-snapshot/restore.py": "9ec206b750fadbf7c96c5919095ffe1246bcc6d2c70cc80dadd127255f6f5b57",
+    "src/dplm_family_lab/data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+    "src/dplm_family_lab/hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+    "src/dplm_family_lab/similarity.py": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+    "src/dplm_family_lab/common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+    "configs/pf00194.yaml": "2503e17a5628f59af485c1d0ab3f90931466dac13c3192fdacb7fc9f350e6dab"
+  }
+}

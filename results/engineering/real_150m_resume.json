@@ -1,0 +1,439 @@
+{
+  "model": {
+    "source": "airkingbd/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+    "download_endpoint": "https://hf-mirror.com",
+    "verified_against_official_metadata": true,
+    "checkpoint_size_bytes": 595359662,
+    "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+    "tiny_fixture": false,
+    "parameter_count": 148796794,
+    "device": "cuda",
+    "precision": "bf16"
+  },
+  "environment": {
+    "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+    "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+    "packages": {
+      "dplm-family-lab": null,
+      "numpy": "1.26.4",
+      "biopython": "1.85",
+      "torch": "2.2.0+cu121",
+      "transformers": "4.39.2",
+      "pyhmmer": "0.12.3"
+    },
+    "project_source_sha256": {
+      "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+      "__main__.py": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+      "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+      "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+      "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+      "backend.py": "d63abc25bfbab4cedb9f7124a687d81ac1831e10bc1d2e391ce815b3986f2a8b",
+      "cli.py": "2f0b15221e833038c5b0edbf510fdc059bb9a27bddc5f82becd5a5da0972abed",
+      "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+      "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+      "evaluation.py": "0c4f9e3861b0781f9b384e84bb22e3fb922f4a41df84ae65e4ee251dcc0746fe",
+      "experiment.py": "b5bbf398d4b4fda50e034646e49886e40d921070546c356d4825e409503dab83",
+      "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+      "reporting.py": "41159d04351dbb6d831f82f0a581932359e4da19e7c8d9ae75927ef2bfe65d49",
+      "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+      "similarity.py": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+      "training.py": "303ecc007798d4ee67b57ba7d38493611f7e28482c9676d7b1a76e69db52f9ad"
+    }
+  },
+  "control_config": {
+    "project": {
+      "name": "pf00194",
+      "seed": 42
+    },
+    "data": {
+      "family": "PF00194",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "raw_dir": "data/raw",
+      "processed_dir": "data/processed",
+      "min_length": 180,
+      "max_length": 256,
+      "min_hmm_coverage": 0.8,
+      "identity": 0.8,
+      "coverage": 0.8,
+      "split": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "seed": 42
+    },
+    "hmm": {
+      "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+      "path": "data/raw/PF00194.hmm",
+      "binary": "hmmsearch"
+    },
+    "model": {
+      "source": "model_cache/dplm_150m",
+      "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+      "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d"
+    },
+    "train": {
+      "output_dir": "runs/resume_validation/control_10",
+      "seed": 42,
+      "micro_batch_size": 4,
+      "gradient_accumulation_steps": 4,
+      "learning_rate": 1e-05,
+      "max_steps": 10,
+      "eval_every": 100,
+      "checkpoint_every": 100,
+      "gradient_checkpointing": true,
+      "mixed_precision": "auto",
+      "warmup_steps": 50,
+      "weight_decay": 0.01,
+      "grad_clip": 1.0,
+      "num_workers": 0,
+      "train_fasta": "data/processed/train.fasta",
+      "val_fasta": "data/processed/val.fasta",
+      "test_fasta": "data/processed/test.fasta",
+      "validation_seed": 9173
+    },
+    "generate": {
+      "output_dir": "outputs/baseline/seed_101",
+      "seed": 101,
+      "total_sequences": 256,
+      "batch_size": 4,
+      "lengths_source": "data/processed/train.fasta",
+      "max_iter": 100,
+      "sampling_strategy": "gumbel_argmax"
+    },
+    "evaluation": {
+      "output_dir": "outputs/evaluation",
+      "train_fasta": "data/processed/train.fasta",
+      "hmm_path": "data/raw/PF00194.hmm",
+      "min_hmm_coverage": 0.8,
+      "bootstrap_samples": 1000,
+      "seed": 42,
+      "workers": 8
+    }
+  },
+  "initial_interrupted_config": {
+    "project": {
+      "name": "pf00194",
+      "seed": 42
+    },
+    "data": {
+      "family": "PF00194",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "raw_dir": "data/raw",
+      "processed_dir": "data/processed",
+      "min_length": 180,
+      "max_length": 256,
+      "min_hmm_coverage": 0.8,
+      "identity": 0.8,
+      "coverage": 0.8,
+      "split": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "seed": 42
+    },
+    "hmm": {
+      "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+      "path": "data/raw/PF00194.hmm",
+      "binary": "hmmsearch"
+    },
+    "model": {
+      "source": "model_cache/dplm_150m",
+      "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+      "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d"
+    },
+    "train": {
+      "output_dir": "runs/resume_validation/resumed_10",
+      "seed": 42,
+      "micro_batch_size": 4,
+      "gradient_accumulation_steps": 4,
+      "learning_rate": 1e-05,
+      "max_steps": 10,
+      "eval_every": 100,
+      "checkpoint_every": 100,
+      "gradient_checkpointing": true,
+      "mixed_precision": "auto",
+      "warmup_steps": 50,
+      "weight_decay": 0.01,
+      "grad_clip": 1.0,
+      "num_workers": 0,
+      "train_fasta": "data/processed/train.fasta",
+      "val_fasta": "data/processed/val.fasta",
+      "test_fasta": "data/processed/test.fasta",
+      "validation_seed": 9173,
+      "stop_after_steps": 5
+    },
+    "generate": {
+      "output_dir": "outputs/baseline/seed_101",
+      "seed": 101,
+      "total_sequences": 256,
+      "batch_size": 4,
+      "lengths_source": "data/processed/train.fasta",
+      "max_iter": 100,
+      "sampling_strategy": "gumbel_argmax"
+    },
+    "evaluation": {
+      "output_dir": "outputs/evaluation",
+      "train_fasta": "data/processed/train.fasta",
+      "hmm_path": "data/raw/PF00194.hmm",
+      "min_hmm_coverage": 0.8,
+      "bootstrap_samples": 1000,
+      "seed": 42,
+      "workers": 8
+    }
+  },
+  "resumed_config": {
+    "project": {
+      "name": "pf00194",
+      "seed": 42
+    },
+    "data": {
+      "family": "PF00194",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "raw_dir": "data/raw",
+      "processed_dir": "data/processed",
+      "min_length": 180,
+      "max_length": 256,
+      "min_hmm_coverage": 0.8,
+      "identity": 0.8,
+      "coverage": 0.8,
+      "split": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "seed": 42
+    },
+    "hmm": {
+      "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+      "path": "data/raw/PF00194.hmm",
+      "binary": "hmmsearch"
+    },
+    "model": {
+      "source": "model_cache/dplm_150m",
+      "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+      "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d"
+    },
+    "train": {
+      "output_dir": "runs/resume_validation/resumed_10",
+      "seed": 42,
+      "micro_batch_size": 4,
+      "gradient_accumulation_steps": 4,
+      "learning_rate": 1e-05,
+      "max_steps": 10,
+      "eval_every": 100,
+      "checkpoint_every": 100,
+      "gradient_checkpointing": true,
+      "mixed_precision": "auto",
+      "warmup_steps": 50,
+      "weight_decay": 0.01,
+      "grad_clip": 1.0,
+      "num_workers": 0,
+      "train_fasta": "data/processed/train.fasta",
+      "val_fasta": "data/processed/val.fasta",
+      "test_fasta": "data/processed/test.fasta",
+      "validation_seed": 9173
+    },
+    "generate": {
+      "output_dir": "outputs/baseline/seed_101",
+      "seed": 101,
+      "total_sequences": 256,
+      "batch_size": 4,
+      "lengths_source": "data/processed/train.fasta",
+      "max_iter": 100,
+      "sampling_strategy": "gumbel_argmax"
+    },
+    "evaluation": {
+      "output_dir": "outputs/evaluation",
+      "train_fasta": "data/processed/train.fasta",
+      "hmm_path": "data/raw/PF00194.hmm",
+      "min_hmm_coverage": 0.8,
+      "bootstrap_samples": 1000,
+      "seed": 42,
+      "workers": 8
+    }
+  },
+  "control_last_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/resume_validation/control_10/last.pt",
+  "resumed_last_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/resume_validation/resumed_10/last.pt",
+  "model_tensors": {
+    "bitwise_identical": true,
+    "differing_tensors": 0,
+    "max_abs_difference": 0.0,
+    "tensors_compared": 522
+  },
+  "optimizer_tensors": {
+    "bitwise_identical": true,
+    "differing_tensors": 0,
+    "max_abs_difference": 0.0,
+    "tensors_compared": 1464
+  },
+  "optimizer_sha256_control": "58cd03b6b41ae8033670f5af106f5e2c505ea365e8698b37ea4d77fb5013070d",
+  "optimizer_sha256_resumed": "58cd03b6b41ae8033670f5af106f5e2c505ea365e8698b37ea4d77fb5013070d",
+  "optimizer_step_values_control": [
+    10.0
+  ],
+  "optimizer_step_values_resumed": [
+    10.0
+  ],
+  "scheduler_equal": true,
+  "scaler_equal": true,
+  "sampler_equal": true,
+  "rng_equal": true,
+  "rng_sha256_control": "688b87c930b371803e9d491c98d2c991329dff225f0b6cca0efba6533ca874ba",
+  "rng_sha256_resumed": "688b87c930b371803e9d491c98d2c991329dff225f0b6cca0efba6533ca874ba",
+  "validation_noise_equal": true,
+  "control_probe_proof": {
+    "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+    "current_model_sha256": "2dbf0394f22b2f8973c5c6b2058d00fb1989e647b74e06cebaa70623e24c66e9",
+    "probe_max_weight_changes": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 1.0563060641288757e-05,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 1.080334186553955e-05
+    },
+    "probe_max_gradient_norms": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 0.021863799542188644,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 0.02873349003493786
+    },
+    "backbone_updated": true,
+    "trainable_parameters": 148796794,
+    "gradient_checkpointing_enabled": true
+  },
+  "resumed_probe_proof": {
+    "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+    "current_model_sha256": "2dbf0394f22b2f8973c5c6b2058d00fb1989e647b74e06cebaa70623e24c66e9",
+    "probe_max_weight_changes": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 1.0563060641288757e-05,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 1.080334186553955e-05
+    },
+    "probe_max_gradient_norms": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 0.021863799542188644,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 0.02873349003493786
+    },
+    "backbone_updated": true,
+    "trainable_parameters": 148796794,
+    "gradient_checkpointing_enabled": true
+  },
+  "wall_seconds": 109.46790301054716,
+  "source_hashes": {
+    "src/dplm_family_lab/training.py": "303ecc007798d4ee67b57ba7d38493611f7e28482c9676d7b1a76e69db52f9ad",
+    "src/dplm_family_lab/backend.py": "d63abc25bfbab4cedb9f7124a687d81ac1831e10bc1d2e391ce815b3986f2a8b",
+    "artifacts/validation/verify_real_resume.py": "9b29062e8d346120db77f16504cbf98b53765b2bc730240e377b7f610b65e9f5"
+  },
+  "validation_schedule_boundary_fix": {
+    "formal_training_source_sha256": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82",
+    "description": "A requested early stop no longer forces an off-schedule validation/best checkpoint; before the first scheduled validation its report uses null best fields. Scientific full-run updates and planned validation points are unchanged.",
+    "regression_test": "test_unplanned_stop_does_not_change_best_selection_schedule",
+    "resume_signature_fix": "eval_every is now part of the scientific resume signature; legacy checkpoints must recover it from their original config.json after all other signature fields match.",
+    "signature_regression_tests": [
+      "test_resume_rejects_changed_validation_cadence",
+      "test_optimizer_boundary_resume_matches_uninterrupted[True]"
+    ]
+  },
+  "structural_resume_checks_passed": true,
+  "finite_model_difference": true,
+  "memory_lifecycle": {
+    "after_control": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 3359637504,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "after_partial": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 3359637504,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "after_resumed": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 3359637504,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "gc_objects_collected": 174,
+    "after_gc": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 3359637504,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "after_empty_cache": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 41943040,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "rng_unchanged_by_cleanup": true
+  },
+  "inference_model_lifecycle": {
+    "after_each_completed_load_forward_delete": [
+      {
+        "allocated_bytes": 17080320,
+        "reserved_bytes": 675282944,
+        "tracked_model_object_counts": {
+          "DiffusionProteinLanguageModel": 0,
+          "Backend": 0,
+          "EsmForDPLM": 0
+        }
+      },
+      {
+        "allocated_bytes": 17080320,
+        "reserved_bytes": 675282944,
+        "tracked_model_object_counts": {
+          "DiffusionProteinLanguageModel": 0,
+          "Backend": 0,
+          "EsmForDPLM": 0
+        }
+      },
+      {
+        "allocated_bytes": 17080320,
+        "reserved_bytes": 675282944,
+        "tracked_model_object_counts": {
+          "DiffusionProteinLanguageModel": 0,
+          "Backend": 0,
+          "EsmForDPLM": 0
+        }
+      }
+    ],
+    "gc_objects_collected": 351,
+    "after_gc": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 675282944,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "after_empty_cache": {
+      "allocated_bytes": 17080320,
+      "reserved_bytes": 41943040,
+      "tracked_model_object_counts": {
+        "DiffusionProteinLanguageModel": 0,
+        "Backend": 0,
+        "EsmForDPLM": 0
+      }
+    },
+    "rng_unchanged_by_cleanup": true
+  }
+}

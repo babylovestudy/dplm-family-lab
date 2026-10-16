@@ -15,6 +15,15 @@
 
 打开 [notebook](../notebooks/01_fasta_and_tensors.ipynb)，执行到FASTA解析和长度统计。示例是人为构造的短序列，不能用于碳酸酐酶研究。
 
+本地尚无notebook工具时，可在已创建的CPU环境中另装JupyterLab，不需要PyTorch或GPU。以下为Windows项目根目录的命令：
+
+```powershell
+uv pip install --python .venv jupyterlab
+.venv\Scripts\python -m jupyterlab notebooks/01_fasta_and_tensors.ipynb
+```
+
+没有uv时用`.venv\Scripts\python -m pip install jupyterlab`替代第一行。也可以使用已安装的notebook编辑器，但要选择本项目`.venv`中的Python作为kernel。先用“Restart Kernel and Run All”确认基础环境，再逐单元练习；不要只在GitHub预览页面阅读而以为已执行。
+
 接着自己完成以下任务，先写思路再编程：
 
 - 将一条序列拆成多行，观察解析器如何拼接。

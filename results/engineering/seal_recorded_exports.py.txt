@@ -1,0 +1,93 @@
+"""CPU-only migration seal; preserve original weights, reports, and source bytes."""
+
+import gc
+import json
+from pathlib import Path
+import time
+
+from dplm_family_lab.backend import load_backend, tensor_digest
+from dplm_family_lab.common import sha256_file, write_json
+
+
+def run():
+    started = time.perf_counter()
+    snapshots = {}
+    for module in ("backend", "experiment"):
+        source = Path(f"src/dplm_family_lab/{module}.py")
+        snapshot = Path(f"artifacts/validation/generation_{module}_source.py.txt")
+        if snapshot.exists() and snapshot.read_bytes() != source.read_bytes():
+            raise ValueError(f"Existing generation source snapshot differs: {snapshot}")
+        snapshot.write_bytes(source.read_bytes())
+        snapshots[str(snapshot)] = sha256_file(snapshot)
+    rows = []
+    for namespace in ("pilot_seed_42", "seed_42", "seed_43", "seed_44"):
+        run_dir = Path("runs/pf00194") / namespace
+        exported = run_dir / "export_best"
+        provenance_path = exported / "family_lab_provenance.json"
+        roundtrip_path = exported / "roundtrip.json"
+        training_report_path = run_dir / "training_report.json"
+        weights = exported / "pytorch_model.bin"
+        if not weights.is_file():
+            weights = exported / "model.safetensors"
+        original_paths = (weights, provenance_path, roundtrip_path, training_report_path)
+        before = {str(path): sha256_file(path) for path in original_paths}
+        provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+        roundtrip = json.loads(roundtrip_path.read_text(encoding="utf-8"))
+        report = json.loads(training_report_path.read_text(encoding="utf-8"))
+        if report.get("status") != "complete" or report.get("export_roundtrip") != roundtrip:
+            raise ValueError(f"Original training report and roundtrip differ: {run_dir}")
+        backend = load_backend(
+            {
+                "model": {"source": str(exported)},
+                "train": {"device": "cpu", "mixed_precision": "fp32"},
+            }
+        )
+        if backend.device.type != "cpu":
+            raise RuntimeError("Migration seal must run on CPU")
+        tensor_sha = tensor_digest(backend.model.state_dict())
+        del backend
+        gc.collect()
+        if roundtrip.get("passed") is not True or tensor_sha != roundtrip.get("weights_sha256"):
+            raise ValueError(f"Actual exported tensors do not match original roundtrip: {run_dir}")
+        identity = {
+            "schema_version": 1,
+            "weights_file": weights.name,
+            "weights_file_sha256": before[str(weights)],
+            "tensor_sha256": tensor_sha,
+            "roundtrip_json_sha256": before[str(roundtrip_path)],
+            "provenance_json_sha256": before[str(provenance_path)],
+            "training_report_sha256": before[str(training_report_path)],
+        }
+        if provenance.get("training_checkpoint_sha256"):
+            identity["training_checkpoint_sha256"] = provenance["training_checkpoint_sha256"]
+        identity_path = exported / "export_identity.json"
+        if identity_path.exists() and json.loads(identity_path.read_text()) != identity:
+            raise ValueError(f"Existing export identity differs: {identity_path}")
+        write_json(identity_path, identity)
+        after = {str(path): sha256_file(path) for path in original_paths}
+        if before != after:
+            raise RuntimeError("Original evidence changed during CPU migration seal")
+        rows.append(
+            {
+                "run": namespace,
+                "identity": identity,
+                "original_files_sha256_before": before,
+                "original_files_sha256_after": after,
+                "original_bytes_unchanged": True,
+            }
+        )
+        print(namespace, "CPU tensor verification and immutable-byte seal passed", flush=True)
+    result = {
+        "schema_version": 1,
+        "device": "cpu",
+        "snapshots": snapshots,
+        "runs": rows,
+        "wall_seconds": time.perf_counter() - started,
+        "script_sha256": sha256_file(__file__),
+    }
+    write_json("artifacts/validation/export_identity_migration.json", result)
+    print("Migration seal complete", result["wall_seconds"], flush=True)
+
+
+if __name__ == "__main__":
+    run()

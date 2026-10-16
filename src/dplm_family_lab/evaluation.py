@@ -12,7 +12,7 @@ import numpy as np
 from .common import read_fasta, sha256_file, write_json
 from .data import STANDARD_AA
 from .hmmer import read_hmm_metadata, score_sequences
-from .similarity import METRIC, PairwiseCache
+from .similarity import METRIC, PairwiseCache, nearest_training_matches
 
 
 def _load(path):
@@ -65,7 +65,8 @@ def evaluate(config: dict, fasta_path: str | Path, output_dir: str | Path | None
     hmm_path = Path(cfg.get("hmm_path", config["hmm"]["path"]))
     if sha256_file(hmm_path) != reference["hmm_sha256"]:
         raise ValueError("Evaluation HMM differs from the frozen training HMM")
-    if sha256_file(train_path) != reference["train_fasta_sha256"]:
+    training_sha256 = sha256_file(train_path)
+    if training_sha256 != reference["train_fasta_sha256"]:
         raise ValueError("Evaluation training FASTA differs from the frozen reference")
     manifest_path = reference_path.parent / "split_manifest.json"
     if not manifest_path.is_file() or sha256_file(manifest_path) != reference["split_manifest_sha256"]:
@@ -88,23 +89,14 @@ def evaluate(config: dict, fasta_path: str | Path, output_dir: str | Path | None
                              work_dir=output / ".tmp")
     multiplicity = Counter(r.sequence for r in valid)
     train_set = {r.sequence for r in training}
-    nearest_by_sequence = {}
+    nearest_by_sequence, nearest_search = nearest_training_matches(
+        [r.sequence for r in valid], training, training_sha256,
+        cfg.get("nearest_cache", train_path.parent / "nearest.sqlite"),
+        workers=cfg.get("workers", 1),
+    )
     diversity = np.zeros((len(valid), len(valid)), dtype=np.float64)
     pair_rows = []
     with PairwiseCache(output / "pairwise.sqlite") as cache:
-        for record in valid:
-            if record.sequence in nearest_by_sequence:
-                continue
-            best_identity, best_id = -1.0, None
-            for train in training:
-                # Identity can never exceed shorter/longer length, even with gaps.
-                upper = min(len(record.sequence), len(train.sequence)) / max(len(record.sequence), len(train.sequence))
-                if upper + 1e-12 < best_identity:
-                    continue
-                identity = cache.compare(record.sequence, train.sequence).identity
-                if identity > best_identity or (identity == best_identity and (best_id is None or train.id < best_id)):
-                    best_identity, best_id = identity, train.id
-            nearest_by_sequence[record.sequence] = (best_identity, best_id)
         for i, a in enumerate(valid):
             for j in range(i + 1, len(valid)):
                 b = valid[j]
@@ -162,6 +154,7 @@ def evaluate(config: dict, fasta_path: str | Path, output_dir: str | Path | None
                             "interval": "percentile 95%; diversity resamples sequences, not independent pairs",
                             "note": "Descriptive sampling uncertainty; does not establish biochemical activity. Duplicate excess is reported without a bootstrap interval."},
               "similarity_metric": METRIC, "training_reference": reference,
+              "nearest_search": nearest_search,
               "limitations": ["Pfam GA and domain coverage measure family sequence compatibility, not catalytic activity or expression.",
                               "The split isolates fine-tuning data; absence from the foundation model pretraining set is not established."],
               "artifacts": {"metrics": str(output / "metrics.json"),

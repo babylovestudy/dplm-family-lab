@@ -1,0 +1,224 @@
+"""Independent real-weight GPU resume check; never uses the formal run namespace."""
+
+from copy import deepcopy
+import math
+import hashlib
+import gc
+from pathlib import Path
+import time
+
+import torch
+import yaml
+
+from dplm_family_lab.common import environment_info, sha256_file, write_json
+from dplm_family_lab.training import train
+from dplm_family_lab.backend import load_backend, rng_state, tensor_digest
+
+
+def compare_tensors(left, right):
+    differing = 0
+    maximum = 0.0
+    if set(left) != set(right):
+        raise AssertionError("State tensor keys differ")
+    for key in left:
+        if not torch.equal(left[key], right[key]):
+            differing += 1
+            maximum = max(maximum, float((left[key].double() - right[key].double()).abs().max()))
+    return {
+        "bitwise_identical": differing == 0,
+        "differing_tensors": differing,
+        "max_abs_difference": maximum,
+        "tensors_compared": len(left),
+    }
+
+
+def rng_digest(state):
+    digest = hashlib.sha256(repr(state["python"]).encode())
+    digest.update(repr((state["numpy"][0], state["numpy"][2:])).encode())
+    digest.update(state["numpy"][1].tobytes())
+    digest.update(state["torch"].numpy().tobytes())
+    for device_state in state["cuda"]:
+        digest.update(device_state.numpy().tobytes())
+    return digest.hexdigest()
+
+
+def memory_observation():
+    names = {"Backend", "DiffusionProteinLanguageModel", "EsmForDPLM"}
+    counts = {name: 0 for name in names}
+    for obj in gc.get_objects():
+        name = type(obj).__name__
+        if name in counts:
+            counts[name] += 1
+    return {
+        "allocated_bytes": torch.cuda.memory_allocated(),
+        "reserved_bytes": torch.cuda.memory_reserved(),
+        "tracked_model_object_counts": counts,
+    }
+
+
+def run():
+    started = time.perf_counter()
+    config = yaml.safe_load(Path("configs/pf00194-l4-runtime.yaml").read_text())
+    config["train"]["max_steps"] = 10
+    control = deepcopy(config)
+    control["train"]["output_dir"] = "runs/resume_validation/control_10"
+    interrupted = deepcopy(config)
+    interrupted["train"]["output_dir"] = "runs/resume_validation/resumed_10"
+    interrupted["train"]["stop_after_steps"] = 5
+    reference = train(control)
+    after_control = memory_observation()
+    partial = train(interrupted)
+    after_partial = memory_observation()
+    resumed_config = deepcopy(interrupted)
+    resumed_config["train"].pop("stop_after_steps")
+    resumed = train(resumed_config, resume=partial["last_checkpoint"])
+    after_resumed = memory_observation()
+    left = torch.load(reference["last_checkpoint"], map_location="cpu", weights_only=False)
+    right = torch.load(resumed["last_checkpoint"], map_location="cpu", weights_only=False)
+    model_comparison = compare_tensors(left["model_state"], right["model_state"])
+    optimizer_left = {
+        f"{key}/{field}": value
+        for key, row in left["optimizer"]["state"].items()
+        for field, value in row.items()
+        if torch.is_tensor(value)
+    }
+    optimizer_right = {
+        f"{key}/{field}": value
+        for key, row in right["optimizer"]["state"].items()
+        for field, value in row.items()
+        if torch.is_tensor(value)
+    }
+    optimizer_comparison = compare_tensors(optimizer_left, optimizer_right)
+    steps_left = sorted(set(float(row["step"]) for row in left["optimizer"]["state"].values()))
+    steps_right = sorted(set(float(row["step"]) for row in right["optimizer"]["state"].values()))
+    rng_left, rng_right = left["rng"], right["rng"]
+    rng_equal = (
+        rng_left["python"] == rng_right["python"]
+        and rng_left["numpy"][0] == rng_right["numpy"][0]
+        and (rng_left["numpy"][1] == rng_right["numpy"][1]).all()
+        and rng_left["numpy"][2:] == rng_right["numpy"][2:]
+        and torch.equal(rng_left["torch"], rng_right["torch"])
+        and len(rng_left["cuda"]) == len(rng_right["cuda"])
+        and all(torch.equal(a, b) for a, b in zip(rng_left["cuda"], rng_right["cuda"]))
+    )
+    report = {
+        "model": reference["provenance"],
+        "environment": environment_info(),
+        "control_config": control,
+        "initial_interrupted_config": interrupted,
+        "resumed_config": resumed_config,
+        "control_last_checkpoint": reference["last_checkpoint"],
+        "resumed_last_checkpoint": resumed["last_checkpoint"],
+        "model_tensors": model_comparison,
+        "optimizer_tensors": optimizer_comparison,
+        "optimizer_sha256_control": tensor_digest(optimizer_left),
+        "optimizer_sha256_resumed": tensor_digest(optimizer_right),
+        "optimizer_step_values_control": steps_left,
+        "optimizer_step_values_resumed": steps_right,
+        "scheduler_equal": left["scheduler"] == right["scheduler"],
+        "scaler_equal": left["scaler"] == right["scaler"],
+        "sampler_equal": left["sampler"] == right["sampler"],
+        "rng_equal": bool(rng_equal),
+        "rng_sha256_control": rng_digest(rng_left),
+        "rng_sha256_resumed": rng_digest(rng_right),
+        "validation_noise_equal": left["validation_noise_sha256"]
+        == right["validation_noise_sha256"],
+        "control_probe_proof": reference["proof"],
+        "resumed_probe_proof": resumed["proof"],
+        "wall_seconds": time.perf_counter() - started,
+        "source_hashes": {
+            str(path): sha256_file(path)
+            for path in [
+                Path("src/dplm_family_lab/training.py"),
+                Path("src/dplm_family_lab/backend.py"),
+                Path("artifacts/validation/verify_real_resume.py"),
+            ]
+        },
+        "validation_schedule_boundary_fix": {
+            "formal_training_source_sha256": sha256_file(
+                "artifacts/validation/formal_training_source.py.txt"
+            ),
+            "description": "A requested early stop no longer forces an off-schedule validation/best checkpoint; before the first scheduled validation its report uses null best fields. Scientific full-run updates and planned validation points are unchanged.",
+            "regression_test": "test_unplanned_stop_does_not_change_best_selection_schedule",
+            "resume_signature_fix": "eval_every is now part of the scientific resume signature; legacy checkpoints must recover it from their original config.json after all other signature fields match.",
+            "signature_regression_tests": [
+                "test_resume_rejects_changed_validation_cadence",
+                "test_optimizer_boundary_resume_matches_uninterrupted[True]",
+            ],
+        },
+    }
+    report["structural_resume_checks_passed"] = (
+        report["sampler_equal"]
+        and report["rng_equal"]
+        and report["scheduler_equal"]
+        and steps_left == steps_right == [10.0]
+        and report["validation_noise_equal"]
+    )
+    report["finite_model_difference"] = math.isfinite(model_comparison["max_abs_difference"])
+    rng_before_cleanup = rng_digest(
+        {
+            "python": __import__("random").getstate(),
+            "numpy": __import__("numpy").random.get_state(),
+            "torch": torch.get_rng_state(),
+            "cuda": torch.cuda.get_rng_state_all(),
+        }
+    )
+    collected = gc.collect()
+    after_gc = memory_observation()
+    torch.cuda.empty_cache()
+    after_empty_cache = memory_observation()
+    rng_after_cleanup = rng_digest(
+        {
+            "python": __import__("random").getstate(),
+            "numpy": __import__("numpy").random.get_state(),
+            "torch": torch.get_rng_state(),
+            "cuda": torch.cuda.get_rng_state_all(),
+        }
+    )
+    report["memory_lifecycle"] = {
+        "after_control": after_control,
+        "after_partial": after_partial,
+        "after_resumed": after_resumed,
+        "gc_objects_collected": collected,
+        "after_gc": after_gc,
+        "after_empty_cache": after_empty_cache,
+        "rng_unchanged_by_cleanup": rng_before_cleanup == rng_after_cleanup,
+    }
+    inference_observations = []
+    for _ in range(3):
+        inference_backend = load_backend(config)
+        with torch.no_grad(), inference_backend.autocast():
+            logits = inference_backend.model(inference_backend.encode(["ACDEFGHIKLMNPQRSTVWY"]))
+            assert torch.isfinite(logits).all()
+        del logits, inference_backend
+        inference_observations.append(memory_observation())
+    inference_rng_before = rng_digest(rng_state())
+    inference_collected = gc.collect()
+    inference_after_gc = memory_observation()
+    torch.cuda.empty_cache()
+    report["inference_model_lifecycle"] = {
+        "after_each_completed_load_forward_delete": inference_observations,
+        "gc_objects_collected": inference_collected,
+        "after_gc": inference_after_gc,
+        "after_empty_cache": memory_observation(),
+        "rng_unchanged_by_cleanup": inference_rng_before == rng_digest(rng_state()),
+    }
+    write_json("artifacts/validation/real_150m_resume.json", report)
+    print(
+        {
+            key: report[key]
+            for key in [
+                "model_tensors",
+                "optimizer_tensors",
+                "optimizer_step_values_control",
+                "sampler_equal",
+                "rng_equal",
+                "structural_resume_checks_passed",
+                "wall_seconds",
+            ]
+        }
+    )
+
+
+if __name__ == "__main__":
+    run()

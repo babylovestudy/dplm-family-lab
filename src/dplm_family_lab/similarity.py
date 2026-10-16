@@ -8,10 +8,12 @@ homology searches. No MMseqs candidate search is used to claim a strict audit.
 from __future__ import annotations
 
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import asdict, dataclass
 import hashlib
 import json
 import math
+import multiprocessing
 from pathlib import Path
 import sqlite3
 from typing import Callable
@@ -126,6 +128,111 @@ class PairwiseCache:
 
     def __exit__(self, *_):
         self.close()
+
+
+_NEAREST_REFERENCES = None
+_NEAREST_ALIGNER = None
+
+
+def _initialize_nearest_worker(references):
+    """Spawn initializer: retain CPU references and one aligner per process."""
+    global _NEAREST_REFERENCES, _NEAREST_ALIGNER
+    _NEAREST_REFERENCES = references
+    _NEAREST_ALIGNER = _aligner()
+
+
+def _nearest_exact(sequence: str, references, aligner) -> tuple[float, str]:
+    best_identity, best_id = -1.0, None
+    for reference_id, reference_sequence in references:
+        upper = min(len(sequence), len(reference_sequence)) / max(len(sequence), len(reference_sequence))
+        if upper + 1e-12 < best_identity:
+            continue
+        identity = global_similarity(sequence, reference_sequence, aligner).identity
+        if identity > best_identity or (identity == best_identity and (best_id is None or reference_id < best_id)):
+            best_identity, best_id = identity, reference_id
+    return best_identity, best_id
+
+
+def _nearest_worker(sequence: str) -> tuple[float, str]:
+    # Tasks transmit only a generated sequence. Workers never open SQLite,
+    # import training code, or initialize a GPU runtime.
+    if _NEAREST_REFERENCES is None or _NEAREST_ALIGNER is None:
+        raise RuntimeError("Nearest-neighbor worker was not initialized")
+    return _nearest_exact(sequence, _NEAREST_REFERENCES, _NEAREST_ALIGNER)
+
+
+def nearest_training_matches(sequences, training, training_sha256: str,
+                             cache_path: str | Path, workers: int = 1) -> tuple[dict, dict]:
+    """Exact final nearest matches with parent-only, restartable result caching.
+
+    The scientific metric and lexicographically smallest reference-ID tie break
+    are identical for serial and spawn workers. Cache keys include METRIC, the
+    complete training FASTA checksum (including IDs), and the query sequence
+    checksum. A completed query is committed immediately, so an interrupted
+    evaluation resumes without retaining millions of pairwise SQLite rows.
+    """
+    if isinstance(workers, bool) or not isinstance(workers, int) or workers < 1:
+        raise ValueError("evaluation.workers must be a positive integer")
+    if len(training_sha256) != 64 or any(c not in "0123456789abcdef" for c in training_sha256):
+        raise ValueError("A lowercase SHA-256 of the complete training FASTA is required")
+    references = [(record.id, record.sequence) for record in training]
+    if not references or any(not sequence for _, sequence in references):
+        raise ValueError("Nearest-neighbor search needs nonempty training references")
+    reference_ids = {name for name, _ in references}
+    if len(reference_ids) != len(references):
+        raise ValueError("Training reference IDs must be unique")
+    queries = list(dict.fromkeys(sequences))
+    if any(not sequence for sequence in queries):
+        raise ValueError("Nearest-neighbor queries must be nonempty")
+    path = Path(cache_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(path, timeout=60)
+    connection.execute("CREATE TABLE IF NOT EXISTS nearest (metric TEXT, training_sha256 TEXT, query_sha256 TEXT, identity REAL, reference_id TEXT, PRIMARY KEY(metric,training_sha256,query_sha256))")
+    connection.commit()
+    results, missing = {}, []
+    stats = {"unique_queries": len(queries), "cache_hits": 0, "computed_queries": 0,
+             "workers_requested": workers, "workers_used": 0,
+             "training_fasta_sha256": training_sha256, "cache_path": str(path)}
+
+    def retain(sequence, result):
+        identity, reference_id = result
+        if not math.isfinite(identity) or not 0 <= identity <= 1 or reference_id not in reference_ids:
+            raise ValueError("Invalid cached or computed nearest-neighbor result")
+        results[sequence] = (float(identity), reference_id)
+        connection.execute("INSERT OR REPLACE INTO nearest VALUES (?,?,?,?,?)",
+                           (METRIC, training_sha256, sequence_hash(sequence), identity, reference_id))
+        connection.commit()
+        stats["computed_queries"] += 1
+
+    try:
+        for sequence in queries:
+            row = connection.execute("SELECT identity,reference_id FROM nearest WHERE metric=? AND training_sha256=? AND query_sha256=?",
+                                     (METRIC, training_sha256, sequence_hash(sequence))).fetchone()
+            if row is None:
+                missing.append(sequence)
+                continue
+            identity, reference_id = row
+            if not math.isfinite(identity) or not 0 <= identity <= 1 or reference_id not in reference_ids:
+                raise ValueError("Invalid nearest-neighbor cache entry; use a new cache path")
+            results[sequence] = (float(identity), reference_id)
+            stats["cache_hits"] += 1
+        stats["workers_used"] = min(workers, len(missing))
+        if workers == 1 or len(missing) <= 1:
+            aligner = _aligner() if missing else None
+            for sequence in missing:
+                retain(sequence, _nearest_exact(sequence, references, aligner))
+        else:
+            with ProcessPoolExecutor(max_workers=min(workers, len(missing)),
+                                     mp_context=multiprocessing.get_context("spawn"),
+                                     initializer=_initialize_nearest_worker,
+                                     initargs=(references,)) as pool:
+                futures = {pool.submit(_nearest_worker, sequence): sequence for sequence in missing}
+                for future in as_completed(futures):
+                    retain(futures[future], future.result())
+    finally:
+        connection.close()
+    # Restore caller query order regardless of worker completion order.
+    return {sequence: results[sequence] for sequence in queries}, stats
 
 
 def _qgrams(sequence: str, k: int = 2) -> Counter:

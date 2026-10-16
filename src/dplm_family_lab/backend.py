@@ -186,6 +186,11 @@ def load_backend(config: dict, model_path=None, *, training=False) -> Backend:
                 raise ValueError(
                     "Original DPLM-150M source weights failed the pinned official revision/size/SHA-256 check"
                 )
+            # Preserve the verified original identity when adapted exports later
+            # replace loaded_weights_sha256 with their own file digest.
+            provenance["checkpoint_sha256"] = actual_hash
+            provenance["checkpoint_size_bytes"] = weights.stat().st_size
+            provenance["verified_against_official_metadata"] = True
         provenance["loaded_weights_sha256"] = actual_hash
         provenance["loaded_config_sha256"] = sha256_file(local_path / "config.json")
         net, loading = EsmForDPLM.from_pretrained(local_path, output_loading_info=True)
@@ -276,6 +281,88 @@ def tensor_digest(tensors):
     return digest.hexdigest()
 
 
+def _write_export_identity(path, tensor_sha256):
+    """Seal exported bytes against the already verified model tensor digest."""
+    from .common import sha256_file, write_json
+
+    path = Path(path)
+    roundtrip_path = path / "roundtrip.json"
+    roundtrip = json.loads(roundtrip_path.read_text(encoding="utf-8"))
+    if roundtrip.get("passed") is not True or roundtrip.get("weights_sha256") != tensor_sha256:
+        raise ValueError("Export tensors do not match the verified original roundtrip")
+    weights = path / "pytorch_model.bin"
+    if not weights.is_file():
+        weights = path / "model.safetensors"
+    provenance_path = path / "family_lab_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    identity = {
+        "schema_version": 1,
+        "weights_file": weights.name,
+        "weights_file_sha256": sha256_file(weights),
+        "tensor_sha256": tensor_sha256,
+        "roundtrip_json_sha256": sha256_file(roundtrip_path),
+        "provenance_json_sha256": sha256_file(provenance_path),
+    }
+    if provenance.get("training_checkpoint_sha256"):
+        identity["training_checkpoint_sha256"] = provenance["training_checkpoint_sha256"]
+    identity_path = path / "export_identity.json"
+    if identity_path.exists():
+        previous = json.loads(identity_path.read_text(encoding="utf-8"))
+        if any(previous.get(key) != value for key, value in identity.items()):
+            raise ValueError("Existing export identity differs; refusing to replace its evidence")
+        identity.update(previous)
+    write_json(identity_path, identity)
+    return identity
+
+
+def bind_training_report_identity(path, training_report_path):
+    """Bind the final training report without changing it or the roundtrip file."""
+    from .common import sha256_file, write_json
+
+    path = Path(path)
+    identity_path = path / "export_identity.json"
+    identity = json.loads(identity_path.read_text(encoding="utf-8"))
+    roundtrip_path = path / "roundtrip.json"
+    roundtrip = json.loads(roundtrip_path.read_text(encoding="utf-8"))
+    report = json.loads(Path(training_report_path).read_text(encoding="utf-8"))
+    if (
+        report.get("status") != "complete"
+        or report.get("export_roundtrip") != roundtrip
+        or identity["roundtrip_json_sha256"] != sha256_file(roundtrip_path)
+        or identity["tensor_sha256"] != roundtrip.get("weights_sha256")
+    ):
+        raise ValueError("Final training report and sealed export roundtrip differ")
+    digest = sha256_file(training_report_path)
+    if identity.get("training_report_sha256", digest) != digest:
+        raise ValueError("Final training report changed after export identity was sealed")
+    identity["training_report_sha256"] = digest
+    write_json(identity_path, identity)
+    return identity
+
+
+def seal_export_identity(path, training_report_path=None):
+    """CPU-verify an existing export before adding an independent identity file.
+
+    Model weights and original reports remain byte-for-byte unchanged. This is
+    also the migration path for exports made before export_identity.json existed.
+    """
+    path = Path(path)
+    provenance = json.loads((path / "family_lab_provenance.json").read_text(encoding="utf-8"))
+    restored = load_backend(
+        {
+            "model": {
+                "source": str(path),
+                "allow_tiny_fixture": provenance.get("tiny_fixture", False),
+            },
+            "train": {"device": "cpu", "mixed_precision": "fp32"},
+        }
+    )
+    identity = _write_export_identity(path, tensor_digest(restored.model.state_dict()))
+    if training_report_path is not None:
+        identity = bind_training_report_identity(path, training_report_path)
+    return identity
+
+
 def export_backend(backend: Backend, path, probe_sequences):
     """Export with a verified exact CPU FP32 inference round trip."""
     torch = require_torch()
@@ -319,6 +406,7 @@ def export_backend(backend: Backend, path, probe_sequences):
         "passed": True,
     }
     write_json(path / "roundtrip.json", result)
+    _write_export_identity(path, original_hash)
     return result
 
 

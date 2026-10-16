@@ -1,0 +1,155 @@
+{
+  "timing": {
+    "pid": 45105,
+    "started_unix": 1792123085.35,
+    "observed_unix": 1792123164.3693578,
+    "command": ".venv/bin/python -m dplm_family_lab run-seeds --config configs/pf00194-l4-runtime.yaml",
+    "completed_unix": 1792125044.749947,
+    "total_wall_seconds": 1959.3999471664429,
+    "completion_clock": "training_runs.json file modification time after all exports"
+  },
+  "runs": [
+    {
+      "seed": 42,
+      "step": 1000,
+      "training_validation_checkpoint_seconds": 604.907729562372,
+      "peak_gpu_allocated_bytes": 3058482176,
+      "best_validation_loss": 0.6179523797740445,
+      "proof": {
+        "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+        "current_model_sha256": "60fefaabe099cf8df309e6d249402ea95e9d4d4c6e681aa4707915f1a01cbc0e",
+        "probe_max_weight_changes": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.0016242924612015486,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.0028444223571568727
+        },
+        "probe_max_gradient_norms": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.07461567968130112,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.07510463893413544
+        },
+        "backbone_updated": true,
+        "trainable_parameters": 148796794,
+        "gradient_checkpointing_enabled": true
+      },
+      "export_roundtrip": {
+        "weights_sha256": "60fefaabe099cf8df309e6d249402ea95e9d4d4c6e681aa4707915f1a01cbc0e",
+        "max_logit_error_cpu_fp32": 0.0,
+        "passed": true
+      },
+      "provenance": {
+        "source": "airkingbd/dplm_150m",
+        "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+        "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+        "download_endpoint": "https://hf-mirror.com",
+        "verified_against_official_metadata": true,
+        "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+        "tiny_fixture": false,
+        "parameter_count": 148796794,
+        "device": "cuda",
+        "precision": "bf16"
+      },
+      "validation_noise_sha256": "12c3776f07f8c86aed39bc6dadbc958a8290f25637a69213c80fd7e17c5cbd90",
+      "data_sha256": {
+        "train_fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+        "val_fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb"
+      }
+    },
+    {
+      "seed": 43,
+      "step": 1000,
+      "training_validation_checkpoint_seconds": 627.603848349303,
+      "peak_gpu_allocated_bytes": 6058654208,
+      "best_validation_loss": 0.6195549523355626,
+      "proof": {
+        "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+        "current_model_sha256": "732e9d9ad5d0f25d5ef04af1852ea7d3984d951ad9c5d83e340c0e60301ad809",
+        "probe_max_weight_changes": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.0013449229300022125,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.0027112141251564026
+        },
+        "probe_max_gradient_norms": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.07078833878040314,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.0562279038131237
+        },
+        "backbone_updated": true,
+        "trainable_parameters": 148796794,
+        "gradient_checkpointing_enabled": true
+      },
+      "export_roundtrip": {
+        "weights_sha256": "732e9d9ad5d0f25d5ef04af1852ea7d3984d951ad9c5d83e340c0e60301ad809",
+        "max_logit_error_cpu_fp32": 0.0,
+        "passed": true
+      },
+      "provenance": {
+        "source": "airkingbd/dplm_150m",
+        "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+        "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+        "download_endpoint": "https://hf-mirror.com",
+        "verified_against_official_metadata": true,
+        "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+        "tiny_fixture": false,
+        "parameter_count": 148796794,
+        "device": "cuda",
+        "precision": "bf16"
+      },
+      "validation_noise_sha256": "12c3776f07f8c86aed39bc6dadbc958a8290f25637a69213c80fd7e17c5cbd90",
+      "data_sha256": {
+        "train_fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+        "val_fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb"
+      }
+    },
+    {
+      "seed": 44,
+      "step": 1000,
+      "training_validation_checkpoint_seconds": 632.7479657530785,
+      "peak_gpu_allocated_bytes": 6064071680,
+      "best_validation_loss": 0.6203836104037317,
+      "proof": {
+        "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+        "current_model_sha256": "05638d538400d0fccc7488affc9d72127ee0e25145c4e2c318fb5d419730881f",
+        "probe_max_weight_changes": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.0012983083724975586,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.00292283296585083
+        },
+        "probe_max_gradient_norms": {
+          "net.esm.encoder.layer.0.attention.self.query.weight": 0.13578049838542938,
+          "net.esm.encoder.layer.29.attention.self.query.weight": 0.05940325930714607
+        },
+        "backbone_updated": true,
+        "trainable_parameters": 148796794,
+        "gradient_checkpointing_enabled": true
+      },
+      "export_roundtrip": {
+        "weights_sha256": "05638d538400d0fccc7488affc9d72127ee0e25145c4e2c318fb5d419730881f",
+        "max_logit_error_cpu_fp32": 0.0,
+        "passed": true
+      },
+      "provenance": {
+        "source": "airkingbd/dplm_150m",
+        "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+        "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+        "download_endpoint": "https://hf-mirror.com",
+        "verified_against_official_metadata": true,
+        "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+        "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+        "tiny_fixture": false,
+        "parameter_count": 148796794,
+        "device": "cuda",
+        "precision": "bf16"
+      },
+      "validation_noise_sha256": "12c3776f07f8c86aed39bc6dadbc958a8290f25637a69213c80fd7e17c5cbd90",
+      "data_sha256": {
+        "train_fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+        "val_fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb"
+      }
+    }
+  ],
+  "formal_training_source_sha256": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82",
+  "formal_backend_source_sha256": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+  "training_source_snapshot_matches_all_seed_environments": true,
+  "peak_note": "Per-process torch.cuda.max_memory_allocated observations are retained exactly; these are allocated tensor peaks, not all device reservation or other users GPU memory."
+}

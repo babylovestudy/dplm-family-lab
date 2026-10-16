@@ -42,3 +42,28 @@ def test_evaluation_requires_matching_training_hmm(prepared, tmp_path):
     path.write_text(path.read_text().replace("27 27", "28 28"))
     with pytest.raises(ValueError, match="HMM differs"):
         evaluation.evaluate(prepared, tmp_path / "unused.fasta", tmp_path / "eval")
+
+
+def test_evaluation_csv_and_metrics_identical_with_eight_workers(prepared, tmp_path, monkeypatch):
+    fasta = tmp_path / "parallel.fasta"
+    sequences = ["ACDEFGHI", "CCCCCCCC", "YYYYYYYYY", "AAAAAAAA", "ACAAAAAA",
+                 "DDDDDDDD", "EEEEEEEE", "GGGGGGGG", "ACDEFGHI", "AXXXXXXX"]
+    write_fasta([SequenceRecord(f"generated_{i}", sequence) for i, sequence in enumerate(sequences)], fasta)
+
+    def scores(records, *args, **kwargs):
+        return {r.id: {"family_pass": False, "ga_pass": False, "hmm_coverage": 0.0,
+                       "sequence_score": None, "domain_score": None} for r in records}
+
+    monkeypatch.setattr(evaluation, "score_sequences", scores)
+    prepared["evaluation"].update(workers=1, nearest_cache=str(tmp_path / "serial_nearest.sqlite"))
+    serial = evaluation.evaluate(prepared, fasta, tmp_path / "serial")
+    prepared["evaluation"].update(workers=8, nearest_cache=str(tmp_path / "parallel_nearest.sqlite"))
+    parallel = evaluation.evaluate(prepared, fasta, tmp_path / "parallel")
+    assert serial["metrics"] == parallel["metrics"]
+    assert serial["counts"] == parallel["counts"]
+    assert parallel["nearest_search"]["workers_used"] == 8
+    for name in ("per_sequence.csv", "pairwise_diversity.csv"):
+        assert (tmp_path / "serial" / name).read_bytes() == (tmp_path / "parallel" / name).read_bytes()
+    restarted = evaluation.evaluate(prepared, fasta, tmp_path / "restarted")
+    assert restarted["metrics"] == parallel["metrics"]
+    assert restarted["nearest_search"]["computed_queries"] == 0
