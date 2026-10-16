@@ -7,6 +7,56 @@
       "bytes": 8055
     },
     {
+      "path": "final_cli_help.txt",
+      "sha256": "b308332f9d0024a9f265cccde8087cc1413abc606988635523727524c3b7cffe",
+      "bytes": 600
+    },
+    {
+      "path": "final_doctor.json",
+      "sha256": "81044dba4021cb8a291a7d0157d1f992d1689f222011c6089766911b136c2e4a",
+      "bytes": 2306
+    },
+    {
+      "path": "final_inference_identity.json",
+      "sha256": "09dd3dab1003132c6d2eadc2dfeda36cf94e98d44abf1c4d1fce4fa2e53541be",
+      "bytes": 5637
+    },
+    {
+      "path": "final_inference_identity.log",
+      "sha256": "f46b6d48e5e7065e1bf8ce971cba3cc48d3fa987b662c3ebe6c59fbc3f3072fd",
+      "bytes": 382
+    },
+    {
+      "path": "final_inference_identity_validation.py.txt",
+      "sha256": "3c6ece6366dc10b5cdfbe3d9725e3db6965b4e50e3418a03ccf2f1994a448441",
+      "bytes": 3311
+    },
+    {
+      "path": "final_package_extract.json",
+      "sha256": "dc7ce67e9f33ea82720acfff796b8b86f16b4e8833157f84bd5df380a030b089",
+      "bytes": 463
+    },
+    {
+      "path": "final_platform_tests.txt",
+      "sha256": "6ede137f5481cc9dab8f66fd90a9c89881116964a8d3e0d38ebbe8b808cea709",
+      "bytes": 98
+    },
+    {
+      "path": "final_pytest_remote.txt",
+      "sha256": "379f3fff129417d6c3d3f0e9cbf4b0ffed3fc2a2c688f229bb05829cdc9a4a58",
+      "bytes": 181
+    },
+    {
+      "path": "final_validation_summary.json",
+      "sha256": "8a2dd72d68ca667716bc62c151b2f504905f10550f73faa945a0ae90d20a331d",
+      "bytes": 4235
+    },
+    {
+      "path": "final_weight_format_inventory.json",
+      "sha256": "e36ecc372b907218486e3ca08a9d14616418f21d3827b12de1a88a249820aec1",
+      "bytes": 865
+    },
+    {
       "path": "formal_backend_source.py.txt",
       "sha256": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
       "bytes": 12512
@@ -33,8 +83,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "03a99902848b975f0c586cf915c366aef5c01322c7b63855a95ddd96a1d5a901",
-      "bytes": 3115
+      "sha256": "ff8451a96282a2639bb382d85f55074b07ef5379e1f3778731162fe1f75f3766",
+      "bytes": 4990
     },
     {
       "path": "real_150m_resume.json",
@@ -50,7 +100,12 @@
       "path": "verify_real_resume.py.txt",
       "sha256": "9b29062e8d346120db77f16504cbf98b53765b2bc730240e377b7f610b65e9f5",
       "bytes": 9355
+    },
+    {
+      "path": "wheel_rebuild_validation.json",
+      "sha256": "9baed2660ba4b56edee6aa73755ed6f8329625d42d5e03255112ef0a41554d59",
+      "bytes": 5550
     }
   ],
-  "scope": "Original small validation records and executed source snapshots; checkpoints remain remote."
+  "scope": "Original small training/recovery records, executed source snapshots, immutable export seals, and final release tests/CLI/CPU loader/wheel verification. Scientific weights and checkpoints remain remote."
 }

@@ -193,7 +193,11 @@ def load_backend(config: dict, model_path=None, *, training=False) -> Backend:
             provenance["verified_against_official_metadata"] = True
         provenance["loaded_weights_sha256"] = actual_hash
         provenance["loaded_config_sha256"] = sha256_file(local_path / "config.json")
-        net, loading = EsmForDPLM.from_pretrained(local_path, output_loading_info=True)
+        net, loading = EsmForDPLM.from_pretrained(
+            local_path,
+            output_loading_info=True,
+            use_safetensors=weights.suffix == ".safetensors",
+        )
         if loading["missing_keys"] or loading["unexpected_keys"] or loading.get("mismatched_keys"):
             raise RuntimeError(f"DPLM checkpoint did not load exactly: {loading}")
         if getattr(net.config, "dplm_type", None) != "dplm_esm":

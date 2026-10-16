@@ -1,0 +1,49 @@
+{
+  "status": "complete",
+  "step": 1000,
+  "best_validation_loss": 0.6195549523355626,
+  "output_dir": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/seed_43",
+  "best_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/seed_43/best.pt",
+  "last_checkpoint": "/pyg-vepfs/public/jx/dplm-family-lab/runs/pf00194/seed_43/last.pt",
+  "validation_noise_sha256": "12c3776f07f8c86aed39bc6dadbc958a8290f25637a69213c80fd7e17c5cbd90",
+  "data_sha256": {
+    "train_fasta": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+    "val_fasta": "e486f390b190de1860468512cbdce2c737c70ed28fe12c600e1a9adf512dd4bb"
+  },
+  "elapsed_seconds_this_session": 627.603848349303,
+  "peak_gpu_allocated_bytes": 6058654208,
+  "provenance": {
+    "source": "airkingbd/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+    "download_endpoint": "https://hf-mirror.com",
+    "verified_against_official_metadata": true,
+    "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+    "tiny_fixture": false,
+    "parameter_count": 148796794,
+    "device": "cuda",
+    "precision": "bf16"
+  },
+  "proof": {
+    "initial_model_sha256": "2cdba0d71b0579819f3dc493509b9ea51bace2ef6b18758168416208f26552f6",
+    "current_model_sha256": "732e9d9ad5d0f25d5ef04af1852ea7d3984d951ad9c5d83e340c0e60301ad809",
+    "probe_max_weight_changes": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 0.0013449229300022125,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 0.0027112141251564026
+    },
+    "probe_max_gradient_norms": {
+      "net.esm.encoder.layer.0.attention.self.query.weight": 0.07078833878040314,
+      "net.esm.encoder.layer.29.attention.self.query.weight": 0.0562279038131237
+    },
+    "backbone_updated": true,
+    "trainable_parameters": 148796794,
+    "gradient_checkpointing_enabled": true
+  },
+  "export_roundtrip": {
+    "weights_sha256": "732e9d9ad5d0f25d5ef04af1852ea7d3984d951ad9c5d83e340c0e60301ad809",
+    "max_logit_error_cpu_fp32": 0.0,
+    "passed": true
+  }
+}

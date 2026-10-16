@@ -16,6 +16,7 @@ from dplm_family_lab.backend import (
     load_backend,
     safe_denoising_loss,
     seal_export_identity,
+    tensor_digest,
 )
 from dplm_family_lab.common import (
     SequenceRecord,
@@ -192,6 +193,32 @@ def test_original_source_claim_requires_official_weight_hash(tiny_config):
     )
     with pytest.raises(ValueError, match="official revision/size/SHA"):
         load_backend(tiny_config)
+
+
+@pytest.mark.parametrize("keep_bin", [True, False])
+def test_loader_uses_the_same_weight_file_it_hashes(tiny_config, keep_bin):
+    from safetensors.torch import save_file
+
+    original = load_backend(tiny_config)
+    original_digest = tensor_digest(original.model.net.state_dict())
+    safe_state = {
+        key: value.detach().cpu().clone() for key, value in original.model.net.state_dict().items()
+    }
+    probe = next(key for key in safe_state if "query.weight" in key)
+    safe_state[probe].add_(0.25)
+    safe_digest = tensor_digest(safe_state)
+    assert safe_digest != original_digest
+    source = Path(tiny_config["model"]["source"])
+    safe_path = source / "model.safetensors"
+    save_file(safe_state, safe_path, metadata={"format": "pt"})
+    if not keep_bin:
+        (source / "pytorch_model.bin").unlink()
+    restored = load_backend(tiny_config)
+    selected = source / "pytorch_model.bin" if keep_bin else safe_path
+    assert restored.provenance["loaded_weights_sha256"] == sha256_file(selected)
+    assert tensor_digest(restored.model.net.state_dict()) == (
+        original_digest if keep_bin else safe_digest
+    )
 
 
 @pytest.mark.skipif(

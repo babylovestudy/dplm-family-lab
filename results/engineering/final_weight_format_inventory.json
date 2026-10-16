@@ -1,0 +1,27 @@
+{
+  "all_scientific_sources_bin_only": true,
+  "actual_source_directories": {
+    "model_cache/dplm_150m": {
+      "bin_exists": true,
+      "safetensors_exists": false
+    },
+    "runs/pf00194/pilot_seed_42/export_best": {
+      "bin_exists": true,
+      "safetensors_exists": false
+    },
+    "runs/pf00194/seed_42/export_best": {
+      "bin_exists": true,
+      "safetensors_exists": false
+    },
+    "runs/pf00194/seed_43/export_best": {
+      "bin_exists": true,
+      "safetensors_exists": false
+    },
+    "runs/pf00194/seed_44/export_best": {
+      "bin_exists": true,
+      "safetensors_exists": false
+    }
+  },
+  "actual_loader_verification_sha256": "09dd3dab1003132c6d2eadc2dfeda36cf94e98d44abf1c4d1fce4fa2e53541be",
+  "note": "Read-only inventory after final verification. Existing scientific cache and all four exports contain only the bin format."
+}

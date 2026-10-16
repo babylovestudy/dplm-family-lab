@@ -1,0 +1,27 @@
+{
+  "weighted_masked_denoising_loss": 0.6348151227415468,
+  "masked_residues": 35602,
+  "sequences": 294,
+  "zero_mask_sequences": 1,
+  "metric_note": "Weighted masked denoising CE, not exact sequence likelihood/perplexity.",
+  "split": "test",
+  "source_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+  "noise_seed": 9174,
+  "model": "runs/pf00194/seed_44/export_best",
+  "provenance": {
+    "source": "airkingbd/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+    "download_endpoint": "https://hf-mirror.com",
+    "verified_against_official_metadata": true,
+    "loaded_weights_sha256": "f5b5388f593bb7aecb0a6b82cf1367cff87262161089654e2b3af5ebf85724ec",
+    "loaded_config_sha256": "26dcc33cd1a5ac046ed6886b4ae102998d31c5817c9893fc3f7985bcd2872b1b",
+    "tiny_fixture": false,
+    "parameter_count": 148796794,
+    "device": "cuda",
+    "precision": "bf16",
+    "training_checkpoint_sha256": "6c19dc4afaec98bb701be4c8054877e43d5d211912673eff11a9503297775e46",
+    "artifact_role": "adapted_export"
+  }
+}

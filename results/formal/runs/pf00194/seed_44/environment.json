@@ -1,0 +1,31 @@
+{
+  "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+  "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+  "packages": {
+    "dplm-family-lab": null,
+    "numpy": "1.26.4",
+    "biopython": "1.85",
+    "torch": "2.2.0+cu121",
+    "transformers": "4.39.2",
+    "pyhmmer": "0.12.3"
+  },
+  "project_source_sha256": {
+    "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+    "__main__.py": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+    "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+    "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+    "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+    "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+    "backend.py": "958d1d1367c2e407ffb3903d32ea7f5277ffcd0c334729b7808da63d057fe187",
+    "cli.py": "49bd22bab74d4940dfcd050f772828f6be9993a540454e13898dce58faa46d71",
+    "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+    "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+    "evaluation.py": "0c4f9e3861b0781f9b384e84bb22e3fb922f4a41df84ae65e4ee251dcc0746fe",
+    "experiment.py": "b5bbf398d4b4fda50e034646e49886e40d921070546c356d4825e409503dab83",
+    "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+    "reporting.py": "b53f6e044156708c5a8fd197273a74be551f72ad5b71fc67b565f755cb915a86",
+    "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+    "similarity.py": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+    "training.py": "61d67876f6edbc9e6a30b964c7415921d5831787672df76e0c394aa7e25bcb82"
+  }
+}

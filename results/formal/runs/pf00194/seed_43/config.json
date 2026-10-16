@@ -1,0 +1,71 @@
+{
+  "project": {
+    "name": "pf00194",
+    "seed": 42
+  },
+  "data": {
+    "family": "PF00194",
+    "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+    "raw_dir": "data/raw",
+    "processed_dir": "data/processed",
+    "min_length": 180,
+    "max_length": 256,
+    "min_hmm_coverage": 0.8,
+    "identity": 0.8,
+    "coverage": 0.8,
+    "split": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "seed": 42
+  },
+  "hmm": {
+    "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+    "path": "data/raw/PF00194.hmm",
+    "binary": "hmmsearch"
+  },
+  "model": {
+    "source": "model_cache/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d"
+  },
+  "train": {
+    "output_dir": "runs/pf00194/seed_43",
+    "seed": 43,
+    "micro_batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 1e-05,
+    "max_steps": 1000,
+    "eval_every": 100,
+    "checkpoint_every": 100,
+    "gradient_checkpointing": true,
+    "mixed_precision": "auto",
+    "warmup_steps": 50,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "num_workers": 0,
+    "train_fasta": "data/processed/train.fasta",
+    "val_fasta": "data/processed/val.fasta",
+    "test_fasta": "data/processed/test.fasta",
+    "validation_seed": 9173
+  },
+  "generate": {
+    "output_dir": "outputs/baseline/seed_101",
+    "seed": 101,
+    "total_sequences": 256,
+    "batch_size": 4,
+    "lengths_source": "data/processed/train.fasta",
+    "max_iter": 100,
+    "sampling_strategy": "gumbel_argmax"
+  },
+  "evaluation": {
+    "output_dir": "outputs/evaluation",
+    "train_fasta": "data/processed/train.fasta",
+    "hmm_path": "data/raw/PF00194.hmm",
+    "min_hmm_coverage": 0.8,
+    "bootstrap_samples": 1000,
+    "seed": 42,
+    "workers": 8
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "input_fasta": "outputs/formal/train_seed_43/seed_103/sequences.fasta",
+  "input_sha256": "e6244d55b824ac41c53f1ac2a3b60817e00bab8cbeb321d1c2509775a2790cfd",
+  "counts": {
+    "emitted_fasta_records": 256,
+    "valid_amino_acid_sequences": 256,
+    "invalid_amino_acid_sequences": 0,
+    "unique_valid_sequences": 256,
+    "excess_duplicate_records": 0,
+    "ga_pass": 256,
+    "family_pass": 255
+  },
+  "metrics": {
+    "ga_pass_rate": {
+      "value": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n": 256
+    },
+    "family_pass_rate": {
+      "value": 0.99609375,
+      "ci95": [
+        0.98828125,
+        1.0
+      ],
+      "n": 256
+    },
+    "mean_hmm_coverage": {
+      "value": 0.9834865196078432,
+      "ci95": [
+        0.9790739889705883,
+        0.9867198988970589
+      ],
+      "n": 256
+    },
+    "exact_training_match_rate": {
+      "value": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n": 256
+    },
+    "mean_nearest_training_identity": {
+      "value": 0.5659970126919073,
+      "ci95": [
+        0.5612294755621702,
+        0.5707111487981166
+      ],
+      "n": 256
+    },
+    "within_training_length_rate": {
+      "value": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n": 256
+    },
+    "mean_pairwise_distance": {
+      "value": 0.4115247093761735,
+      "ci95": [
+        0.4013899359538397,
+        0.41873753675724695
+      ],
+      "n": 256,
+      "pairs": 32640
+    },
+    "excess_duplicate_rate": {
+      "value": 0.0,
+      "ci95": null,
+      "n": 256
+    }
+  },
+  "hmm": {
+    "accession": "PF00194.27",
+    "family": "PF00194",
+    "name": "Carb_anhydrase",
+    "length": 255,
+    "ga_sequence": 27.0,
+    "ga_domain": 27.0,
+    "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+  },
+  "denominator": "All emitted nonempty sequences containing only the 20 standard amino acids; duplicates and out-of-range lengths remain in denominator",
+  "bootstrap": {
+    "samples": 1000,
+    "seed": 42,
+    "unit": "generated sequence",
+    "interval": "percentile 95%; diversity resamples sequences, not independent pairs",
+    "note": "Descriptive sampling uncertainty; does not establish biochemical activity. Duplicate excess is reported without a bootstrap interval."
+  },
+  "similarity_metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+  "training_reference": {
+    "schema_version": 1,
+    "family": "PF00194",
+    "hmm_sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+    "hmm_metadata": {
+      "accession": "PF00194.27",
+      "family": "PF00194",
+      "name": "Carb_anhydrase",
+      "length": 255,
+      "ga_sequence": 27.0,
+      "ga_domain": 27.0,
+      "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+    },
+    "min_hmm_coverage": 0.8,
+    "train_fasta_sha256": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+    "split_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+    "source": {
+      "schema_version": 1,
+      "source": "UniProtKB REST",
+      "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+      "completed_at": "2026-10-16T03:33:36.105346+00:00",
+      "records": 4464,
+      "pages": [
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?query=%28xref%3Apfam-PF00194%29+AND+%28length%3A%5B180+TO+256%5D%29+AND+%28fragment%3Afalse%29&format=tsv&size=500&fields=accession%2Clength%2Corganism_id%2Creviewed%2Csequence",
+          "retrieved_at": "2026-10-16T03:30:48.768338+00:00",
+          "sha256": "0a55725ca06516354e31fee3949e7d96faca4262eb61febce93b6e4fe44ec5b9",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:30:47 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=1bq1yslaqtbf8zsc8git5s5265vubbb2jrl45i1dog1o1dotod&size=500",
+          "retrieved_at": "2026-10-16T03:33:20.538644+00:00",
+          "sha256": "ff73f397670e7f9ecf72cdf133a7798acf200cf630ecfa539e95358ea2825fd0",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:19 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8puhckgb359720xppltpw426pkzbej4qgwivn20qrte005oqlvh&size=500",
+          "retrieved_at": "2026-10-16T03:33:23.051841+00:00",
+          "sha256": "1bb5ec58fad440b97c0e12536d3bdf8cf20ef8b81decf1cc847f1094a8ddb7f1",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:22 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8pyyutjn465c9ns48k2np5c3usnyssp1ov7qf5ic5qmly1qyxq5&size=500",
+          "retrieved_at": "2026-10-16T03:33:25.378463+00:00",
+          "sha256": "972369831a8a09e3e139a920a432105db0ad4593a692b96102b13fb8626e1d7c",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:24 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8w86iasm57rt446dgpqhhh716x01dj92hzuz5fbbt8jdqfvzha5&size=500",
+          "retrieved_at": "2026-10-16T03:33:28.184380+00:00",
+          "sha256": "3da2a515fb59f1070b75790e098a194dde40250aa94814726cde29a225fcd7e1",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:27 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=8wco0jvy68nybr0rznza9o7llq2e9lah0m5klw5olawx18cft4t&size=500",
+          "retrieved_at": "2026-10-16T03:33:30.532684+00:00",
+          "sha256": "9eb43c80f5ac4d8e1bb7632260071be5d86a486b9961d94b56d1ec56ce756606",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:29 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92lvo14x7aaf67f17tmlmenxsm6kl4ctqe4lu6tgx2wt9xtjqd9&size=500",
+          "retrieved_at": "2026-10-16T03:33:32.864753+00:00",
+          "sha256": "47927642243a19b4c32aa89a6431255f1aac1bbd55f5bbfb812649470fa679c7",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:32 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=92qd6a898b6kdu9fqrvjffxuxtv7zdx4ycqix31mc0fvauqy4hp&size=500",
+          "retrieved_at": "2026-10-16T03:33:34.431426+00:00",
+          "sha256": "616acc37aebf0c46f2ca3c62fb73227176410988cca9ee09556f3ba9e4f9e2bb",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:33 GMT",
+          "total_results": "4464",
+          "next_url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500"
+        },
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/search?format=tsv&fields=accession,length,organism_id,reviewed,sequence&query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29&cursor=2dj86lxv3v5851gtweiwxoxh2bplwwz5dtc752x&size=500",
+          "retrieved_at": "2026-10-16T03:33:35.980050+00:00",
+          "sha256": "bffbd3f3a12444a0df7fd112816693e3d2f0fc5c0635d4277f4932d3b13c4ad5",
+          "uniprot_release": "2026_03",
+          "uniprot_release_date": "02-September-2026",
+          "http_date": "Fri, 16 Oct 2026 03:33:35 GMT",
+          "total_results": "4464",
+          "next_url": null
+        }
+      ],
+      "uniprot_release": "2026_03",
+      "uniprot_release_date": "02-September-2026",
+      "fasta_sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695"
+    },
+    "hmm_source": {
+      "url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+      "retrieved_at": "2026-10-16T03:33:37.872521+00:00",
+      "http_date": "Fri, 16 Oct 2026 03:33:37 GMT",
+      "last_modified": null,
+      "download_sha256": "cb64f4d93a8f55d5ff7000f8306d2f92f454e905ca32967882f3479ea88cb3d2",
+      "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+      "model": {
+        "accession": "PF00194.27",
+        "family": "PF00194",
+        "name": "Carb_anhydrase",
+        "length": 255,
+        "ga_sequence": 27.0,
+        "ga_domain": 27.0,
+        "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3"
+      }
+    }
+  },
+  "nearest_search": {
+    "unique_queries": 256,
+    "cache_hits": 0,
+    "computed_queries": 256,
+    "workers_requested": 8,
+    "workers_used": 8,
+    "training_fasta_sha256": "ba3ef41022933ea83105f3ad09d095ed726c1c20e69da9be4d744c0b765738a7",
+    "cache_path": "data/processed/nearest.sqlite"
+  },
+  "limitations": [
+    "Pfam GA and domain coverage measure family sequence compatibility, not catalytic activity or expression.",
+    "The split isolates fine-tuning data; absence from the foundation model pretraining set is not established."
+  ],
+  "artifacts": {
+    "metrics": "outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+    "per_sequence": "outputs/formal/train_seed_43/seed_103/evaluation/per_sequence.csv",
+    "pairwise_diversity": "outputs/formal/train_seed_43/seed_103/evaluation/pairwise_diversity.csv"
+  }
+}

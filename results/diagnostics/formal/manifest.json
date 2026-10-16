@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "kind": "supplementary_generation_diagnostics_bundle",
+  "mode": "formal",
+  "created_at_utc": "2026-10-16T05:26:56.507415+00:00",
+  "analysis_script": "scripts/diagnose_generations.py",
+  "analysis_script_sha256": "71e111fa20fbab2acf3b91a77a01d724c5b65a0dd08f823a75becf45746f1ea5",
+  "source_root": "results/formal",
+  "sources": [
+    {
+      "path": "outputs/formal/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "232c34c0e42826ceca54e01048d329192960c127942fd2b9e11c1f6056181078",
+      "bytes": 13355
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/evaluation/per_sequence.csv",
+      "sha256": "75ece4b3a6dc0372d4b5f98d5fc362fec98b607a9e4ccc8f22ad3ef7a23e1a37",
+      "bytes": 84068
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/sequences.fasta",
+      "sha256": "498b9c66c988607cdb07364dcac2dd8711119160369308dee537c4cd76da1373",
+      "bytes": 73514
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/evaluation/metrics.json",
+      "sha256": "63fcb6d473ea0d25a692dd118eb4f25f8a0e726693756af13bf233844ad46b0b",
+      "bytes": 13355
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/evaluation/per_sequence.csv",
+      "sha256": "41a2797937168f9922f05b0f5421e2f7ffeff600c1cbd5ee34eb59f0786d7293",
+      "bytes": 84091
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/sequences.fasta",
+      "sha256": "7821d2d4e0b6427a81237b7e680261df3e74c7732eb414c19e7ebc824f8d5781",
+      "bytes": 73576
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/evaluation/metrics.json",
+      "sha256": "403241391917f85c957dce46721ec5e8fcc9f277c268148be7386d607986726b",
+      "bytes": 13356
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/evaluation/per_sequence.csv",
+      "sha256": "7cbb5f672d1941825794d9d060ba81d31e10ff108bff3b18bf9bd31572ee68c0",
+      "bytes": 84205
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/sequences.fasta",
+      "sha256": "21b288b2be29339661e459148f63b1493849c72f9f4724747a1c6356f1e3d657",
+      "bytes": 73746
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "0b10685a82e38b56c42928e60a448d33436abe0f13fde56070cc09f1b8f3eff9",
+      "bytes": 13437
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/evaluation/per_sequence.csv",
+      "sha256": "2088875a58db83fa1bef171caf7f8b32fb5642614e060b7b7ba7cf6c3de25cbb",
+      "bytes": 95476
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/sequences.fasta",
+      "sha256": "6a1d00014c6e06598a9914b7897c9169a6c07df8cfbc124b39bfc41dc5f5fc35",
+      "bytes": 73514
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/evaluation/metrics.json",
+      "sha256": "49437c3e1be1146757163f30d444ae6124d72cf005524ebc874bb986f69b344a",
+      "bytes": 13442
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/evaluation/per_sequence.csv",
+      "sha256": "8f245b87d620921519d2e43d1404cafde5120efdfcefb85b4fc9d561260b74f1",
+      "bytes": 95768
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/sequences.fasta",
+      "sha256": "2a13984e025379f7e566b69d89f72f0c0911daa581a8bb0c0e7274875557026e",
+      "bytes": 73576
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/evaluation/metrics.json",
+      "sha256": "259f58703d398ae9b668796ad71103485ea0583c1bd24585e7fd15f16c5f2d98",
+      "bytes": 13439
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/evaluation/per_sequence.csv",
+      "sha256": "1efc69dbd736e0f184a5302904a52c8b888611f806f9ba78ffc8f7a3fc2281ae",
+      "bytes": 95813
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/sequences.fasta",
+      "sha256": "c8b71215d8da0dc34e3e06429dffe0081ad68ebd38ee50189a1bb57e6b4f4523",
+      "bytes": 73746
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/evaluation/metrics.json",
+      "sha256": "0d16343cc0724f33102bacd920db524cc75e4242d63a85226339be3f9162c0b6",
+      "bytes": 13439
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/evaluation/per_sequence.csv",
+      "sha256": "1a89ee136294d23319d84721376fc1f608a11c4ef03887016113686e2f3b8c16",
+      "bytes": 95770
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/sequences.fasta",
+      "sha256": "d899a17df07b024830526c19e1c29e8d2d6710838f60152e57f7991c3f157e63",
+      "bytes": 73514
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/evaluation/metrics.json",
+      "sha256": "9c60122daa43d48e8c559f4352cc311479be96f2a5e4edf7c800b50909343abf",
+      "bytes": 13426
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/evaluation/per_sequence.csv",
+      "sha256": "de8b8a69abdb828939a55348f98f2418d7c82fee21bad7db44a1b15978b82f7a",
+      "bytes": 95503
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/sequences.fasta",
+      "sha256": "22a974be726c51c9717d8d521349bce0bda9c2de4a669209f08456bd1128a1ee",
+      "bytes": 73576
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+      "sha256": "6a0f2c6ca87cc8695bce187a8e0f17f31a81146852ef9a09dd5b58bca3de16dd",
+      "bytes": 13440
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/evaluation/per_sequence.csv",
+      "sha256": "98f4a53f0bdd3bcb39e0fc3b865487ed157c065f022a76728928e3f0c7c840a1",
+      "bytes": 95799
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/sequences.fasta",
+      "sha256": "e6244d55b824ac41c53f1ac2a3b60817e00bab8cbeb321d1c2509775a2790cfd",
+      "bytes": 73746
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/evaluation/metrics.json",
+      "sha256": "e361adf416364b50f50cf5fc2b747a9668cfb2abfd7bd1fa080562ef2bd78b4a",
+      "bytes": 13445
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/evaluation/per_sequence.csv",
+      "sha256": "0b8338091a4e33e33f81af4eb17fd844f91dd718264c50328aeccbef4a873246",
+      "bytes": 95707
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/sequences.fasta",
+      "sha256": "0ed0cdf9a68a6b3ad4782bf3d44db924038696ac9f442bd08a9e4d260d4c3b4d",
+      "bytes": 73514
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/evaluation/metrics.json",
+      "sha256": "c497e773e2768f79fd89938760815580dbf697b71e1910a70d231177faae2510",
+      "bytes": 13441
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/evaluation/per_sequence.csv",
+      "sha256": "ffa580a1f819085a1d0f5d1969f054e9a34095ebed921b000d32ed427708c494",
+      "bytes": 95723
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/sequences.fasta",
+      "sha256": "0595cc2607aa8f79359067da4e58e7a764f3995f706c6a4b532e8a9d8ce29a12",
+      "bytes": 73576
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/evaluation/metrics.json",
+      "sha256": "ff913e5d992a7d87f9ea65661f69a219e9ef47507368f25f73cb47fc5608da50",
+      "bytes": 13441
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/evaluation/per_sequence.csv",
+      "sha256": "7cc55560080c675336224556e9b82ac4dae8561f87f8cec3c43f6153d23bc180",
+      "bytes": 95968
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/sequences.fasta",
+      "sha256": "1283198b0afb9ac2913ca77ec1f34b680e755e92fed8cbb94b5c29d1f8429752",
+      "bytes": 73746
+    }
+  ],
+  "files": [
+    {
+      "path": "all_adapted_pooled_duplicates.csv",
+      "sha256": "0f552620997948269ff0325c8e0ea4c3686037cafe2f8e21902b5c97c8c51b93",
+      "bytes": 241
+    },
+    {
+      "path": "arm_diagnostics.csv",
+      "sha256": "97e4c2869869a85bd6843c5c845a933affbd3420425585d6ee2c1efaf68efe49",
+      "bytes": 3074
+    },
+    {
+      "path": "cross_generation_seed_duplicates.csv",
+      "sha256": "b759db4a8288dd478106118a7227bf9bd1214cbdb8945b2a1575fd6b10102037",
+      "bytes": 1014
+    },
+    {
+      "path": "diagnostics.json",
+      "sha256": "d92eddf5293f5fbc9a400cc941dcebaf1876832d53d7022367fc25a27db31d1a",
+      "bytes": 35293
+    },
+    {
+      "path": "examples.csv",
+      "sha256": "52b177dd4c6e80245464c8be47f48e5b46994e0615cb4d4f355f3270a65336aa",
+      "bytes": 3729
+    },
+    {
+      "path": "group_checks.csv",
+      "sha256": "cc9e8808f7cf24b8a59b3b6d758437601599bfa6301a7c1cbacec1476dd9adbb",
+      "bytes": 1608
+    },
+    {
+      "path": "README.md",
+      "sha256": "6023bd8b3bbb5978f831ab5d65aa50499cb811817e31dc707df70599fa83d9c9",
+      "bytes": 5249
+    },
+    {
+      "path": "reported_pair_verification.json",
+      "sha256": "e17232823b1e5389213831e2b4baf847315eb220985035a1305c0a7fff2fefff",
+      "bytes": 7300
+    },
+    {
+      "path": "sequence_diagnostics.csv",
+      "sha256": "2cd81a0ac638cbc6464ca37d4ae2fc5727dacf8d8f8c28f22dbb4ea30eaeeb5c",
+      "bytes": 823690
+    }
+  ],
+  "scope": "Post hoc supplementary diagnostics from recorded outputs; independent named-pair value check is separate from a global nearest-neighbor search."
+}

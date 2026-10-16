@@ -18,9 +18,9 @@
 
 三个模型均有编码器梯度与权重更新证据，导出后CPU重载logits最大误差为0。独立的[真实150M恢复验证](results/engineering/real_150m_resume.json)比较连续10步与第5步停止后恢复至第10步：522个模型张量、1464个优化器张量逐位一致，调度器、采样器与随机状态也一致；该结果限于记录的环境与设置。当前数据拆分为train **2354**、validation **294**、test **294**条，源码身份、权重revision与原始文件SHA已核对。
 
-此前的100步训练pilot记录193.69秒、2.78 GiB，已采集的[真实pilot证据索引](results/pilot/index.json)可直接阅读。本机当前全量测试为**96 passed、2 skipped**（CUDA与Windows符号链接相关条件），远程**13项GPU集成测试passed**；[GitHub Actions](https://github.com/babylovestudy/dplm-family-lab/actions)首轮CI已成功，最终版本测试数量以随后记录为准。微型网络测试与真实150M运行分别记录，CPU演示使用合成教学数据。
+此前的100步训练pilot记录193.69秒、2.78 GiB，[真实pilot证据](results/pilot/index.json)可直接阅读。[最终Linux L4工程验证](results/engineering/final_validation_summary.json)全量测试为**108 passed、无skip**；既有[CI运行](https://github.com/babylovestudy/dplm-family-lab/actions/runs/38852599537)的两个job均成功。微型网络测试与真实150M运行分别记录，CPU演示使用合成教学数据。
 
-**正式12组生成与评估正在进行，完整协议与生成效果仍为pending；三次训练结束不代表全部正式实验完成。尚未验证生成蛋白的结构或酶活。**
+**正式协议已完成：3次训练、12组生成评估和4组固定噪声test去噪齐备，严格汇总为`complete`、缺失阶段为0。** 家族匹配提高，同时最近训练相似性增加、生成集多样性下降；尚未验证结构或酶活。先读[完整技术报告](results/technical-report.md)和[正式结果汇总](results/experiment-summary/report.md)。
 
 同一L4上的20步硬件profiling表明：`micro_batch_size=4`、累积4次时约0.508秒/优化步、2.83 GiB；原始1×16配置约1.8秒/优化步。两者有效序列batch均为16。这是短时实测，不是完整实验耗时保证；仓库默认仍保留较保守的1×16，调整方法见[远程GPU说明](docs/remote-gpu.md)。
 
@@ -79,27 +79,33 @@ dplm-lab report --config configs/pf00194-l4.yaml --output-dir artifacts/report
 
 本次远程原始运行实际使用`configs/pf00194-l4-runtime.yaml`，与公开L4配置仅`model.source`不同：它指向已按官方revision和原始SHA核验的`model_cache/dplm_150m`。该机器专用配置与模型缓存不随Git发布；本次恢复和重建报告须用原始runtime配置，不能中途换成公网模型ID。缓存来源、重建方法和读取已公开证据的方法见[远程GPU说明](docs/remote-gpu.md#本次原始运行与公开配置)。
 
-## 正式结果：待完整协议结束后填写
+## 正式结果
 
-下表留给正式三训练种子与12组生成评估；pilot和短时profiling数字不填入这些结果格。
+每组请求256条，12组共3,072条，全部有效、无缺失或非法输出。下表每个arm合并3个生成种子的家族命中计数；最近训练identity与配对距离是三个组均值的简单均值，距离越小表示生成集越相似。
 
-| 字段 | 当前正式结果 |
-| --- | --- |
-| 三次1000步训练与完整协议状态 | 42/43/44训练均完成；12组生成评估与完整协议pending |
-| baseline与适配模型HMM GA/家族命中率及配对差值 | pending |
-| 请求总数、有效序列数、失败数与整体家族产出率 | pending |
-| 重复率、配对距离、最近训练identity、精确训练匹配率 | pending |
-| baseline与三个适配模型的固定噪声测试去噪CE | pending |
-| 正式训练/生成各阶段耗时、峰值显存与报告版本 | 训练32.66分钟、峰值见上表；生成/评估与最终报告pending |
+| 模型 | 家族通过/请求 | 家族率 | 平均最近训练identity | 平均配对距离 | 固定噪声test CE |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| baseline | 0/768 | 0% | 0.268199 | 0.796286 | 0.721707 |
+| train seed42 | 760/768 | 98.9583% | 0.573469 | 0.417371 | 0.632358 |
+| train seed43 | 765/768 | 99.6094% | 0.564775 | 0.412555 | 0.636451 |
+| train seed44 | 758/768 | 98.6979% | 0.572031 | 0.383969 | 0.634815 |
 
-读取自己新运行的结果时使用上面的`report`命令；本次原始远程运行使用对应runtime配置。已有公开报告可以直接阅读。按顺序打开：
+适配模型合计2,283/2,304条通过（99.0885%），2,304条序列均不同；baseline合并后为766/768条不同序列，虽然每组内部都没有重复。双方均未发现完整训练序列复制，因此不能说“复制率降低”或“减少记忆”；片段记忆、其它数据库及预训练重叠仍未知。全部适配序列通过GA，21条因单domain覆盖不足80%未通过家族条件。
 
-1. `artifacts/report/report.md`：查看正式协议状态与缺失阶段。
-2. `artifacts/report/summary.json`：只有`formal_status`为`complete`且`missing_expected_stages`为空，才表示预期产物与来源一致性检查已齐备；这不等于生成效果优秀。
-3. `artifacts/report/summary.csv`：按`source_type`区分训练、生成、测试去噪，逐个种子读取指标与成本；训练行的去噪值是验证损失，不能当成测试损失。
-4. 根据`source_json`回到原始`metrics.json`或训练报告，核对分母、区间、模型revision和SHA。
+这是**家族profile匹配与多样性的权衡**，不能称为功能提升。三个训练种子各含三个生成种子的采样重复，九组适配生成不是九次独立训练；同一HMM参与筛选和评测，validation/test均为80/80图中的singleton，预训练重叠未知。
 
-汇总只读取当前机器已有的`runs/`与`outputs/`。若实验在远程完成，先在远程生成报告，再取回报告和对应日志；只在本地克隆代码不会自动获得远程结果。具体路径与完成后的复查清单见[实验协议](docs/experiment-protocol.md)。
+![正式生成指标](results/figures/formal_generation_metrics.png)
+
+已有结果可直接阅读，无需重新训练：
+
+1. [技术报告](results/technical-report.md)：完整方法、九项配对差值及区间、成本、负例和解释边界。
+2. [严格完整性汇总](results/experiment-summary/summary.json)：`formal_status=complete`、缺失阶段为空；[CSV](results/experiment-summary/summary.csv)同时保留pilot/smoke等其它阶段，按来源与阶段筛选。
+3. [配对分析JSON](results/analysis/formal/analysis.json)与[比较CSV](results/analysis/formal/generation_comparison.csv)：训练/生成seed分开，区间为1,000次配对索引bootstrap，不作p值解释。
+4. [序列诊断与案例](results/diagnostics/formal/README.md)、[正式原始证据索引](results/formal/index.json)：逐条核对分母、HMM覆盖、最近邻、模型revision与SHA。
+
+三训练含导出wall time为32.66分钟；复用这三份训练后，正式编排阶段wall time为44.05分钟，GPU生成与CPU评估有重叠，不能将各阶段秒数直接相加当作计费时长。实际执行源码快照与发布校验代码的区别见技术报告。
+
+若重跑自己的实验，使用上面的`report`命令；本次原始远程运行使用对应runtime配置。汇总只读取当前机器的`runs/`与`outputs/`，公开bundle用于读取和核对已完成证据，不包含多GB模型检查点。完整恢复的文件及路径限制见[远程说明](docs/remote-gpu.md#取回与复现)。
 
 ## 会产出什么
 

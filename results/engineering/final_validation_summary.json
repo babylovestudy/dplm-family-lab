@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "validation_kind": "engineering tests, CLI checks, and read-only real-weight CPU inference; no scientific retraining or regeneration",
+  "passed": true,
+  "full_pytest": {
+    "passed": 108,
+    "skipped": 0,
+    "seconds": 10.66,
+    "log": "final_pytest_remote.txt"
+  },
+  "explicit_platform_tests": {
+    "tests": [
+      "CUDA tiny training/export smoke",
+      "Linux directory-symlink escape protection"
+    ],
+    "passed": 2,
+    "seconds": 3.29,
+    "log": "final_platform_tests.txt"
+  },
+  "weight_format_regression": {
+    "cases": [
+      "bin and different safetensors coexist: selected bin tensor digest and actual hashed file agree",
+      "safetensors only: selected safetensors tensor digest and hashed file agree"
+    ],
+    "passed": true
+  },
+  "gpu_before_validation": {
+    "name": "NVIDIA L4",
+    "memory_used_MiB": 1,
+    "memory_total_MiB": 23034,
+    "utilization_percent": 0,
+    "compute_processes": []
+  },
+  "gpu_after_validation": {
+    "query": "NVIDIA L4, 1 MiB, 23034 MiB, 0 %",
+    "compute_process_query": ""
+  },
+  "installed_cli": {
+    "help_passed": true,
+    "doctor_passed": true,
+    "editable_project_version": "0.1.0"
+  },
+  "actual_weight_loader_verification": "baseline, pilot, seed42/43/44 actual serialized SHA, exact loaded tensor digests, independent identity checks, finite CPU FP32 forward all passed",
+  "archive_sha256": "eae1d6caa720272549bf8ab3974dfb88942ae3038d321312ffa103fc70599abd",
+  "all_91_package_source_files_unchanged_during_validation": true,
+  "evidence_sha256": {
+    "final_pytest_remote.txt": "379f3fff129417d6c3d3f0e9cbf4b0ffed3fc2a2c688f229bb05829cdc9a4a58",
+    "final_platform_tests.txt": "6ede137f5481cc9dab8f66fd90a9c89881116964a8d3e0d38ebbe8b808cea709",
+    "final_cli_help.txt": "b308332f9d0024a9f265cccde8087cc1413abc606988635523727524c3b7cffe",
+    "final_doctor.json": "81044dba4021cb8a291a7d0157d1f992d1689f222011c6089766911b136c2e4a",
+    "final_inference_identity.json": "09dd3dab1003132c6d2eadc2dfeda36cf94e98d44abf1c4d1fce4fa2e53541be",
+    "final_inference_identity.log": "f46b6d48e5e7065e1bf8ce971cba3cc48d3fa987b662c3ebe6c59fbc3f3072fd",
+    "final_package_extract.json": "dc7ce67e9f33ea82720acfff796b8b86f16b4e8833157f84bd5df380a030b089"
+  },
+  "environment": {
+    "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+    "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+    "packages": {
+      "dplm-family-lab": "0.1.0",
+      "numpy": "1.26.4",
+      "biopython": "1.85",
+      "torch": "2.2.0+cu121",
+      "transformers": "4.39.2",
+      "pyhmmer": "0.12.3"
+    },
+    "project_source_sha256": {
+      "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+      "__main__.py": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+      "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+      "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+      "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+      "backend.py": "f9eae67661a84444c87954213f67ba77c86dd4591bdfb435b6a22530a577dd0d",
+      "cli.py": "2f0b15221e833038c5b0edbf510fdc059bb9a27bddc5f82becd5a5da0972abed",
+      "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+      "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+      "evaluation.py": "0c4f9e3861b0781f9b384e84bb22e3fb922f4a41df84ae65e4ee251dcc0746fe",
+      "experiment.py": "65ae1b831fa4825faf5b9dde8d4eb8509684b8d421013d104d498bd60e137c02",
+      "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+      "reporting.py": "27477440b76718796dc916666a81e6c6965f47f5cf99912c5be93b98bd1c4bf3",
+      "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+      "similarity.py": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+      "training.py": "cbb31fd53ec631d55536e61f1c64aa0ad818b07f6d4377f4e2a31a40f00d19e5"
+    }
+  },
+  "completed_unix": 1792128288.0342238
+}

@@ -1,0 +1,1259 @@
+{
+  "schema_version": 1,
+  "analysis_status": "complete",
+  "mode": "formal",
+  "training_seeds": [
+    42,
+    43,
+    44
+  ],
+  "generation_seeds": [
+    101,
+    102,
+    103
+  ],
+  "generation_groups": 12,
+  "paired_comparisons": [
+    {
+      "mode": "formal",
+      "training_seed": 42,
+      "generation_seed": 101,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.99609375,
+      "family_difference_ci95_low": 0.98818359375,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.99609375,
+      "overall_yield_difference_ci95_low": 0.98818359375,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.632357858953888,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2663458692854328,
+      "baseline_mean_pairwise_distance": 0.7967787844741768,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.99609375,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5709278286657558,
+      "adapted_mean_pairwise_distance": 0.41604579081676996,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.99609375,
+      "adapted_family_hits": 255,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 42,
+      "generation_seed": 102,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.984375,
+      "family_difference_ci95_low": 0.96875,
+      "family_difference_ci95_high": 0.99609375,
+      "overall_family_yield_difference": 0.984375,
+      "overall_yield_difference_ci95_low": 0.96875,
+      "overall_yield_difference_ci95_high": 0.99609375,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.632357858953888,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.269533497097215,
+      "baseline_mean_pairwise_distance": 0.7994959951070659,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.984375,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5746393481089357,
+      "adapted_mean_pairwise_distance": 0.4144236609671782,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.984375,
+      "adapted_family_hits": 252,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 42,
+      "generation_seed": 103,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.98828125,
+      "family_difference_ci95_low": 0.97265625,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.98828125,
+      "overall_yield_difference_ci95_low": 0.97265625,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.632357858953888,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2687180942323453,
+      "baseline_mean_pairwise_distance": 0.7925824307919744,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.98828125,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5748402253105387,
+      "adapted_mean_pairwise_distance": 0.4216427616170994,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.98828125,
+      "adapted_family_hits": 253,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 43,
+      "generation_seed": 101,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.9921875,
+      "family_difference_ci95_low": 0.98046875,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.9921875,
+      "overall_yield_difference_ci95_low": 0.98046875,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.636451439940255,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2663458692854328,
+      "baseline_mean_pairwise_distance": 0.7967787844741768,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.9921875,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5622269241296527,
+      "adapted_mean_pairwise_distance": 0.4112778810196341,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.9921875,
+      "adapted_family_hits": 254,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 43,
+      "generation_seed": 102,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 1.0,
+      "family_difference_ci95_low": 1.0,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 1.0,
+      "overall_yield_difference_ci95_low": 1.0,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.636451439940255,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.269533497097215,
+      "baseline_mean_pairwise_distance": 0.7994959951070659,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 1.0,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5661003037024153,
+      "adapted_mean_pairwise_distance": 0.4148613722032923,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 1.0,
+      "adapted_family_hits": 256,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 43,
+      "generation_seed": 103,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.99609375,
+      "family_difference_ci95_low": 0.98828125,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.99609375,
+      "overall_yield_difference_ci95_low": 0.98828125,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.636451439940255,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2687180942323453,
+      "baseline_mean_pairwise_distance": 0.7925824307919744,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.99609375,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5659970126919073,
+      "adapted_mean_pairwise_distance": 0.4115247093761735,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.99609375,
+      "adapted_family_hits": 255,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 44,
+      "generation_seed": 101,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.98046875,
+      "family_difference_ci95_low": 0.9609375,
+      "family_difference_ci95_high": 0.99609375,
+      "overall_family_yield_difference": 0.98046875,
+      "overall_yield_difference_ci95_low": 0.9609375,
+      "overall_yield_difference_ci95_high": 0.99609375,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.6348151227415468,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2663458692854328,
+      "baseline_mean_pairwise_distance": 0.7967787844741768,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.98046875,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5697433891734527,
+      "adapted_mean_pairwise_distance": 0.3888997750192266,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.98046875,
+      "adapted_family_hits": 251,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 44,
+      "generation_seed": 102,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.98828125,
+      "family_difference_ci95_low": 0.97265625,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.98828125,
+      "overall_yield_difference_ci95_low": 0.97265625,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.6348151227415468,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.269533497097215,
+      "baseline_mean_pairwise_distance": 0.7994959951070659,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.98828125,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5718581054928054,
+      "adapted_mean_pairwise_distance": 0.38507303801401116,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.98828125,
+      "adapted_family_hits": 253,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "mode": "formal",
+      "training_seed": 44,
+      "generation_seed": 103,
+      "requested_per_arm": 256,
+      "paired_indices": 256,
+      "family_rate_difference": 0.9921875,
+      "family_difference_ci95_low": 0.98046875,
+      "family_difference_ci95_high": 1.0,
+      "overall_family_yield_difference": 0.9921875,
+      "overall_yield_difference_ci95_low": 0.98046875,
+      "overall_yield_difference_ci95_high": 1.0,
+      "baseline_fixed_noise_test_ce": 0.7217068610636814,
+      "adapted_fixed_noise_test_ce": 0.6348151227415468,
+      "baseline_ga_pass_rate": 0.0,
+      "baseline_family_pass_rate": 0.0,
+      "baseline_excess_duplicate_rate": 0.0,
+      "baseline_mean_nearest_training_identity": 0.2687180942323453,
+      "baseline_mean_pairwise_distance": 0.7925824307919744,
+      "baseline_exact_training_match_rate": 0.0,
+      "baseline_requested": 256,
+      "baseline_emitted": 256,
+      "baseline_valid": 256,
+      "baseline_invalid": 0,
+      "baseline_missing": 0,
+      "baseline_valid_rate": 1.0,
+      "baseline_overall_family_yield": 0.0,
+      "baseline_family_hits": 0,
+      "baseline_ga_hits": 0,
+      "baseline_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf",
+      "adapted_ga_pass_rate": 1.0,
+      "adapted_family_pass_rate": 0.9921875,
+      "adapted_excess_duplicate_rate": 0.0,
+      "adapted_mean_nearest_training_identity": 0.5744913090089959,
+      "adapted_mean_pairwise_distance": 0.37793443520387177,
+      "adapted_exact_training_match_rate": 0.0,
+      "adapted_requested": 256,
+      "adapted_emitted": 256,
+      "adapted_valid": 256,
+      "adapted_invalid": 0,
+      "adapted_missing": 0,
+      "adapted_valid_rate": 1.0,
+      "adapted_overall_family_yield": 0.9921875,
+      "adapted_family_hits": 254,
+      "adapted_ga_hits": 256,
+      "adapted_length_schedule_sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    }
+  ],
+  "across_generation_seeds": [
+    {
+      "training_seed": 42,
+      "generation_seeds": [
+        101,
+        102,
+        103
+      ],
+      "family_rate_difference_mean": 0.9895833333333334,
+      "family_rate_difference_range": [
+        0.984375,
+        0.99609375
+      ],
+      "descriptive_metrics": {
+        "family_rate_difference": {
+          "mean": 0.9895833333333334,
+          "range": [
+            0.984375,
+            0.99609375
+          ]
+        },
+        "overall_family_yield_difference": {
+          "mean": 0.9895833333333334,
+          "range": [
+            0.984375,
+            0.99609375
+          ]
+        },
+        "baseline_ga_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_family_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_mean_nearest_training_identity": {
+          "mean": 0.268199153538331,
+          "range": [
+            0.2663458692854328,
+            0.269533497097215
+          ]
+        },
+        "baseline_mean_pairwise_distance": {
+          "mean": 0.7962857367910724,
+          "range": [
+            0.7925824307919744,
+            0.7994959951070659
+          ]
+        },
+        "baseline_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_overall_family_yield": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_ga_pass_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_family_pass_rate": {
+          "mean": 0.9895833333333334,
+          "range": [
+            0.984375,
+            0.99609375
+          ]
+        },
+        "adapted_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_mean_nearest_training_identity": {
+          "mean": 0.57346913402841,
+          "range": [
+            0.5709278286657558,
+            0.5748402253105387
+          ]
+        },
+        "adapted_mean_pairwise_distance": {
+          "mean": 0.4173707378003492,
+          "range": [
+            0.4144236609671782,
+            0.4216427616170994
+          ]
+        },
+        "adapted_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_overall_family_yield": {
+          "mean": 0.9895833333333334,
+          "range": [
+            0.984375,
+            0.99609375
+          ]
+        },
+        "adapted_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "note": "Descriptive average/range across generation seeds; no independent-training CI."
+    },
+    {
+      "training_seed": 43,
+      "generation_seeds": [
+        101,
+        102,
+        103
+      ],
+      "family_rate_difference_mean": 0.99609375,
+      "family_rate_difference_range": [
+        0.9921875,
+        1.0
+      ],
+      "descriptive_metrics": {
+        "family_rate_difference": {
+          "mean": 0.99609375,
+          "range": [
+            0.9921875,
+            1.0
+          ]
+        },
+        "overall_family_yield_difference": {
+          "mean": 0.99609375,
+          "range": [
+            0.9921875,
+            1.0
+          ]
+        },
+        "baseline_ga_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_family_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_mean_nearest_training_identity": {
+          "mean": 0.268199153538331,
+          "range": [
+            0.2663458692854328,
+            0.269533497097215
+          ]
+        },
+        "baseline_mean_pairwise_distance": {
+          "mean": 0.7962857367910724,
+          "range": [
+            0.7925824307919744,
+            0.7994959951070659
+          ]
+        },
+        "baseline_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_overall_family_yield": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_ga_pass_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_family_pass_rate": {
+          "mean": 0.99609375,
+          "range": [
+            0.9921875,
+            1.0
+          ]
+        },
+        "adapted_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_mean_nearest_training_identity": {
+          "mean": 0.5647747468413251,
+          "range": [
+            0.5622269241296527,
+            0.5661003037024153
+          ]
+        },
+        "adapted_mean_pairwise_distance": {
+          "mean": 0.4125546541997,
+          "range": [
+            0.4112778810196341,
+            0.4148613722032923
+          ]
+        },
+        "adapted_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_overall_family_yield": {
+          "mean": 0.99609375,
+          "range": [
+            0.9921875,
+            1.0
+          ]
+        },
+        "adapted_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "note": "Descriptive average/range across generation seeds; no independent-training CI."
+    },
+    {
+      "training_seed": 44,
+      "generation_seeds": [
+        101,
+        102,
+        103
+      ],
+      "family_rate_difference_mean": 0.9869791666666666,
+      "family_rate_difference_range": [
+        0.98046875,
+        0.9921875
+      ],
+      "descriptive_metrics": {
+        "family_rate_difference": {
+          "mean": 0.9869791666666666,
+          "range": [
+            0.98046875,
+            0.9921875
+          ]
+        },
+        "overall_family_yield_difference": {
+          "mean": 0.9869791666666666,
+          "range": [
+            0.98046875,
+            0.9921875
+          ]
+        },
+        "baseline_ga_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_family_pass_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_mean_nearest_training_identity": {
+          "mean": 0.268199153538331,
+          "range": [
+            0.2663458692854328,
+            0.269533497097215
+          ]
+        },
+        "baseline_mean_pairwise_distance": {
+          "mean": 0.7962857367910724,
+          "range": [
+            0.7925824307919744,
+            0.7994959951070659
+          ]
+        },
+        "baseline_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_overall_family_yield": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "baseline_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_ga_pass_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "adapted_family_pass_rate": {
+          "mean": 0.9869791666666666,
+          "range": [
+            0.98046875,
+            0.9921875
+          ]
+        },
+        "adapted_excess_duplicate_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_mean_nearest_training_identity": {
+          "mean": 0.572030934558418,
+          "range": [
+            0.5697433891734527,
+            0.5744913090089959
+          ]
+        },
+        "adapted_mean_pairwise_distance": {
+          "mean": 0.3839690827457032,
+          "range": [
+            0.37793443520387177,
+            0.3888997750192266
+          ]
+        },
+        "adapted_exact_training_match_rate": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "adapted_overall_family_yield": {
+          "mean": 0.9869791666666666,
+          "range": [
+            0.98046875,
+            0.9921875
+          ]
+        },
+        "adapted_valid_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "note": "Descriptive average/range across generation seeds; no independent-training CI."
+    }
+  ],
+  "test_denoising": [
+    {
+      "arm": "baseline",
+      "training_seed": null,
+      "weighted_masked_test_denoising_ce": 0.7217068610636814,
+      "test_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+      "noise_seed": 9174,
+      "test_sequences": 294,
+      "masked_residues": 35602
+    },
+    {
+      "arm": "train_seed_42",
+      "training_seed": 42,
+      "weighted_masked_test_denoising_ce": 0.632357858953888,
+      "test_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+      "noise_seed": 9174,
+      "test_sequences": 294,
+      "masked_residues": 35602
+    },
+    {
+      "arm": "train_seed_43",
+      "training_seed": 43,
+      "weighted_masked_test_denoising_ce": 0.636451439940255,
+      "test_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+      "noise_seed": 9174,
+      "test_sequences": 294,
+      "masked_residues": 35602
+    },
+    {
+      "arm": "train_seed_44",
+      "training_seed": 44,
+      "weighted_masked_test_denoising_ce": 0.6348151227415468,
+      "test_sha256": "1f1b9fe32e4d3da88117b7cd02542d147fede7c5c1fac7288590e77b645f10e6",
+      "noise_seed": 9174,
+      "test_sequences": 294,
+      "masked_residues": 35602
+    }
+  ],
+  "bootstrap": {
+    "samples": 1000,
+    "seed": 20261016,
+    "rng": "NumPy PCG64",
+    "seed_components": [
+      "bootstrap_seed",
+      "training_seed",
+      "generation_seed"
+    ],
+    "unit": "paired requested sequence index",
+    "interval": "95% percentile; linear quantiles"
+  },
+  "denominator_policy": "Complete all-valid pairs required; conditional family rates equal family_pass/requested. Missing/invalid indices cause refusal, never deletion.",
+  "limitations": [
+    "Analysis checks recorded metadata and hashes; it does not authenticate model weights or rerun biological scoring.",
+    "Paired intervals resample generated sequence indices, not independent training replicates; homologous or dependent sequences limit their interpretation.",
+    "The three generation seeds are repeated samples from each trained model; nine adapted groups are not nine independent training runs.",
+    "Across-generation-seed means and ranges are descriptive. Only three formal training seeds are available; no p-values are computed.",
+    "Zero observed family hits can produce a degenerate empirical bootstrap interval [0,0]; this does not establish zero population hit probability.",
+    "HMM GA/coverage measures family compatibility, not folding, catalytic activity, expression or stability.",
+    "The same PF00194 HMM defines data completeness screening and generation-family evaluation; this is an objective-aligned profile measure, not independent functional validation.",
+    "Nearest training identity and exact matches concern the adaptation set, not all protein databases; pretraining overlap remains possible.",
+    "In this experiment validation/test sequences are singleton components under the 80/80 graph threshold; that does not establish remote-homology or functional generalization.",
+    "Fixed-noise weighted test denoising CE is not exact sequence likelihood or perplexity."
+  ],
+  "reproducibility": {
+    "script_sha256": "f9b2a1ec01729ca07df0d98876fbd782f728c28562655de1188efc72e6c985a3",
+    "python": "3.11.15",
+    "numpy": "1.26.4"
+  },
+  "sources": [
+    {
+      "path": "outputs/formal/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "232c34c0e42826ceca54e01048d329192960c127942fd2b9e11c1f6056181078"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/evaluation/per_sequence.csv",
+      "sha256": "75ece4b3a6dc0372d4b5f98d5fc362fec98b607a9e4ccc8f22ad3ef7a23e1a37"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/length_schedule.json",
+      "sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/manifest.json",
+      "sha256": "d665746f48179b327ee6f04c7afe0058338cf2b031dfccc8306a4aabd8c87e7d"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/sequences.fasta",
+      "sha256": "498b9c66c988607cdb07364dcac2dd8711119160369308dee537c4cd76da1373"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/evaluation/metrics.json",
+      "sha256": "63fcb6d473ea0d25a692dd118eb4f25f8a0e726693756af13bf233844ad46b0b"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/evaluation/per_sequence.csv",
+      "sha256": "41a2797937168f9922f05b0f5421e2f7ffeff600c1cbd5ee34eb59f0786d7293"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/length_schedule.json",
+      "sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/manifest.json",
+      "sha256": "d116a2d1c80dd50528a6a1342b5559f82388bc06f185d8f139513154b8517333"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/sequences.fasta",
+      "sha256": "7821d2d4e0b6427a81237b7e680261df3e74c7732eb414c19e7ebc824f8d5781"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/evaluation/metrics.json",
+      "sha256": "403241391917f85c957dce46721ec5e8fcc9f277c268148be7386d607986726b"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/evaluation/per_sequence.csv",
+      "sha256": "7cbb5f672d1941825794d9d060ba81d31e10ff108bff3b18bf9bd31572ee68c0"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/length_schedule.json",
+      "sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/manifest.json",
+      "sha256": "6017cf078285941e275a92c4b3a37a2d37d041bdc98ff2c080eff9013439f741"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/sequences.fasta",
+      "sha256": "21b288b2be29339661e459148f63b1493849c72f9f4724747a1c6356f1e3d657"
+    },
+    {
+      "path": "outputs/formal/baseline/test_denoising/denoising_baseline.json",
+      "sha256": "6eca8ea22e524ee50821ae8ac5eb9f06b691ae575b2e07ab1b4b2501bdf6e8c0"
+    },
+    {
+      "path": "outputs/formal/experiment_status.json",
+      "sha256": "063f9ceb2bdee9cb3b51aa142e9e7b1e710aa85fd1cadc0dc2e5907b1e96f560"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "0b10685a82e38b56c42928e60a448d33436abe0f13fde56070cc09f1b8f3eff9"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/evaluation/per_sequence.csv",
+      "sha256": "2088875a58db83fa1bef171caf7f8b32fb5642614e060b7b7ba7cf6c3de25cbb"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/length_schedule.json",
+      "sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/manifest.json",
+      "sha256": "2172f5dae57fc92dc4daae7a972b1dd53c7059def40c56ca356305231fb68b63"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/sequences.fasta",
+      "sha256": "6a1d00014c6e06598a9914b7897c9169a6c07df8cfbc124b39bfc41dc5f5fc35"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/evaluation/metrics.json",
+      "sha256": "49437c3e1be1146757163f30d444ae6124d72cf005524ebc874bb986f69b344a"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/evaluation/per_sequence.csv",
+      "sha256": "8f245b87d620921519d2e43d1404cafde5120efdfcefb85b4fc9d561260b74f1"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/length_schedule.json",
+      "sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/manifest.json",
+      "sha256": "65ff8c8454fcaf7ecce75b0e15d5223900792f2bd2664a5c9f80466fe1566343"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/sequences.fasta",
+      "sha256": "2a13984e025379f7e566b69d89f72f0c0911daa581a8bb0c0e7274875557026e"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/evaluation/metrics.json",
+      "sha256": "259f58703d398ae9b668796ad71103485ea0583c1bd24585e7fd15f16c5f2d98"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/evaluation/per_sequence.csv",
+      "sha256": "1efc69dbd736e0f184a5302904a52c8b888611f806f9ba78ffc8f7a3fc2281ae"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/length_schedule.json",
+      "sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/manifest.json",
+      "sha256": "fd384cbd3ac2062421ccd807d0c278f7c84a4bc41ccef535636774f386e369e9"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/sequences.fasta",
+      "sha256": "c8b71215d8da0dc34e3e06429dffe0081ad68ebd38ee50189a1bb57e6b4f4523"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/test_denoising/denoising_adapted.json",
+      "sha256": "1796452b953d91ee80188852a7644163a4a0855386f3446b6705bfe0ce59fe25"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/evaluation/metrics.json",
+      "sha256": "0d16343cc0724f33102bacd920db524cc75e4242d63a85226339be3f9162c0b6"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/evaluation/per_sequence.csv",
+      "sha256": "1a89ee136294d23319d84721376fc1f608a11c4ef03887016113686e2f3b8c16"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/length_schedule.json",
+      "sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/manifest.json",
+      "sha256": "a0ff168eafbac5e3270566e2c2c6d722d007ffb0a1bd9df221351932f7018f32"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/sequences.fasta",
+      "sha256": "d899a17df07b024830526c19e1c29e8d2d6710838f60152e57f7991c3f157e63"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/evaluation/metrics.json",
+      "sha256": "9c60122daa43d48e8c559f4352cc311479be96f2a5e4edf7c800b50909343abf"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/evaluation/per_sequence.csv",
+      "sha256": "de8b8a69abdb828939a55348f98f2418d7c82fee21bad7db44a1b15978b82f7a"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/length_schedule.json",
+      "sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/manifest.json",
+      "sha256": "f4deb320e623ca832a40da12c4024e2867ee52e5ff8d1d13ca9621f9998fc05f"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/sequences.fasta",
+      "sha256": "22a974be726c51c9717d8d521349bce0bda9c2de4a669209f08456bd1128a1ee"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+      "sha256": "6a0f2c6ca87cc8695bce187a8e0f17f31a81146852ef9a09dd5b58bca3de16dd"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/evaluation/per_sequence.csv",
+      "sha256": "98f4a53f0bdd3bcb39e0fc3b865487ed157c065f022a76728928e3f0c7c840a1"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/length_schedule.json",
+      "sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/manifest.json",
+      "sha256": "6787e9c2cc1576faf1a58cb627a3425d8d36e277f1f3a15fdf415d02f1f10225"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/sequences.fasta",
+      "sha256": "e6244d55b824ac41c53f1ac2a3b60817e00bab8cbeb321d1c2509775a2790cfd"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/test_denoising/denoising_adapted.json",
+      "sha256": "84b457292f85272cbee2cbaaf0fc75e9e5d41f05e0377f64e505176eed45310d"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/evaluation/metrics.json",
+      "sha256": "e361adf416364b50f50cf5fc2b747a9668cfb2abfd7bd1fa080562ef2bd78b4a"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/evaluation/per_sequence.csv",
+      "sha256": "0b8338091a4e33e33f81af4eb17fd844f91dd718264c50328aeccbef4a873246"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/length_schedule.json",
+      "sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/manifest.json",
+      "sha256": "a13f6a309b41766a5af25a3e3ea1b5a43492793d2b227c0120271b7059963b8b"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/sequences.fasta",
+      "sha256": "0ed0cdf9a68a6b3ad4782bf3d44db924038696ac9f442bd08a9e4d260d4c3b4d"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/evaluation/metrics.json",
+      "sha256": "c497e773e2768f79fd89938760815580dbf697b71e1910a70d231177faae2510"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/evaluation/per_sequence.csv",
+      "sha256": "ffa580a1f819085a1d0f5d1969f054e9a34095ebed921b000d32ed427708c494"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/length_schedule.json",
+      "sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/manifest.json",
+      "sha256": "75e580ad00319ac0e38525583c13a1f71423f48e90a16bea9ab12ca970c30dcc"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/sequences.fasta",
+      "sha256": "0595cc2607aa8f79359067da4e58e7a764f3995f706c6a4b532e8a9d8ce29a12"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/evaluation/metrics.json",
+      "sha256": "ff913e5d992a7d87f9ea65661f69a219e9ef47507368f25f73cb47fc5608da50"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/evaluation/per_sequence.csv",
+      "sha256": "7cc55560080c675336224556e9b82ac4dae8561f87f8cec3c43f6153d23bc180"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/length_schedule.json",
+      "sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/manifest.json",
+      "sha256": "f3d2f73bf33061d4a0bd81fba25b799d95f428506c5c3100f6807782368eb9e2"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/sequences.fasta",
+      "sha256": "1283198b0afb9ac2913ca77ec1f34b680e755e92fed8cbb94b5c29d1f8429752"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/test_denoising/denoising_adapted.json",
+      "sha256": "f06e94e580ba5a6538c5819c6c5a96ba895946192b1945c0c76ded2b262066bf"
+    },
+    {
+      "path": "outputs/length_schedules/seed_101_n256.json",
+      "sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612"
+    },
+    {
+      "path": "outputs/length_schedules/seed_102_n256.json",
+      "sha256": "beeb64ce92e6c19166011bf55ee7c4e005a3722cdfa911010863439e17a8d170"
+    },
+    {
+      "path": "outputs/length_schedules/seed_103_n256.json",
+      "sha256": "fa7f959554f36c30c82c7ebed5b6513ee4f02d2ebba12c2e91a2d4a81699c9cf"
+    },
+    {
+      "path": "runs/pf00194/seed_42/export_best/export_identity.json",
+      "sha256": "71a884a53033bdc6190b4ead7d1b9c90740e9d717c4cf4bc5d9be4ac7011c994"
+    },
+    {
+      "path": "runs/pf00194/seed_42/export_best/family_lab_provenance.json",
+      "sha256": "71f69d84aef51bb09b1cd348024786cb9da6a611c690982806ecfd98e7cf3cee"
+    },
+    {
+      "path": "runs/pf00194/seed_42/export_best/roundtrip.json",
+      "sha256": "520e087592a5c3d14dff1c06fa7fc5b57cee386a544031961fcdf69f6b8a4b74"
+    },
+    {
+      "path": "runs/pf00194/seed_42/training_report.json",
+      "sha256": "b2b0b2ffcc9532795b000cde0ebcf950b3d8a90b3d0f469878de59a873bc4208"
+    },
+    {
+      "path": "runs/pf00194/seed_43/export_best/export_identity.json",
+      "sha256": "106319ccf7fc59a35369a338c87c0cf4e98c31611e899318aa3799692e3e480e"
+    },
+    {
+      "path": "runs/pf00194/seed_43/export_best/family_lab_provenance.json",
+      "sha256": "349a7c1d46ca926e4666b9e8ce4d4399a1ceea234673425cfbf4cdcb1b7329fa"
+    },
+    {
+      "path": "runs/pf00194/seed_43/export_best/roundtrip.json",
+      "sha256": "c384a5983252422ad761334add2bf0719e222ee31fdfaa791bea9c26d849c7f7"
+    },
+    {
+      "path": "runs/pf00194/seed_43/training_report.json",
+      "sha256": "2de8cf50b184a7a75c0dbc55c6c04a19bd4932d9c7768f98f5acbd9df8bf03db"
+    },
+    {
+      "path": "runs/pf00194/seed_44/export_best/export_identity.json",
+      "sha256": "14cdd3a0da009569d31ff79df3720d6ecc69d35884e1de28af4f104e86aec6ed"
+    },
+    {
+      "path": "runs/pf00194/seed_44/export_best/family_lab_provenance.json",
+      "sha256": "5e09ea67c97ab945ac65ce9a012038183c405780cb2886be1a3174cf13b0f409"
+    },
+    {
+      "path": "runs/pf00194/seed_44/export_best/roundtrip.json",
+      "sha256": "47d3da87d51865c5650339308d76b0bdc4580748886813f4f8b1eda6d6f35c8b"
+    },
+    {
+      "path": "runs/pf00194/seed_44/training_report.json",
+      "sha256": "2f176163e710a03ad5074b052b4c0a9c64b595df5eca46d123e026763b668113"
+    }
+  ]
+}

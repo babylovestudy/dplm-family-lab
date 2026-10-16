@@ -1,0 +1,146 @@
+{
+  "passed": true,
+  "artifact_kind": "local rebuilt wheel; dist is ignored and not published",
+  "wheel": "dist/dplm_family_lab-0.1.0-py3-none-any.whl",
+  "wheel_sha256": "e3fd3923877d96bf53b3143ec9f5ad09ee96dbc629d983110e4351864dc964f1",
+  "wheel_bytes": 72027,
+  "version": "0.1.0",
+  "license_expression": "Apache-2.0",
+  "license_files": [
+    "LICENSE",
+    "NOTICE"
+  ],
+  "record_entries_verified": 25,
+  "package_sources_match_current_workspace": true,
+  "python_sources_match_final_remote_doctor_sha256": true,
+  "vendor_license_and_pinned_source_attribution_included": true,
+  "weights_or_bytecode_included": false,
+  "files": [
+    {
+      "wheel_path": "dplm_family_lab-0.1.0.dist-info/licenses/LICENSE",
+      "source_path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "wheel_path": "dplm_family_lab-0.1.0.dist-info/licenses/NOTICE",
+      "source_path": "NOTICE",
+      "sha256": "5f94e870d97bf3a0f543d50b3ec1040b5124375755b7d69fd85a5dbd277cddd2",
+      "bytes": 904
+    },
+    {
+      "wheel_path": "dplm_family_lab/__init__.py",
+      "source_path": "src/dplm_family_lab/__init__.py",
+      "sha256": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+      "bytes": 106
+    },
+    {
+      "wheel_path": "dplm_family_lab/__main__.py",
+      "source_path": "src/dplm_family_lab/__main__.py",
+      "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "bytes": 79
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/LICENSE",
+      "source_path": "src/dplm_family_lab/_vendor/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/SOURCE.md",
+      "source_path": "src/dplm_family_lab/_vendor/SOURCE.md",
+      "sha256": "c1fd62c2ea949cd7a4fddec4d9436b011df28944b25a03daea921a0f1933c757",
+      "bytes": 997
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/__init__.py",
+      "source_path": "src/dplm_family_lab/_vendor/__init__.py",
+      "sha256": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+      "bytes": 63
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/esm.py",
+      "source_path": "src/dplm_family_lab/_vendor/esm.py",
+      "sha256": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+      "bytes": 13401
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/model.py",
+      "source_path": "src/dplm_family_lab/_vendor/model.py",
+      "sha256": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+      "bytes": 20838
+    },
+    {
+      "wheel_path": "dplm_family_lab/_vendor/model_utils.py",
+      "source_path": "src/dplm_family_lab/_vendor/model_utils.py",
+      "sha256": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+      "bytes": 5463
+    },
+    {
+      "wheel_path": "dplm_family_lab/backend.py",
+      "source_path": "src/dplm_family_lab/backend.py",
+      "sha256": "f9eae67661a84444c87954213f67ba77c86dd4591bdfb435b6a22530a577dd0d",
+      "bytes": 16758
+    },
+    {
+      "wheel_path": "dplm_family_lab/cli.py",
+      "source_path": "src/dplm_family_lab/cli.py",
+      "sha256": "2f0b15221e833038c5b0edbf510fdc059bb9a27bddc5f82becd5a5da0972abed",
+      "bytes": 10019
+    },
+    {
+      "wheel_path": "dplm_family_lab/common.py",
+      "source_path": "src/dplm_family_lab/common.py",
+      "sha256": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+      "bytes": 4922
+    },
+    {
+      "wheel_path": "dplm_family_lab/data.py",
+      "source_path": "src/dplm_family_lab/data.py",
+      "sha256": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+      "bytes": 17565
+    },
+    {
+      "wheel_path": "dplm_family_lab/evaluation.py",
+      "source_path": "src/dplm_family_lab/evaluation.py",
+      "sha256": "0c4f9e3861b0781f9b384e84bb22e3fb922f4a41df84ae65e4ee251dcc0746fe",
+      "bytes": 9777
+    },
+    {
+      "wheel_path": "dplm_family_lab/experiment.py",
+      "source_path": "src/dplm_family_lab/experiment.py",
+      "sha256": "65ae1b831fa4825faf5b9dde8d4eb8509684b8d421013d104d498bd60e137c02",
+      "bytes": 12859
+    },
+    {
+      "wheel_path": "dplm_family_lab/hmmer.py",
+      "source_path": "src/dplm_family_lab/hmmer.py",
+      "sha256": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+      "bytes": 7209
+    },
+    {
+      "wheel_path": "dplm_family_lab/reporting.py",
+      "source_path": "src/dplm_family_lab/reporting.py",
+      "sha256": "27477440b76718796dc916666a81e6c6965f47f5cf99912c5be93b98bd1c4bf3",
+      "bytes": 37932
+    },
+    {
+      "wheel_path": "dplm_family_lab/sampling.py",
+      "source_path": "src/dplm_family_lab/sampling.py",
+      "sha256": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+      "bytes": 8149
+    },
+    {
+      "wheel_path": "dplm_family_lab/similarity.py",
+      "source_path": "src/dplm_family_lab/similarity.py",
+      "sha256": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+      "bytes": 16739
+    },
+    {
+      "wheel_path": "dplm_family_lab/training.py",
+      "source_path": "src/dplm_family_lab/training.py",
+      "sha256": "cbb31fd53ec631d55536e61f1c64aa0ad818b07f6d4377f4e2a31a40f00d19e5",
+      "bytes": 17239
+    }
+  ]
+}

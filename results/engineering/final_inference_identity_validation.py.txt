@@ -1,0 +1,81 @@
+"""Read-only real-weight CPU inference and independent export identity checks."""
+
+import gc
+from pathlib import Path
+import time
+
+import torch
+
+from dplm_family_lab.backend import load_backend, tensor_digest
+from dplm_family_lab.common import environment_info, sha256_file, write_json
+from dplm_family_lab.reporting import _verified_export_identity
+
+
+def run():
+    started = time.perf_counter()
+    torch.set_num_threads(4)
+    if torch.cuda.is_initialized():
+        raise RuntimeError("CPU-only verification unexpectedly initialized CUDA")
+    rows = []
+    for label, source in [("baseline", Path("model_cache/dplm_150m"))] + [
+        (namespace, Path("runs/pf00194") / namespace / "export_best")
+        for namespace in ("pilot_seed_42", "seed_42", "seed_43", "seed_44")
+    ]:
+        identity = None
+        if label != "baseline":
+            identity, _ = _verified_export_identity(source.parent)
+        backend = load_backend(
+            {
+                "model": {"source": str(source)},
+                "train": {"device": "cpu", "mixed_precision": "fp32"},
+            }
+        )
+        weights = source / (identity["weights_file"] if identity else "pytorch_model.bin")
+        file_sha = sha256_file(weights)
+        if backend.provenance["loaded_weights_sha256"] != file_sha:
+            raise RuntimeError(f"Loader hash differs from actual file: {label}")
+        state_sha = tensor_digest(backend.model.state_dict())
+        if identity and (
+            file_sha != identity["weights_file_sha256"] or state_sha != identity["tensor_sha256"]
+        ):
+            raise RuntimeError(f"Actual loaded model differs from independent identity: {label}")
+        with torch.no_grad():
+            logits = backend.model(backend.encode(["ACDEFGHIKLMNPQRSTVWY"]))
+        if backend.device.type != "cpu" or not bool(torch.isfinite(logits).all()):
+            raise RuntimeError(f"Invalid real-weight CPU forward: {label}")
+        rows.append(
+            {
+                "model": label,
+                "source": str(source),
+                "weights_file_sha256": file_sha,
+                "tensor_sha256": state_sha,
+                "independent_export_identity_matches": identity is not None,
+                "original_source_sha256": backend.provenance["checkpoint_sha256"],
+                "parameter_count": backend.provenance["parameter_count"],
+                "device": str(backend.device),
+                "precision": backend.precision,
+                "logits_shape": list(logits.shape),
+                "logits_finite": True,
+                "logits_sha256": tensor_digest({"logits": logits}),
+            }
+        )
+        del logits, backend
+        gc.collect()
+        print(
+            label, "actual file, loaded tensors, identity, finite CPU inference passed", flush=True
+        )
+    result = {
+        "passed": True,
+        "models": rows,
+        "environment": environment_info(),
+        "cuda_initialized": torch.cuda.is_initialized(),
+        "script_sha256": sha256_file(__file__),
+        "wall_seconds": time.perf_counter() - started,
+    }
+    if result["cuda_initialized"]:
+        raise RuntimeError("CPU validation initialized CUDA")
+    write_json("artifacts/validation/final_inference_identity.json", result)
+
+
+if __name__ == "__main__":
+    run()

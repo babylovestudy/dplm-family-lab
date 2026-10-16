@@ -10,7 +10,7 @@ jobs:
           python-version: '3.10'
       - run: python -m pip install -e '.[dev]'
       - run: python -m pytest -q
-      - run: python -m ruff check src tests
+      - run: python -m ruff check src tests scripts
       - run: python scripts/verify_evidence.py
   tiny-official-model:
     runs-on: ubuntu-latest

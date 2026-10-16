@@ -1,0 +1,7 @@
+{
+  "weighted_masked_denoising_loss": 0.706727186286475,
+  "masked_residues": 35829,
+  "sequences": 294,
+  "zero_mask_sequences": 1,
+  "metric_note": "Weighted masked denoising CE, not exact sequence likelihood/perplexity."
+}

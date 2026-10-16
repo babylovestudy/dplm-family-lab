@@ -1,0 +1,16 @@
+{
+  "source": "airkingbd/dplm_150m",
+  "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+  "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+  "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+  "download_endpoint": "https://hf-mirror.com",
+  "verified_against_official_metadata": true,
+  "loaded_weights_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+  "loaded_config_sha256": "36480be9ea79156026ce374ceb9573e0edde62dfccd22d32b107e4de0fd7f03c",
+  "tiny_fixture": false,
+  "parameter_count": 148796794,
+  "device": "cuda",
+  "precision": "bf16",
+  "training_checkpoint_sha256": "6c19dc4afaec98bb701be4c8054877e43d5d211912673eff11a9503297775e46",
+  "artifact_role": "adapted_export"
+}

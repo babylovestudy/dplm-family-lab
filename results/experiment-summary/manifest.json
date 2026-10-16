@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "auxiliary/resume_control_training_report.json",
+      "sha256": "208b62820fb407050f9fd9327cd23baf581d88ebd8912c245606e40f76e0734b",
+      "bytes": 2401
+    },
+    {
+      "path": "auxiliary/resume_resumed_training_report.json",
+      "sha256": "ddb9d437cb3a252aaf2c1ac9e10a025ee2e2871968d8f3424528f451af9adf38",
+      "bytes": 2504
+    },
+    {
+      "path": "auxiliary/throughput_mb4_training_report.json",
+      "sha256": "649a7e374493c6b15c74dea2cb11deea42ae1e4bca8e62e6cbdd3eccae76e830",
+      "bytes": 2366
+    },
+    {
+      "path": "README.md",
+      "sha256": "818cae25cd1e83512df40724ba746cb56e3d6c7f9181c704e11ee22b807ff363",
+      "bytes": 1598
+    },
+    {
+      "path": "report.md",
+      "sha256": "24ed89db48d9cca585fb0ee61c3a3bcc8dd6751747c34f8f897c7c75dd4ac142",
+      "bytes": 20611
+    },
+    {
+      "path": "summary.csv",
+      "sha256": "e6c81f559e41f60e33273709b34898921ec68ee2bceaa2427d84a1c1ae63aaf2",
+      "bytes": 145443
+    },
+    {
+      "path": "summary.json",
+      "sha256": "08cd8ed8703d471a37d1b4852875b4f9e145466d16fdcaa80396ca694bb9f296",
+      "bytes": 182293
+    }
+  ],
+  "report_row_sources": [
+    {
+      "original_path": "runs/pf00194/pilot_seed_42/training_report.json",
+      "path": "results/pilot/runs/pf00194/pilot_seed_42/training_report.json",
+      "sha256": "646ae552aa524b300d849786f2b8e4690bbc0c2113cd4105eaa50b7857653d12"
+    },
+    {
+      "original_path": "runs/pf00194/seed_42/training_report.json",
+      "path": "results/formal/runs/pf00194/seed_42/training_report.json",
+      "sha256": "b2b0b2ffcc9532795b000cde0ebcf950b3d8a90b3d0f469878de59a873bc4208"
+    },
+    {
+      "original_path": "runs/pf00194/seed_43/training_report.json",
+      "path": "results/formal/runs/pf00194/seed_43/training_report.json",
+      "sha256": "2de8cf50b184a7a75c0dbc55c6c04a19bd4932d9c7768f98f5acbd9df8bf03db"
+    },
+    {
+      "original_path": "runs/pf00194/seed_44/training_report.json",
+      "path": "results/formal/runs/pf00194/seed_44/training_report.json",
+      "sha256": "2f176163e710a03ad5074b052b4c0a9c64b595df5eca46d123e026763b668113"
+    },
+    {
+      "original_path": "runs/pf00194/throughput_mb4_seed_42/training_report.json",
+      "path": "results/experiment-summary/auxiliary/throughput_mb4_training_report.json",
+      "sha256": "649a7e374493c6b15c74dea2cb11deea42ae1e4bca8e62e6cbdd3eccae76e830"
+    },
+    {
+      "original_path": "runs/resume_validation/control_10/training_report.json",
+      "path": "results/experiment-summary/auxiliary/resume_control_training_report.json",
+      "sha256": "208b62820fb407050f9fd9327cd23baf581d88ebd8912c245606e40f76e0734b"
+    },
+    {
+      "original_path": "runs/resume_validation/resumed_10/training_report.json",
+      "path": "results/experiment-summary/auxiliary/resume_resumed_training_report.json",
+      "sha256": "ddb9d437cb3a252aaf2c1ac9e10a025ee2e2871968d8f3424528f451af9adf38"
+    },
+    {
+      "original_path": "outputs/formal/baseline/seed_101/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "232c34c0e42826ceca54e01048d329192960c127942fd2b9e11c1f6056181078"
+    },
+    {
+      "original_path": "outputs/formal/baseline/seed_102/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/baseline/seed_102/evaluation/metrics.json",
+      "sha256": "63fcb6d473ea0d25a692dd118eb4f25f8a0e726693756af13bf233844ad46b0b"
+    },
+    {
+      "original_path": "outputs/formal/baseline/seed_103/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/baseline/seed_103/evaluation/metrics.json",
+      "sha256": "403241391917f85c957dce46721ec5e8fcc9f277c268148be7386d607986726b"
+    },
+    {
+      "original_path": "outputs/formal/baseline/test_denoising/denoising_baseline.json",
+      "path": "results/formal/outputs/formal/baseline/test_denoising/denoising_baseline.json",
+      "sha256": "6eca8ea22e524ee50821ae8ac5eb9f06b691ae575b2e07ab1b4b2501bdf6e8c0"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_42/seed_101/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "0b10685a82e38b56c42928e60a448d33436abe0f13fde56070cc09f1b8f3eff9"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_42/seed_102/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_42/seed_102/evaluation/metrics.json",
+      "sha256": "49437c3e1be1146757163f30d444ae6124d72cf005524ebc874bb986f69b344a"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_42/seed_103/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_42/seed_103/evaluation/metrics.json",
+      "sha256": "259f58703d398ae9b668796ad71103485ea0583c1bd24585e7fd15f16c5f2d98"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_42/test_denoising/denoising_adapted.json",
+      "path": "results/formal/outputs/formal/train_seed_42/test_denoising/denoising_adapted.json",
+      "sha256": "1796452b953d91ee80188852a7644163a4a0855386f3446b6705bfe0ce59fe25"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_43/seed_101/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_43/seed_101/evaluation/metrics.json",
+      "sha256": "0d16343cc0724f33102bacd920db524cc75e4242d63a85226339be3f9162c0b6"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_43/seed_102/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_43/seed_102/evaluation/metrics.json",
+      "sha256": "9c60122daa43d48e8c559f4352cc311479be96f2a5e4edf7c800b50909343abf"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+      "sha256": "6a0f2c6ca87cc8695bce187a8e0f17f31a81146852ef9a09dd5b58bca3de16dd"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_43/test_denoising/denoising_adapted.json",
+      "path": "results/formal/outputs/formal/train_seed_43/test_denoising/denoising_adapted.json",
+      "sha256": "84b457292f85272cbee2cbaaf0fc75e9e5d41f05e0377f64e505176eed45310d"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_44/seed_101/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_44/seed_101/evaluation/metrics.json",
+      "sha256": "e361adf416364b50f50cf5fc2b747a9668cfb2abfd7bd1fa080562ef2bd78b4a"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_44/seed_102/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_44/seed_102/evaluation/metrics.json",
+      "sha256": "c497e773e2768f79fd89938760815580dbf697b71e1910a70d231177faae2510"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_44/seed_103/evaluation/metrics.json",
+      "path": "results/formal/outputs/formal/train_seed_44/seed_103/evaluation/metrics.json",
+      "sha256": "ff913e5d992a7d87f9ea65661f69a219e9ef47507368f25f73cb47fc5608da50"
+    },
+    {
+      "original_path": "outputs/formal/train_seed_44/test_denoising/denoising_adapted.json",
+      "path": "results/formal/outputs/formal/train_seed_44/test_denoising/denoising_adapted.json",
+      "sha256": "f06e94e580ba5a6538c5819c6c5a96ba895946192b1945c0c76ded2b262066bf"
+    },
+    {
+      "original_path": "outputs/pilot/baseline/seed_101/evaluation/metrics.json",
+      "path": "results/pilot/outputs/pilot/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "74daa5d3b9d684685769d3f5a4ffba205a8cbb65dbff44bafa24e8e27fa354ec"
+    },
+    {
+      "original_path": "outputs/pilot/baseline/test_denoising/denoising_baseline.json",
+      "path": "results/pilot/outputs/pilot/baseline/test_denoising/denoising_baseline.json",
+      "sha256": "98aa45c5df933605c8b6d96a3c62aa089e1052495a7e71c8934ed3f03e849b79"
+    },
+    {
+      "original_path": "outputs/pilot/train_seed_42/seed_101/evaluation/metrics.json",
+      "path": "results/pilot/outputs/pilot/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "69493fd743a1b770467465de54ca705837cd3918c6d9e36599d48636cf901612"
+    },
+    {
+      "original_path": "outputs/pilot/train_seed_42/test_denoising/denoising_adapted.json",
+      "path": "results/pilot/outputs/pilot/train_seed_42/test_denoising/denoising_adapted.json",
+      "sha256": "f149dc015e9d5f8a63aa8dcebde2633cb18dfcfd5b99e6f8b8efa07237274ee7"
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "mode": "formal",
+  "incomplete": false,
+  "plot_script_sha256": "d5d21f850439822450697378e10498fa5da8170a037b9e1d2ba6e03e12a9188d",
+  "issues": [],
+  "sources": [
+    {
+      "path": "runs/pf00194/seed_42/baseline_validation.json",
+      "sha256": "8264346446dba463ab79be23613cb73bb299c28878526ad2a9cd8cda2e6941c3",
+      "kind": "training_baseline"
+    },
+    {
+      "path": "runs/pf00194/seed_42/training.jsonl",
+      "sha256": "696480ab1ae6083e3db6f86f9bf793eab85eb2cd17879705e4f0687f80a0017c",
+      "kind": "training_log"
+    },
+    {
+      "path": "runs/pf00194/seed_42/training_report.json",
+      "sha256": "b2b0b2ffcc9532795b000cde0ebcf950b3d8a90b3d0f469878de59a873bc4208",
+      "kind": "training_report"
+    },
+    {
+      "path": "runs/pf00194/seed_43/baseline_validation.json",
+      "sha256": "8264346446dba463ab79be23613cb73bb299c28878526ad2a9cd8cda2e6941c3",
+      "kind": "training_baseline"
+    },
+    {
+      "path": "runs/pf00194/seed_43/training.jsonl",
+      "sha256": "26ae76a076e2960fad603946810234fd8b87528454deeb9d1e8ad8523deaca2f",
+      "kind": "training_log"
+    },
+    {
+      "path": "runs/pf00194/seed_43/training_report.json",
+      "sha256": "2de8cf50b184a7a75c0dbc55c6c04a19bd4932d9c7768f98f5acbd9df8bf03db",
+      "kind": "training_report"
+    },
+    {
+      "path": "runs/pf00194/seed_44/baseline_validation.json",
+      "sha256": "8264346446dba463ab79be23613cb73bb299c28878526ad2a9cd8cda2e6941c3",
+      "kind": "training_baseline"
+    },
+    {
+      "path": "runs/pf00194/seed_44/training.jsonl",
+      "sha256": "6d3154058e031cbfd21e20d59102f3e6db1b3144bcd4c31ef86db638ee9d8765",
+      "kind": "training_log"
+    },
+    {
+      "path": "runs/pf00194/seed_44/training_report.json",
+      "sha256": "2f176163e710a03ad5074b052b4c0a9c64b595df5eca46d123e026763b668113",
+      "kind": "training_report"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_101/evaluation/metrics.json",
+      "sha256": "232c34c0e42826ceca54e01048d329192960c127942fd2b9e11c1f6056181078",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_102/evaluation/metrics.json",
+      "sha256": "63fcb6d473ea0d25a692dd118eb4f25f8a0e726693756af13bf233844ad46b0b",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/baseline/seed_103/evaluation/metrics.json",
+      "sha256": "403241391917f85c957dce46721ec5e8fcc9f277c268148be7386d607986726b",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_101/evaluation/metrics.json",
+      "sha256": "0b10685a82e38b56c42928e60a448d33436abe0f13fde56070cc09f1b8f3eff9",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_102/evaluation/metrics.json",
+      "sha256": "49437c3e1be1146757163f30d444ae6124d72cf005524ebc874bb986f69b344a",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_42/seed_103/evaluation/metrics.json",
+      "sha256": "259f58703d398ae9b668796ad71103485ea0583c1bd24585e7fd15f16c5f2d98",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_101/evaluation/metrics.json",
+      "sha256": "0d16343cc0724f33102bacd920db524cc75e4242d63a85226339be3f9162c0b6",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_102/evaluation/metrics.json",
+      "sha256": "9c60122daa43d48e8c559f4352cc311479be96f2a5e4edf7c800b50909343abf",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_43/seed_103/evaluation/metrics.json",
+      "sha256": "6a0f2c6ca87cc8695bce187a8e0f17f31a81146852ef9a09dd5b58bca3de16dd",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_101/evaluation/metrics.json",
+      "sha256": "e361adf416364b50f50cf5fc2b747a9668cfb2abfd7bd1fa080562ef2bd78b4a",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_102/evaluation/metrics.json",
+      "sha256": "c497e773e2768f79fd89938760815580dbf697b71e1910a70d231177faae2510",
+      "kind": "generation_evaluation"
+    },
+    {
+      "path": "outputs/formal/train_seed_44/seed_103/evaluation/metrics.json",
+      "sha256": "ff913e5d992a7d87f9ea65661f69a219e9ef47507368f25f73cb47fc5608da50",
+      "kind": "generation_evaluation"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/figures/formal_validation_loss.png",
+      "sha256": "4260f213d8781b3e0761b9d8dd2f0f28153fd31c92a5b55eae9abe840eaa351b"
+    },
+    {
+      "path": "results/figures/formal_validation_loss.svg",
+      "sha256": "21c16d68544407b8c396326fcaaaa2e789d813a8c4d6a1d1f3f6d0b4a15ebdfe"
+    },
+    {
+      "path": "results/figures/formal_generation_metrics.png",
+      "sha256": "391866edff693a6f0eacfd0f1a7e4b907fb5cd0c7cec6fef0c2872798ef4a3cf"
+    },
+    {
+      "path": "results/figures/formal_generation_metrics.svg",
+      "sha256": "5574e397acb5ad7d21165e2ddf635c81d95454d223fa75923d5facf2e7778f24"
+    }
+  ],
+  "training_seeds_plotted": [
+    42,
+    43,
+    44
+  ],
+  "generation_cells_plotted": [
+    {
+      "arm": "baseline",
+      "sampling_seed": 101,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.0,
+      "mean_nearest_training_identity": 0.2663458692854328,
+      "mean_pairwise_distance": 0.7967787844741768,
+      "family_pass_count": 0
+    },
+    {
+      "arm": "baseline",
+      "sampling_seed": 102,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.0,
+      "mean_nearest_training_identity": 0.269533497097215,
+      "mean_pairwise_distance": 0.7994959951070659,
+      "family_pass_count": 0
+    },
+    {
+      "arm": "baseline",
+      "sampling_seed": 103,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.0,
+      "mean_nearest_training_identity": 0.2687180942323453,
+      "mean_pairwise_distance": 0.7925824307919744,
+      "family_pass_count": 0
+    },
+    {
+      "arm": "train_seed_42",
+      "sampling_seed": 101,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.99609375,
+      "mean_nearest_training_identity": 0.5709278286657558,
+      "mean_pairwise_distance": 0.41604579081676996,
+      "family_pass_count": 255
+    },
+    {
+      "arm": "train_seed_42",
+      "sampling_seed": 102,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.984375,
+      "mean_nearest_training_identity": 0.5746393481089357,
+      "mean_pairwise_distance": 0.4144236609671782,
+      "family_pass_count": 252
+    },
+    {
+      "arm": "train_seed_42",
+      "sampling_seed": 103,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.98828125,
+      "mean_nearest_training_identity": 0.5748402253105387,
+      "mean_pairwise_distance": 0.4216427616170994,
+      "family_pass_count": 253
+    },
+    {
+      "arm": "train_seed_43",
+      "sampling_seed": 101,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.9921875,
+      "mean_nearest_training_identity": 0.5622269241296527,
+      "mean_pairwise_distance": 0.4112778810196341,
+      "family_pass_count": 254
+    },
+    {
+      "arm": "train_seed_43",
+      "sampling_seed": 102,
+      "valid_sequences": 256,
+      "family_pass_rate": 1.0,
+      "mean_nearest_training_identity": 0.5661003037024153,
+      "mean_pairwise_distance": 0.4148613722032923,
+      "family_pass_count": 256
+    },
+    {
+      "arm": "train_seed_43",
+      "sampling_seed": 103,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.99609375,
+      "mean_nearest_training_identity": 0.5659970126919073,
+      "mean_pairwise_distance": 0.4115247093761735,
+      "family_pass_count": 255
+    },
+    {
+      "arm": "train_seed_44",
+      "sampling_seed": 101,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.98046875,
+      "mean_nearest_training_identity": 0.5697433891734527,
+      "mean_pairwise_distance": 0.3888997750192266,
+      "family_pass_count": 251
+    },
+    {
+      "arm": "train_seed_44",
+      "sampling_seed": 102,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.98828125,
+      "mean_nearest_training_identity": 0.5718581054928054,
+      "mean_pairwise_distance": 0.38507303801401116,
+      "family_pass_count": 253
+    },
+    {
+      "arm": "train_seed_44",
+      "sampling_seed": 103,
+      "valid_sequences": 256,
+      "family_pass_rate": 0.9921875,
+      "mean_nearest_training_identity": 0.5744913090089959,
+      "mean_pairwise_distance": 0.37793443520387177,
+      "family_pass_count": 254
+    }
+  ],
+  "expected_sampling_seeds": [
+    101,
+    102,
+    103
+  ],
+  "expected_sequences_per_sampling_seed": 256,
+  "matplotlib_version": "3.10.9",
+  "notes": [
+    "Training loss is never plotted as validation loss.",
+    "Sampling seeds within an arm do not constitute independent training replicates.",
+    "No significance test or biochemical-function inference is performed."
+  ]
+}

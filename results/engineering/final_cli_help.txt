@@ -1,0 +1,14 @@
+usage: dplm-lab [-h] [--debug]
+                {doctor,demo,fetch,prepare-data,audit-data,train,generate,evaluate,denoise-eval,run-seeds,run-experiment,report}
+                ...
+
+DPLM protein family adaptation laboratory
+
+positional arguments:
+  {doctor,demo,fetch,prepare-data,audit-data,train,generate,evaluate,denoise-eval,run-seeds,run-experiment,report}
+    doctor              inspect local dependencies and GPU
+    demo                run an offline synthetic FASTA exercise
+
+options:
+  -h, --help            show this help message and exit
+  --debug               show full exception trace

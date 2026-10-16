@@ -1,6 +1,6 @@
 # 远程单卡训练
 
-真实150M模型已在Python 3.10、NVIDIA L4上完成42/43/44三个种子各1000步，含三次导出的总wall time为32.66分钟，编码器更新与CPU导出重载一致性均已验证。此前100步训练pilot为193.69秒、2.78 GiB。源码身份、权重revision和原始文件SHA已核对；远程13项GPU集成测试已通过，本机全量96 passed、2 skipped（CUDA与Windows符号链接相关条件）。测试与真实150M运行分别留存；正式12组生成评估仍在进行，完整结果pending。
+真实150M模型已在Python 3.10、NVIDIA L4上完成42/43/44三个种子各1000步，含三次导出的总wall time为32.66分钟，编码器更新与CPU导出重载一致性均已验证。12组正式生成评估、4组test去噪和严格来源检查均已完成，结果见[技术报告](../results/technical-report.md)；复用已有训练的正式编排阶段wall time为44.05分钟，GPU生成与CPU评估重叠。当前Linux L4全量108项测试通过、无skip。此前100步训练pilot为193.69秒、2.78 GiB，单独标记，不混入正式结果。
 
 L4总显存23034 MiB；初次检查时另有任务占用约7670 MiB。这是当时的设备状态，不是未来可用显存保证。PyTorch峰值已分配显存也不等于整张卡的总占用。下面保留可迁移的部署步骤，主机地址与账号由使用者自行配置，不写入公开文档。
 
@@ -124,12 +124,18 @@ dplm-lab train --config configs/pf00194-l4.yaml --resume "$CHECKPOINT" --max-ste
 
 此例针对公开L4配置的新运行；恢复本次原始运行时把配置替换为其runtime文件。恢复使用相同数据快照、输出目录与训练协议；不能将原本最大20步的run用`--max-steps 1000`续跑，签名校验会拒绝。为了练习恢复，可在原配置保留正式最大步数、使用`train.stop_after_steps`提前停止于优化边界，再移除该临时停止字段恢复；先在独立smoke目录操作。不要把“只载入模型权重重新开始”称为恢复了优化器和随机状态。正式长任务可用平台任务管理器或tmux，保留日志，并在远程会话结束后核对进程状态。
 
+当前恢复实现还要求checkpoint记录的**原始绝对`output_dir`完全一致**。把`last.pt`复制到任意新路径不会自动迁移run，改变目录会被明确拒绝；需保持原目录/挂载路径与原协议。这个限制不影响`export_best`的可移植推理，不能把两种交付混为一谈。
+
 若OOM，记录实际GPU、命令、长度、精度、batch和错误，再确认是否有其它进程占用。优先减小microbatch、保持梯度检查点并调整累积以维持有效batch。必须改变长度范围或目标时，生成新实验配置、重新制备/审计数据并重新跑基线，不能静默截断后继续比较。
 
 ## 取回与复现
 
-取回配置快照、环境信息、数据清单及hash、训练日志、选定检查点、生成FASTA、长度列表、评估与失败记录。大型数据和模型留在受控存储，开源仓库提供取得方式与校验信息。保存模型来源与实际revision；上游源码commit不能代替权重revision。
+完整恢复需保留**整个run目录**，包括`last.pt`、选定的`best.pt`、`tokenizer/`、`validation_noise.pt`、`config.json`、环境记录和训练日志；不能只拷贝一个权重文件。还需保持上述原始绝对输出路径、相同数据快照与协议。远程现有文件可直接在对应工作目录使用，公开Git仓库不下载或分发多GB检查点。
+
+`export_best/`用于可移植推理，应连同权重、模型配置、tokenizer、`roundtrip.json`、`export_identity.json`和`family_lab_provenance.json`一起保留；其身份校验还引用原training report的SHA，因此追溯时保留对应小报告。原始预训练模型缓存是固定SHA的来源权重，可以按固定revision重新获取，不能用另一套权重替换后仍沿用旧来源记录。
+
+同时保存数据清单、生成FASTA、长度列表、评估与失败记录。源码commit不能代替权重revision。公开结果入口为[严格汇总](../results/experiment-summary/report.md)、[配对分析](../results/analysis/formal/analysis.json)和[正式证据索引](../results/formal/index.json)。
 
 正式完成后先在远程项目目录运行与该次原始配置一致的`dplm-lab report`命令；本次使用上述runtime命令，公开profile的新运行使用公开L4命令。读取`summary.json`中的`formal_status`与`missing_expected_stages`。不要只看进程结束或最后一条“complete”。`report.md`用于阅读，`summary.csv`用于逐组比较，原始JSON用于核对分母、区间与来源；详见[结果读取清单](experiment-protocol.md#6-正式结束后读取结果)。
 
-最终报告分别填写“CPU已验证”“微型测试已验证”“真实150M训练及恢复已验证”“完整正式实验已完成”。目前前三类已有对应证据，三个正式训练种子也已完成；只有全部12组生成评估与4组测试去噪等产物齐备并通过核查后，才能填写最后一项。
+当前“CPU已验证”“微型测试已验证”“真实150M训练及恢复已验证”“完整正式实验已完成”均有对应记录；最后一项只表示完整协议产物及来源检查齐备，不能替代结构或酶活验证。

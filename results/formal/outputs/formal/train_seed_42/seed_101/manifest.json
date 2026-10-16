@@ -1,0 +1,386 @@
+{
+  "status": "complete",
+  "model": "runs/pf00194/seed_42/export_best",
+  "provenance": {
+    "source": "airkingbd/dplm_150m",
+    "revision": "49b7125a5d28c6418fcc2f3c4fe799352ac1488b",
+    "checkpoint_sha256": "ea4eaa99536b60ed76f945f71a1a5e604f08447ec3def5104a93ca6001a59961",
+    "upstream_commit": "8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d",
+    "download_endpoint": "https://hf-mirror.com",
+    "verified_against_official_metadata": true,
+    "loaded_weights_sha256": "11c2f9931bbe20026eb1f576e40035a85e961871d70ca41b9a22760a7e56e191",
+    "loaded_config_sha256": "fae85050e12bb5124a9725da1b1a5eb05ce24cfe282584c8359c799b31e7109a",
+    "tiny_fixture": false,
+    "parameter_count": 148796794,
+    "device": "cuda",
+    "precision": "bf16",
+    "training_checkpoint_sha256": "782ffb0cd086e010113cec9f46a3fc0117027ab0f18e6155b44fdb97624d7e56",
+    "artifact_role": "adapted_export"
+  },
+  "seed": 101,
+  "batch_size": 4,
+  "max_iter": 100,
+  "sampling_strategy": "gumbel_argmax",
+  "output_alphabet": "ACDEFGHIKLMNPQRSTVWY",
+  "length_schedule_path": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/length_schedules/seed_101_n256.json",
+  "length_schedule_sha256": "d522d2ebbf0203970afde15d597c8e096a1849f52e3599bfbea3d614fe52c612",
+  "environment": {
+    "python": "3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]",
+    "platform": "Linux-5.4.250-9-velinux1-amd64-x86_64-with-glibc2.35",
+    "packages": {
+      "dplm-family-lab": "0.1.0",
+      "numpy": "1.26.4",
+      "biopython": "1.85",
+      "torch": "2.2.0+cu121",
+      "transformers": "4.39.2",
+      "pyhmmer": "0.12.3"
+    },
+    "project_source_sha256": {
+      "__init__.py": "6c96f889fa7389c2ecd39a37466835dde7f650b900623d2822ba97bfe85ea67e",
+      "__main__.py": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "_vendor/__init__.py": "5a7c8485316440f4162e744deb51e1eaf524c083eaa8750f458d683cb347794b",
+      "_vendor/esm.py": "13f678dfe976e71e82b9bf68beff683b819850bfb40138837a056e3244f42d79",
+      "_vendor/model.py": "7f40b34e5b3013af3aaa8f1a1e99169d48203c14250b0da0842d7378bd873ce0",
+      "_vendor/model_utils.py": "ba637f4270e810e33014ff4d2640cf3e7015c26bd17f50deff43f04ff0dfd116",
+      "backend.py": "d63abc25bfbab4cedb9f7124a687d81ac1831e10bc1d2e391ce815b3986f2a8b",
+      "cli.py": "2f0b15221e833038c5b0edbf510fdc059bb9a27bddc5f82becd5a5da0972abed",
+      "common.py": "b5ca5e14f0671052573f7f0fcd71c85e2a70129c8b123de2f5c30f8da772327c",
+      "data.py": "c906f411f0f1f92519073f79714f24006c34b9d2cf605269d8e92c8c6bfffc2b",
+      "evaluation.py": "0c4f9e3861b0781f9b384e84bb22e3fb922f4a41df84ae65e4ee251dcc0746fe",
+      "experiment.py": "b5bbf398d4b4fda50e034646e49886e40d921070546c356d4825e409503dab83",
+      "hmmer.py": "36b5625c2a6c396938118edccca8c59034df819b5b5e033d5b01fb8b5cfb53c0",
+      "reporting.py": "41159d04351dbb6d831f82f0a581932359e4da19e7c8d9ae75927ef2bfe65d49",
+      "sampling.py": "cf1df061ce259d203042b313ce5a6a5fd1ffdb8f654e7c034670a1e5e51e5143",
+      "similarity.py": "07f256450596e00fb2c5866fb3724e3f8ac299fc8811636bbabb71a6c0af91dc",
+      "training.py": "303ecc007798d4ee67b57ba7d38493611f7e28482c9676d7b1a76e69db52f9ad"
+    }
+  },
+  "batches": [
+    {
+      "offset": 0,
+      "count": 4,
+      "seed": 4215616147
+    },
+    {
+      "offset": 4,
+      "count": 4,
+      "seed": 2912948527
+    },
+    {
+      "offset": 8,
+      "count": 4,
+      "seed": 3766082871
+    },
+    {
+      "offset": 12,
+      "count": 4,
+      "seed": 1893884482
+    },
+    {
+      "offset": 16,
+      "count": 4,
+      "seed": 1580666041
+    },
+    {
+      "offset": 20,
+      "count": 4,
+      "seed": 1069706710
+    },
+    {
+      "offset": 24,
+      "count": 4,
+      "seed": 799544686
+    },
+    {
+      "offset": 28,
+      "count": 4,
+      "seed": 3797431372
+    },
+    {
+      "offset": 32,
+      "count": 4,
+      "seed": 3456222482
+    },
+    {
+      "offset": 36,
+      "count": 4,
+      "seed": 2344275228
+    },
+    {
+      "offset": 40,
+      "count": 4,
+      "seed": 3331866021
+    },
+    {
+      "offset": 44,
+      "count": 4,
+      "seed": 2277705158
+    },
+    {
+      "offset": 48,
+      "count": 4,
+      "seed": 4030720971
+    },
+    {
+      "offset": 52,
+      "count": 4,
+      "seed": 2120661887
+    },
+    {
+      "offset": 56,
+      "count": 4,
+      "seed": 693193313
+    },
+    {
+      "offset": 60,
+      "count": 4,
+      "seed": 3778180873
+    },
+    {
+      "offset": 64,
+      "count": 4,
+      "seed": 1883525418
+    },
+    {
+      "offset": 68,
+      "count": 4,
+      "seed": 807354488
+    },
+    {
+      "offset": 72,
+      "count": 4,
+      "seed": 3467480325
+    },
+    {
+      "offset": 76,
+      "count": 4,
+      "seed": 3185348342
+    },
+    {
+      "offset": 80,
+      "count": 4,
+      "seed": 1326252945
+    },
+    {
+      "offset": 84,
+      "count": 4,
+      "seed": 778288622
+    },
+    {
+      "offset": 88,
+      "count": 4,
+      "seed": 2134890736
+    },
+    {
+      "offset": 92,
+      "count": 4,
+      "seed": 196179050
+    },
+    {
+      "offset": 96,
+      "count": 4,
+      "seed": 2755288599
+    },
+    {
+      "offset": 100,
+      "count": 4,
+      "seed": 3481255766
+    },
+    {
+      "offset": 104,
+      "count": 4,
+      "seed": 4069277312
+    },
+    {
+      "offset": 108,
+      "count": 4,
+      "seed": 1007031216
+    },
+    {
+      "offset": 112,
+      "count": 4,
+      "seed": 2557008529
+    },
+    {
+      "offset": 116,
+      "count": 4,
+      "seed": 623179042
+    },
+    {
+      "offset": 120,
+      "count": 4,
+      "seed": 3308235880
+    },
+    {
+      "offset": 124,
+      "count": 4,
+      "seed": 1082477522
+    },
+    {
+      "offset": 128,
+      "count": 4,
+      "seed": 1437657248
+    },
+    {
+      "offset": 132,
+      "count": 4,
+      "seed": 4157673147
+    },
+    {
+      "offset": 136,
+      "count": 4,
+      "seed": 4139681046
+    },
+    {
+      "offset": 140,
+      "count": 4,
+      "seed": 3262425889
+    },
+    {
+      "offset": 144,
+      "count": 4,
+      "seed": 483899398
+    },
+    {
+      "offset": 148,
+      "count": 4,
+      "seed": 1619274476
+    },
+    {
+      "offset": 152,
+      "count": 4,
+      "seed": 2669250889
+    },
+    {
+      "offset": 156,
+      "count": 4,
+      "seed": 2236497372
+    },
+    {
+      "offset": 160,
+      "count": 4,
+      "seed": 2762217204
+    },
+    {
+      "offset": 164,
+      "count": 4,
+      "seed": 32187144
+    },
+    {
+      "offset": 168,
+      "count": 4,
+      "seed": 3971802823
+    },
+    {
+      "offset": 172,
+      "count": 4,
+      "seed": 195416820
+    },
+    {
+      "offset": 176,
+      "count": 4,
+      "seed": 3574561808
+    },
+    {
+      "offset": 180,
+      "count": 4,
+      "seed": 3947466952
+    },
+    {
+      "offset": 184,
+      "count": 4,
+      "seed": 1283637970
+    },
+    {
+      "offset": 188,
+      "count": 4,
+      "seed": 2392111726
+    },
+    {
+      "offset": 192,
+      "count": 4,
+      "seed": 1907611601
+    },
+    {
+      "offset": 196,
+      "count": 4,
+      "seed": 1541128716
+    },
+    {
+      "offset": 200,
+      "count": 4,
+      "seed": 904681782
+    },
+    {
+      "offset": 204,
+      "count": 4,
+      "seed": 1069782694
+    },
+    {
+      "offset": 208,
+      "count": 4,
+      "seed": 230386506
+    },
+    {
+      "offset": 212,
+      "count": 4,
+      "seed": 3901910490
+    },
+    {
+      "offset": 216,
+      "count": 4,
+      "seed": 3128506257
+    },
+    {
+      "offset": 220,
+      "count": 4,
+      "seed": 2087245326
+    },
+    {
+      "offset": 224,
+      "count": 4,
+      "seed": 3847222077
+    },
+    {
+      "offset": 228,
+      "count": 4,
+      "seed": 3051973022
+    },
+    {
+      "offset": 232,
+      "count": 4,
+      "seed": 4251479083
+    },
+    {
+      "offset": 236,
+      "count": 4,
+      "seed": 3178029520
+    },
+    {
+      "offset": 240,
+      "count": 4,
+      "seed": 1774507241
+    },
+    {
+      "offset": 244,
+      "count": 4,
+      "seed": 1061632901
+    },
+    {
+      "offset": 248,
+      "count": 4,
+      "seed": 627134187
+    },
+    {
+      "offset": 252,
+      "count": 4,
+      "seed": 1286211170
+    }
+  ],
+  "sequences": 256,
+  "invalid_amino_acid_sequences": 0,
+  "fasta": "/pyg-vepfs/public/jx/dplm-family-lab/outputs/formal/train_seed_42/seed_101/sequences.fasta",
+  "fasta_sha256": "6a1d00014c6e06598a9914b7897c9169a6c07df8cfbc124b39bfc41dc5f5fc35",
+  "elapsed_seconds": 193.50638852640986,
+  "peak_gpu_allocated_bytes": 1240950784
+}
