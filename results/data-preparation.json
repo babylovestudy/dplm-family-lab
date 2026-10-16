@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "measured_public_data_preparation",
+  "recorded_at": "2026-10-16T03:45:55.790955+00:00",
+  "source": {
+    "database": "UniProtKB",
+    "release": "2026_03",
+    "release_date": "02-September-2026",
+    "query": "(xref:pfam-PF00194) AND (length:[180 TO 256]) AND (fragment:false)",
+    "query_url": "https://www.uniprot.org/uniprotkb?query=%28xref%3Apfam-PF00194%29%20AND%20%28length%3A%5B180%20TO%20256%5D%29%20AND%20%28fragment%3Afalse%29",
+    "rest_endpoint": "https://rest.uniprot.org/uniprotkb/search",
+    "raw_fasta_sha256": "cc9b8654634b45ae984e46c7a923fd862c71fff7937b419c8c70ddc6f1ed9695"
+  },
+  "hmm": {
+    "accession": "PF00194.27",
+    "family": "PF00194",
+    "name": "Carb_anhydrase",
+    "length": 255,
+    "ga_sequence": 27.0,
+    "ga_domain": 27.0,
+    "sha256": "75ace6724895a6b7fe31c050b7ab9d73968feae442f40fda487ef4aecda711a3",
+    "entry_url": "https://www.ebi.ac.uk/interpro/entry/pfam/PF00194/",
+    "model_url": "https://www.ebi.ac.uk/interpro/api/entry/pfam/PF00194?annotation=hmm",
+    "minimum_single_domain_model_coverage": 0.8,
+    "minimum_covered_model_positions": 204,
+    "threshold_source": "Curated GA scores stored in the downloaded Pfam HMM; sequence and domain both 27 bits for PF00194.27."
+  },
+  "counts": {
+    "downloaded_records": 4464,
+    "removed_nonstandard_amino_acids": 13,
+    "removed_outside_length_range": 0,
+    "removed_exact_duplicates": 91,
+    "clean_unique_sequences": 4360,
+    "sequences_passing_ga": 4360,
+    "removed_by_single_domain_coverage": 1418,
+    "sequences_passing_ga_and_coverage": 2942,
+    "homology_components": 1719,
+    "largest_component": 61,
+    "splits": {
+      "train": 2354,
+      "val": 294,
+      "test": 294
+    },
+    "components_by_split": {
+      "train": 1131,
+      "val": 294,
+      "test": 294
+    }
+  },
+  "similarity": {
+    "metric": "global-v1:match=1,mismatch=-1,open=-2,extend=-0.5;identity=matches/all_columns;coverage=paired_residues/full_length",
+    "alignment": "Biopython PairwiseAligner global optimum; canonical SHA-256 orientation; first optimal alignment resolves ties.",
+    "match_score": 1,
+    "mismatch_score": -1,
+    "gap_open_score": -2,
+    "gap_extend_score": -0.5,
+    "identity_denominator": "All alignment columns, including terminal and internal gap columns.",
+    "coverage_denominator": "Residue-residue aligned columns divided by each full sequence length separately.",
+    "minimum_identity": 0.8,
+    "minimum_coverage_on_each_sequence": 0.8,
+    "partitioning": "Connected components of all qualifying pairs; no component crosses a split.",
+    "filtering": "Lossless length-ratio and multiset bigram upper bounds; exact global alignment for remaining necessary pairs.",
+    "unordered_pairs": 4326211,
+    "pairs_rejected_by_safe_bounds": 4155491,
+    "exact_pairwise_comparisons": 164612,
+    "already_connected_pairs_skipped": 6108,
+    "confirmed_component_joining_edges": 1223,
+    "edge_count_note": "Joining edges form a spanning forest. The full number of qualifying edges is not measured because redundant within-component pairs may be skipped."
+  },
+  "cross_split_audit": {
+    "passed": true,
+    "unordered_cross_split_pairs": 1470588,
+    "exact_comparisons_after_safe_bounds": 43304,
+    "violations": [],
+    "independent_post_transfer_audit_passed": true
+  },
+  "timing_seconds": {
+    "full_prepare": 198.91389626264572,
+    "connected_components": 166.36327450722456,
+    "cached_prepare": 0.01051294058561325,
+    "independent_cached_audit": 9.247193451970816,
+    "local_post_transfer_audit": 13.607645200012485
+  },
+  "software_versions": {
+    "python": "3.10.12",
+    "numpy": "1.26.4",
+    "biopython": "1.85",
+    "pyhmmer": "0.12.3"
+  },
+  "reproducibility": {
+    "split_seed": 42,
+    "requested_split_fractions": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "original_manifest_sha256": "d0611fd93b331a12dab9407597cba246adad2b10115f86e1f26b314c32dbd345",
+    "public_frozen_splits_sha256": "759d25dbdc1ba47e46bcc042affbb36d1f78a3d335a6d5938af01da57c0a5b8d",
+    "frozen_manifest_unchanged_on_resume": true,
+    "original_evidence_sha256": {
+      "data_prepare_summary.json": "29206cd177107db8b6ababe22c8927391ba18ba7662efaf4d962d2c10c063f97",
+      "data_audit_local.json": "3b4bb97597109c2d48a4b142695679a2e608705c8c4843bf9e504bbc49a7620d"
+    }
+  },
+  "limitations": [
+    "Pfam GA and domain coverage establish sequence-family compatibility; they do not establish carbonic-anhydrase catalytic activity, expression, folding, or wet-lab function.",
+    "The cross-split audit excludes qualifying pairs under the stated global metric; it does not eliminate distant homology.",
+    "Fine-tuning split isolation does not establish absence from DPLM pretraining data.",
+    "Public API contents may change after the recorded UniProt release; accession-level sequence hashes in frozen-splits.json identify this snapshot.",
+    "Timings are measured examples and depend on hardware and cache state.",
+    "Size-first whole-component allocation produced singleton components in validation and test in this snapshot; interpret generalization with this split composition in mind."
+  ]
+}

@@ -1,0 +1,15 @@
+DPLM Family Lab
+Copyright 2026 DPLM Family Lab contributors
+
+This project contains adapted parts of DPLM by ByteDance Research, licensed
+under the Apache License, Version 2.0. The upstream copyright notices,
+license and pinned source/changes are retained in
+src/dplm_family_lab/_vendor/LICENSE and SOURCE.md.
+
+Upstream: https://github.com/bytedance/dplm
+Commit: 8a2e15e53416b4536f03f79ad1f6f6a9cbd5e19d
+
+UniProt and InterPro/Pfam data are third-party scientific resources.
+Download provenance and attribution are recorded by the data pipeline.
+The source-code license does not establish a separate license for downloaded
+pretrained model weights or for every external scientific resource.
